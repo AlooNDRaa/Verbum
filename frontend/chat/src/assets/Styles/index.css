@@ -1,0 +1,50 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.border-moving-input {
+  border: 1px solid;
+  animation: moveBorder 1.5s linear infinite;
+}
+
+@keyframes moveBorder {
+  0% {
+    border-top: 2px solid #b80e66; 
+    border-right: 2px solid transparent; 
+    border-bottom: 2px solid transparent; 
+    border-left: 2px solid transparent;
+  }
+  25% {
+    border-top: 2px solid transparent;
+    border-right: 2px solid #B80E65;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+  }
+  50% {
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid #B80E65;
+    border-left: 2px solid transparent;
+  }
+  75% {
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid #B80E65;
+  }
+  100% {
+    border-top: 2px solid #B80E65;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+  }
+}
+
+.board-row:after {
+  content: "";
+}
+
+.square:focus {
+  outline: none;
+}
+
