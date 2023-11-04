@@ -1,46 +1,50 @@
-import express from 'express';
-import User from '../dbconect/user.model.js';
-import cors from 'cors';
+import express from 'express'
+import mysql from 'mysql2';
+import sql from 'mysql2'
 
 const app = express();
+const PORT = 3000;
 
-var corsOptions = {
-    origin: "http://localhost:8081"
-  };
-  
-  const PORT = 3000;
-
-  // app.set('view engine', 'ejs');
-
-  // app.set('views', path.join(__dirname, 'views'))
-  
-  // app.use('/', express.static(path.join(__dirname, 'public')));
-  
 
 app.use(express.json());
-app.use(express.urlencoded({  extended:true}));
-app.use(cors(corsOptions));
+app.set('view engine', 'ejs');
 
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'nebulosadelvelo2023',
+  database: 'verbum',
+});
 
-app.get('/', (req, resp) => {
-  resp.json(
-    "holo"
+db.connect((err) => {
+  if (err) {
+    console.error('Error de conexión a la base de datos', err);
+  } else {
+    console.log('Conexión exitosa a la base de datos');
+  }
+});
+
+app.get('/', (req, res) => {
+  res.json(
+    "accsulibe"
   )
-  console.log("good job");
 })
 
-app.get('/test', (req, res) => {
-    res.json(
-        "Welcome to the API"
-    )
-})
-
-import apps from '../routes/user.routes.js';
-
-
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.post('/', (req, res) => {
+  
+  const { username, email, password } = req.body;
+    const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)'; 
+  db.query(sql, [username, email, password], (err, result) => {
+    if (err) {
+      console.error('Error al guardar en la base de datos', err);
+      res.status(500).json({ message: 'Error al registrar usuario' });
+    } else {
+      console.log('Registro exitoso');
+      res.status(200).json({ message: 'Registro exitoso' });
+    }
   });
-
-
-
+  });
+  
+app.listen(PORT, () => {
+  console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
+});
