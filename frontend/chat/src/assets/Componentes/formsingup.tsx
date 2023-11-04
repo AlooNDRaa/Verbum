@@ -16,7 +16,8 @@ export function Form2() {
                 <input 
                 className="border-moving-input w-full text-[#ffff] border-2 border-none rounded p-4 mt-1 bg-transparent"
                 type="text" 
-                placeholder="Enter your name"                
+                placeholder="Enter your name"
+                id='name' required                
                 />
             </div>
             <div>
@@ -24,7 +25,8 @@ export function Form2() {
                 <input 
                 className="border-moving-input w-full text-[#ffff] border-2 border-none rounded p-4 mt-1 bg-transparent"
                 type="Email" 
-                placeholder="Enter your Email"                
+                placeholder="Enter your Email"
+                id='email' required
                 />
             </div>
             <div>
@@ -32,7 +34,8 @@ export function Form2() {
                 <input 
                 className="border-moving-input w-full text-[#ffff] border-2 border-none rounded p-4 mt-1 bg-transparent"
                 placeholder="Enter your password"
-                type='password'                
+                type='password'
+                id='pass' required
                 />
             </div>
             <div className="mt-8 flex justify-between items-center">
