@@ -1,5 +1,5 @@
 import mysql from 'mysql2';
-import dbconfig from '../dbconfig/db.config';
+import  dbconfig  from '../dbconfig/db.config.js';
 
 export const conection = mysql.createConnection (
     {

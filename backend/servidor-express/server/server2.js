@@ -1,7 +1,6 @@
 import express from 'express';
 import User from '../dbconect/user.model.js';
 import cors from 'cors';
-import path from 'path';
 
 const app = express();
 
@@ -11,11 +10,11 @@ var corsOptions = {
   
   const PORT = 3000;
 
-  app.set('view engine', 'ejs');
+  // app.set('view engine', 'ejs');
 
-  app.set('views', path.join(__dirname, 'views'))
+  // app.set('views', path.join(__dirname, 'views'))
   
-  app.use('/', express.static(path.join(__dirname, 'public')));
+  // app.use('/', express.static(path.join(__dirname, 'public')));
   
 
 app.use(express.json());

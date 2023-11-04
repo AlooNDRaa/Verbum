@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server2.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error:s no test specified\" && exit 1",
-    "start": "node server/server.js"
+    "start": "node --watch server/server2.js"
   },
   "keywords": [],
   "author": "",

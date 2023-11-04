@@ -1,4 +1,7 @@
-export default apps => {
-    const clients = require("../controller/user.controller.js");
-  
-    var router = require("express").Router();}
+import router from 'express';
+import { create } from "../controller/user.controller.js";
+
+// router.post("/register", create);
+
+
+export default router;

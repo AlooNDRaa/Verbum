@@ -1,4 +1,10 @@
-export const HOST = "localhost";
-export const USER = "root";
-export const PASSWORD = "nebulosadelvelo2023";
-export const DB = "verbum";
+const dbconfig = () => {
+
+ const HOST = "localhost";
+ const USER = "root";
+ const PASSWORD = "nebulosadelvelo2023";
+ const DB = "verbum";
+
+}
+
+export default dbconfig;

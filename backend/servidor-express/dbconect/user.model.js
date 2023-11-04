@@ -1,4 +1,4 @@
-import sql from "./dbConnect.js";
+// import sql from "./dbConnect.js";
 
 class User {
   constructor(user) {
