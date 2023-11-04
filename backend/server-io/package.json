@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error:s no test specified\" && exit 1",
     "dev": "node --watch server/server.js"
-
   },
   "keywords": [],
   "author": "",
