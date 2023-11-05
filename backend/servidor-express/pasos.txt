@@ -1,0 +1,24 @@
+Pasos para la creacion y conexion de la base de datos: 
+
+1: Creacion de servidor con express y node js, creacion de la base. 
+2: Instalar el modulo mysql en nuestro proyecto, cors y express.
+3: Importar estos modulos al archivo server.js para implementarlos en la usabilidad del servidor y lectura de datos.
+4: configurar la conexion de la base y las configuraciones de entorno.
+5: Creamos los modelos que vamos a utilizar (usuarios, passwoard, datos, chats, etc)
+6: Creamos las rutas correspondientes a cada una de estas tablas.
+7: Hacemos un controlador para manejar las operaciones CRUD.
+8: Enrutamiento de las solicitudes http. (En este caso, es recomendable utilizar express ya que socketio esta orientado en la comunicacion en tiempo real mas que en el guardado de informacion)
+9: Finalmente hacemos la conexion del server con el cliente frontend.
+
+Pasos de conexion de back y front - en react con vite.
+- En vite config debemos especificar el lugar de toma de informacion para poder darla y recibirla.
+dentro de un server y proxy, especificar el localhost.
+
+
+# Tecnologias Utilizadas
+- NodeJS
+- Express
+- MySQL
+- SocketIO (De este extraeremos la informacion del chat para guardarlo a este entorno y posteriormente a la base)
+
+

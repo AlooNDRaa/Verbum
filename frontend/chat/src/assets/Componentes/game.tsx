@@ -61,7 +61,7 @@ function Game() {
         finished={finished}
         onClick={i => handleClick(i)}
       />
-      <div className="ml-6 bg-[#000] text-white p-4 border">
+      <div className="ml-6 bg-[#000] text-white p-4 border ">
         <div className="font-bold">{status}</div>
         <ol className="pl-8">{moves}</ol>
       </div>
