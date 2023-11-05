@@ -1,13 +1,19 @@
 import express from 'express'
 import mysql from 'mysql2';
 import sql from 'mysql2'
+import cors from 'cors'
 
 const app = express();
 const PORT = 3000;
 
+let corsOptions = {
+  origin: "http://localhost:5173"
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.set('view engine', 'ejs');
+
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -24,16 +30,12 @@ db.connect((err) => {
   }
 });
 
-app.get('/', (req, res) => {
-  res.json(
-    "accsulibe"
-  )
-})
+
 
 app.post('/', (req, res) => {
   
   const { username, email, password } = req.body;
-    const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)'; 
+  const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)'; 
   db.query(sql, [username, email, password], (err, result) => {
     if (err) {
       console.error('Error al guardar en la base de datos', err);

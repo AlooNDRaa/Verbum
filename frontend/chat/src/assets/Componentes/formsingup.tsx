@@ -3,7 +3,7 @@ import '../Styles/index.css'
 
 export default function Form2() {
   const [userData, setUserData] = useState({
-    name: '',
+    username: '',
     email: '',
     password: '',
   });
@@ -12,22 +12,22 @@ export default function Form2() {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
+  
 
   const handleCreateUser = async () => {
     try {
-      const response = await fetch('/', {
+      const response = await fetch('http://localhost:3000/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
       });
-  
+
       if (response.ok) {
         console.log('Registro exitoso');
-        const data = await response.json(); // Espera a que se resuelva la promesa
-        localStorage.setItem('user', JSON.stringify(data));
-        window.location.href = '/successful-registration-page';
+        const data = await response.json();
+        localStorage.setItem('users', JSON.stringify(data));
       } else {
         console.error('Error en el registro');
       }
@@ -47,16 +47,17 @@ export default function Form2() {
         </p>
         <div className="mt-8">
           <div className="mb-2">
-            <label className="flex mb-3 text-lg font-medium">UserName</label>
+            <label className="flex mb-3 text-lg font-medium">Username</label>
             <input
               type="text"
-              name="name"
-              value={userData.name}
+              name="username"
+              value={userData.username}
               onChange={handleInputChange}
               className="border-moving-input w-full text-[#ffff] border-2 border-none rounded p-4 mt-1 bg-transparent"
               placeholder="Enter your name"
               required
-            />
+              />
+            
           </div>
           <div>
             <label className="flex mb-3 text-lg font-medium">Email</label>
@@ -92,12 +93,6 @@ export default function Form2() {
                 Remember me
               </label>
             </div>
-            <button
-              className="font-medium text-base text-pink-800"
-              onClick={handleCreateUser}
-            >
-              Create
-            </button>
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button
