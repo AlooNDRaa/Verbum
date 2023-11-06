@@ -8,8 +8,8 @@ const PORT = 3000;
 let corsOptions = {
   origin: "http://localhost:5173"
 };
-app.use(cors(corsOptions));
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
@@ -29,10 +29,13 @@ db.connect((err) => {
   }
 });
 
-app.get('/test', (req, res) => {
-  res.json(
-    {"message": "Hello World!"}
-  )
+app.get('/user', (req, res) => {
+  const { username, email, password} = req.body;
+  const sql = 'SELECT * FROM USERS';
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  })
 })
 
 app.post('/', (req, res) => {
