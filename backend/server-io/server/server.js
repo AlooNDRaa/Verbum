@@ -13,9 +13,13 @@ const io = new SocketServer(server, {
 })
 
 io.on("connection", socket => {
-    Console.log("client connected")
-    socket.on ('chat', (data) => {
-        console.log(data)
+    Console.log(socket.id)
+    socket.on ('chat', (body) => {
+        console.log(body)
+        socket.broadcast.emit("chat", {
+            body,
+            from: socket.id.slice(6)
+        })
     })
 })
 

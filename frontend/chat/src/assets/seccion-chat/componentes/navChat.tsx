@@ -5,7 +5,7 @@ import { FaRegSun } from "react-icons/fa";
 function Nav (){
     return(
         <>
-        <div className="text-white border border-stone-700 w-10 h-screen bg-[#1a1143] opacity-95" >
+        <div className="text-white border border-stone-700 w-10 h-screen bg-[#161616] opacity-95" >
         <div className="pt-10 ...">
          <a  href= "#"className=" text-[#B80E65] text-4xl " >
             <BiMessageRoundedDetail/>
