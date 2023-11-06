@@ -12,11 +12,17 @@ const io = new SocketServer(server, {
     }
 })
 
-
-
 io.on("connection", socket => {
-    Console.log("cliente conectado")
+    Console.log(socket.id)
+    socket.on ('chat', (body) => {
+        console.log(body)
+        socket.broadcast.emit("chat", {
+            body,
+            from: socket.id.slice(6)
+        })
+    })
 })
 
 server.listen(3100)
-console.log("Listo", 3100)
+console.log("List", 3100)
+

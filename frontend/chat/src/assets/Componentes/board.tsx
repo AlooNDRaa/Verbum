@@ -11,7 +11,7 @@ const Board: React.FC<Props> = props => {
     <Square value={props.squares[i]} onClick={() => props.onClick(i)} />
   );
   return (
-    <div className="relative">
+    <div className="flex flex-col">
       <div className="clear-both table">
         {renderSquare(0)}
         {renderSquare(1)}

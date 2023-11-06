@@ -1,6 +1,5 @@
 import express from 'express'
 import mysql from 'mysql2';
-import sql from 'mysql2'
 import cors from 'cors'
 
 const app = express();
@@ -30,7 +29,11 @@ db.connect((err) => {
   }
 });
 
-
+app.get('/test', (req, res) => {
+  res.json(
+    {"message": "Hello World!"}
+  )
+})
 
 app.post('/', (req, res) => {
   
