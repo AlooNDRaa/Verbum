@@ -1,5 +1,7 @@
 import Navopen from "./compOpenChat/navOpenChat";
 import Mensajes from "./compOpenChat/mensajes"
+
+
 function Chatopen (){
 
     return(
