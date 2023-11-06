@@ -10,7 +10,7 @@ function Navbar () {
     const handleClick = () => setClick(!click);
    
     const content = <>
-       <div className="lg:hidden block absolute top-10 w-full left-0 right-0 bg-black transition rounded-md ">
+       <div className="lg:hidden block absolute top-10 w-full left-0 right-0 bg-white transition rounded-md ">
           <ul className='text-center text-x1 p-5'>
             <Link spy={true} smooth={true} to="home">
               <li className='my-4 py-4 border-b border-slate-800 hover:bg.slate-800 hover:rounded'>Inicio</li>
@@ -49,7 +49,7 @@ function Navbar () {
               <li className='hover:text-fuchsia-600 transition hover:border-fuchsia-600 hover:scale-110 cursor-pointer -mt-2'>Ayuda</li> 
               </Link>          
             <Link spy={true} smooth={true} to="Projects">
-              <li className='hover:text-fuchsia-600 transition  hover:border-fuchsia-600 hover:scale-110 cursor-pointer -mt-2'>Verbum privado</li>
+              <li className='hover:text-fuchsia-600 transition  hover:border-bg-[#B80E65] hover:scale-110 cursor-pointer -mt-2'>Verbum privado</li>
               </Link>
          </ul>
                     </div>
