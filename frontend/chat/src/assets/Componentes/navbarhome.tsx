@@ -2,6 +2,7 @@ import { Link } from 'react-scroll';
 import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
+import Logo from '../imgs/verbumlog.png';
 
 
 function Navbar () {
@@ -33,7 +34,7 @@ function Navbar () {
 
            <div className="h-5 flex justify-between bg-[#101015] z-50 text-white lg:py-8 px-10 py-4">
                 <div className="flex items-center flex-1">
-                <img src="/Group 1.png" alt="Mi Imagen" className="w-6 h-6 max-w-full sm:w-8 sm:h-8 md:w-15 md:h-15 lg:w-10 lg:h-10 xl:w-10 xl:h-10"/>
+                <img src={Logo} alt="img-logo" className="w-6 h-6 max-w-full sm:w-8 sm:h-8 md:w-15 md:h-15 lg:w-10 lg:h-10 xl:w-10 xl:h-10"/>
                 </div>
                 <div className="lg:flex md:flex lg:flex-1 items center justify-end font-normal hidden">
                     <div className="flex-10">
