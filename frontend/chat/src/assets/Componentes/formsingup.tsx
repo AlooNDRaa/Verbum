@@ -35,6 +35,7 @@ export default function Form2() {
     console.error('Error de red', error);
  }
   };
+  
 
   return (
     <div>
