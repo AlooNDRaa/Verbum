@@ -4,6 +4,7 @@ import { Login } from './assets/pages/login'
 import Chat from './assets/seccion-chat/pages/chat'
 import './assets/Styles/index.css'
 import Home from './assets/pages/home'
+import Footer from './assets/Componentes/footerhome'
 
 
 
@@ -18,6 +19,7 @@ function App() {
       <Route path='/game' Component={GameCYR}/>
       <Route path='/chat' Component={Chat}/>
       <Route path='/h' Component={Home}/>
+      <Route path='/footer' Component={Footer}/>
     </Routes>
     </BrowserRouter>
   )
