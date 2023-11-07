@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server2.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error:s no test specified\" && exit 1",
-    "start": "node --watch server/server2.js"
+    "start": "node dtcomp/server2.js"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +17,9 @@
     "mysql2": "^3.6.3",
     "nodemon": "^3.0.1",
     "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.16",
+    "@types/express": "^4.17.21"
   }
 }
