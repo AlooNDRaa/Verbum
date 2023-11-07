@@ -10,8 +10,8 @@ function Home() {
         <div className="container-father grid grid-cols-6 gap-4">
                <div className="son1 flex items-center mt-48 flex flex-col col-span-3">
                   <h1 className=" font-semibold text-9xl text-white">Verbum</h1>
-                  <h2 className='font-semibold text-violet-500 text-3xl hover:uppercase mt-8'>Ahora podes estar en todos lados!</h2>
-                  <h2 className='font-semibold text-slate-500 text-2xl hover:uppercase hover:text-transparent mt-8'>Incluso sin dejar rastro </h2>
+                  <h2 className='font-semibold text-pink-600 text-3xl hover:uppercase mt-8'>Ahora podes estar en todos lados!</h2>
+                  <h2 className='font-semibold text-gray-500 text-2xl hover:uppercase hover:text-transparent mt-8'>Incluso sin dejar rastro </h2>
                </div>
                 <div className='son2 flex items-center mt-20 mx-8 col-span-3'>
                     <div className='relative group'>

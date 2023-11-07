@@ -40,16 +40,16 @@ function Navbar () {
                     <div className="flex-10">
                     <ul className="flex gap-16 mr-16 text-[18px]">
             <Link spy={true} smooth={true} to="home">
-              <li className='hover:text-[#B80E65] font-semibold transition hover:border-fuchsia-600 hover:scale-110 cursor-pointer -mt-2'>Inicio</li>
+              <li className='hover:text-pink-600 font-semibold transition  hover:scale-110 cursor-pointer -mt-2'>Inicio</li>
               </Link>
             <Link spy={true} smooth={true} to="About">
-              <li className='hover:text-[#B80E65] transition font-semibold hover:border-fuchsia-600 hover:scale-110 cursor-pointer -mt-2'>Verbum Blog</li> 
+              <li className='hover:text-pink-600 transition font-semibold  hover:scale-110 cursor-pointer -mt-2'>Verbum Blog</li> 
               </Link>           
             <Link spy={true} smooth={true} to="Services">
-              <li className='hover:text-[#B80E65] transition font-semibold hover:border-fuchsia-600 hover:scale-110 cursor-pointer -mt-2'>Ayuda</li> 
+              <li className='hover:text-pink-600 transition font-semibold  hover:scale-110 cursor-pointer -mt-2'>Ayuda</li> 
               </Link>          
             <Link spy={true} smooth={true} to="Projects">
-              <li className='hover:text-[#B80E65] transition font-semibold hover:border-bg-[#B80E65] hover:scale-110 cursor-pointer -mt-2'>Verbum privado</li>
+              <li className='hover:text-pink-600 transition font-semibold  hover:scale-110 cursor-pointer -mt-2'>Verbum privado</li>
               </Link>
          </ul>
                     </div>
