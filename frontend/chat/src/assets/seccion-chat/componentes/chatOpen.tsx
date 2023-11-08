@@ -6,7 +6,7 @@ function Chatopen (){
 
     return(
         <>
-        <div className="w-full h-screen ">
+        <div className="w-full  ">
             <Navopen/>
             <Mensajes/>
         </div>

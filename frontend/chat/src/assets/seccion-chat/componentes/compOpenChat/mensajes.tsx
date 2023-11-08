@@ -1,5 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
+
+interface Chat {
+    body: string;
+    from: string;
+}
 
 const Socket = io('/');
 
@@ -9,6 +14,10 @@ function Mensajes() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        const newChat: Chat = {
+            body: chat,
+            from: "me"
+        }
         setChats([...chats, chat]);
         Socket.emit("chat", chat);
     };
@@ -38,7 +47,7 @@ function Mensajes() {
                 </form>
                 <ul>
                     {chats.map((chat, i) => (
-                        <li key={i} className="text-white">{chat}</li>
+                        <li key={i} className="text-white text-1xl my-2 p-2 table text-sm bg-[#C83C83] rounded-md ">{chat.body}:{chat.from}</li>
                     ))}
                 </ul>
             </div>
@@ -47,4 +56,3 @@ function Mensajes() {
 }
 
 export default Mensajes;
-
