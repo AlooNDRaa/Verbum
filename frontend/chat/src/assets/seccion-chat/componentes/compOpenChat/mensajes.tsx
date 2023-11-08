@@ -14,7 +14,7 @@ function Mensajes() {
             from: "me",
         };
         setChats([...chats, newChat]);
-        Socket.emit("chat", newChat); 
+        Socket.emit("chat", chat); 
         setChat(""); 
     };
 
@@ -25,8 +25,8 @@ function Mensajes() {
         };
     },);
 
-    const receiveChat = (newChat: { body: string; from: string }) => {
-        const remitente = newChat.from === "me" ? "Me" : newChat.from;
+    const receiveChat = (newChat: { body: string; from: string; state: string}) => {
+        const remitente = newChat.from === "me" ? "Me" : newChat.from; //cambio de remitente, o nombre de el. Para los mensajes del ME. funciona bien.
         newChat.from = remitente;
         setChats((state: { body: string; from: string }[]) => [...state, newChat]);        
     };
