@@ -6,7 +6,7 @@ type Props = {
 };
 const Square: React.FC<Props> = props => {
   return (
-    <button className="float-left rounded border bg-[#000] h-[10rem] w-[10rem] text-white text-2xl font-bold leading-8 h-8 -mr-px -mt-px p-0 text-center w-8" 
+    <button className="float-left border backdrop-blur bg-opacity-75 h-[10rem] w-[10rem] text-2xl font-bold leading-8 h-8 -mr-px -mt-px p-0 text-center w-8" 
     onClick={props.onClick}>
       {props.value}
     </button>

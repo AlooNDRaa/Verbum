@@ -43,7 +43,7 @@ function Game() {
     ? "Winner: " + winner
     : "Next player: " + (xIsNext ? "X" : "O");
   const moves = _history.map((step, move) => {
-    const desc = move ? "Go to move #" + move : "Go to game start";
+    const desc = move ? "Move number #" + move : "Start Game";
     return (
       <li className="p-3"
        key={move}>
@@ -54,14 +54,14 @@ function Game() {
     );
   });
   return (
-    <div className="flex justify-center items-center h-screen bg-[#191A26] ">
+    <div className="w-full backdrop-blur-md bg-opacity-75">
     <div className="flex flex-flow">
       <Board
         squares={squares}
         finished={finished}
         onClick={i => handleClick(i)}
       />
-      <div className="ml-6 bg-[#000] text-white p-4 border ">
+    <div className="ml-6 text-white p-5 h-[30rem] border">
         <div className="font-bold">{status}</div>
         <ol className="pl-8">{moves}</ol>
       </div>

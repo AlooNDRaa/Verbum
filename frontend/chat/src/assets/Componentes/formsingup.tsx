@@ -2,6 +2,8 @@ import { useState } from 'react';
 import '../Styles/index.css'
 
 export default function Form2() {
+
+  
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -35,6 +37,7 @@ export default function Form2() {
     console.error('Error de red', error);
  }
   };
+  
 
   return (
     <div>
@@ -101,14 +104,11 @@ export default function Form2() {
             >
               Create
             </button>
-            <div className="flex gap-x-2 justify-center">
-              <p>alredy have an account?</p>
-              <button className="text-pink-400 font-bold">Sign in</button>
-            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
 
