@@ -10,7 +10,7 @@ const Socket = io('/');
 
 function Mensajes() {
     const [chat, setChat] = useState<string>("");
-    const [chats, setChats] = useState<string[]>([]);
+    const [chats, setChats] = useState<{ body: string; from: string }[]>([]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -18,7 +18,7 @@ function Mensajes() {
             body: chat,
             from: "me"
         }
-        setChats([...chats, chat]);
+        setChats([...chats, newChat]);
         Socket.emit("chat", chat);
     };
 
@@ -29,8 +29,10 @@ function Mensajes() {
         };
     }, []);
 
-    const receiveChat = (chat: string) => {
-        setChats((state: string[]) => [...state, chat]);
+    const receiveChat = (newChat: { body: string; from: string;}) => {
+        const remitente = newChat.from === "me" ? "Me" : newChat.from; //cambio de remitente, o nombre de el. Para los mensajes del ME. funciona bien.
+        newChat.from = remitente;
+        setChats((state: { body: string; from: string }[]) => [...state, newChat]);        
     };
 
     return (
