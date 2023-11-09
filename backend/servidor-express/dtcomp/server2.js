@@ -30,7 +30,7 @@ db.connect((err) => {
 });
 app.get('/user', (req, res) => {
     const { username, email, password } = req.body;
-    const sql = 'SELECT * FROM USERS';
+    const sql = 'SELECT * FROM users';
     db.query(sql, function (err, result) {
         if (err)
             throw err;
@@ -49,6 +49,30 @@ app.post('/', (req, res) => {
             console.log('Registro exitoso');
             res.status(200).json({ message: 'Registro exitoso' });
         }
+    });
+});
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    const sql = 'SELECT * FROM users WHERE email = ?';
+    db.query(sql, [email], (err, results) => {
+        if (err) {
+            console.error('Error en la consulta: ' + err.message);
+            res.status(500).json({ message: 'Error en el servidor' });
+            return;
+        }
+        if (Array.isArray(results) && results.length > 0) {
+            const User = results[0];
+            if (password.User === password) {
+                res.status(200).json({ message: 'Inicio de sesión exitoso' });
+            }
+            else {
+                res.status(401).json({ message: 'Contraseña incorrecta' });
+            }
+        }
+        else {
+            res.status(401).json({ message: 'Usuario no encontrado' });
+        }
+        console.log(password.User);
     });
 });
 app.listen(PORT, () => {

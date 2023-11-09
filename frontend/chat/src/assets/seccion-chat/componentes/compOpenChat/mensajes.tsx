@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-interface Chat {
-    body: string;
-    from: string;
-}
-
 const Socket = io('/');
 
 function Mensajes() {
     const [chat, setChat] = useState<string>("");
-    const [chats, setChats] = useState<{ body: string; from: string }[]>([]);
+    const [chats, setChats] = useState<{ body: string; from: string }[]>([]); 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const newChat: Chat = {
+        const newChat = {
             body: chat,
             from: "me"
         }
@@ -27,29 +22,33 @@ function Mensajes() {
         return () => {
             Socket.off("chat", receiveChat);
         };
-    }, []);
+    },);
 
-    const receiveChat = (newChat: { body: string; from: string;}) => {
+    const receiveChat = (newChat: { body: string; from: string; state: string}) => {
         const remitente = newChat.from === "me" ? "Me" : newChat.from; //cambio de remitente, o nombre de el. Para los mensajes del ME. funciona bien.
         newChat.from = remitente;
         setChats((state: { body: string; from: string }[]) => [...state, newChat]);        
     };
+    
 
     return (
         <>
             <div className="w-full h-[90vh] bg-[#161616] opacity-90 flex items-center justify-center h-screen">
-                <form onSubmit={handleSubmit} className="absolute bottom-20 flex items-stretch" >
+                <form onSubmit={handleSubmit} className="absolute bottom-20 flex items-stretch">
                     <input
                         type="text"
                         placeholder="Escribir"
+                        value={chat}
                         onChange={(e) => setChat(e.target.value)}
-                        className="bg-[#C83C83] border-stone-700  bg-stone-900 rounded-md w-full "
+                        className="bg-[#C83C83] border-stone-700 bg-stone-900 rounded-md w-full"
                     />
-                    <button>Enviar</button>
+                    <button type="submit">Enviar</button>
                 </form>
                 <ul>
                     {chats.map((chat, i) => (
-                        <li key={i} className="text-white text-1xl my-2 p-2 table text-sm bg-[#C83C83] rounded-md ">{chat.body}:{chat.from}</li>
+                        <li className="text-white text-1xl my-2 p-2 table text-sm bg-[#C83C83] rounded-md " key={i}>
+                            {`${chat.from}: ${chat.body}`}
+                        </li>
                     ))}
                 </ul>
             </div>
