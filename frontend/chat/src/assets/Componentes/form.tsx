@@ -16,12 +16,12 @@ export default  function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('/login', {
+      const response = await fetch('http://localhost:3000/log', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ Email: email, Password: password }),
+        body: JSON.stringify({ email: email, password: password }),
       });
 
       if (response.status === 200) {
