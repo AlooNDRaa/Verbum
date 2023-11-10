@@ -51,7 +51,7 @@ app.post('/', (req, res) => {
         }
     });
 });
-app.post('/login', (req, res) => {
+app.post('/log', (req, res) => {
     const { email, password } = req.body;
     const sql = 'SELECT * FROM users WHERE email = ?';
     db.query(sql, [email], (err, results) => {
@@ -61,8 +61,8 @@ app.post('/login', (req, res) => {
             return;
         }
         if (Array.isArray(results) && results.length > 0) {
-            const User = results[0];
-            if (password.User === password) {
+            const user = results[0];
+            if (user.password === password) {
                 res.status(200).json({ message: 'Inicio de sesión exitoso' });
             }
             else {
@@ -72,7 +72,6 @@ app.post('/login', (req, res) => {
         else {
             res.status(401).json({ message: 'Usuario no encontrado' });
         }
-        console.log(password.User);
     });
 });
 app.listen(PORT, () => {

@@ -1,21 +1,50 @@
+
+import { FaFacebookSquare, FaGithubSquare, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
+
 const Footer = () => {
     return (
-      <footer className="relative bg-[#101015] text-white mt-auto">
-        <div className="absolute top-0 left-0 w-full overflow-hidden">
-          <svg
-            data-name="Capa 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.6 6,92.83c70 .05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              className="relative block fill-black"
-            ></path>
-          </svg>
+        <div className="w-full mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-gray-500 bg-[#191A26] bg-opacity-40 absolute bottom-0">
+          <div>
+            <h1 className='bg-[#191A26] bg-opacity-40 font-semibold text-pink-600'>REACT.</h1>
+            <p className='py-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eveniet reprehenderit quam asperiores libero? Obcaecati quas nobis ex repudiandae nisi cumque, expedita eius dignissimos non voluptatum quibusdam ab! Illo, sequi.</p>
+             <div className='flex justify-between md:w-[75%] my-6 lg:col-span-2 '>
+                <FaFacebookSquare size={30}/>
+                <FaInstagramSquare size={30}/>
+                <FaGithubSquare size={30}/>
+                <FaTwitterSquare size={30}/>
+             </div>
+          </div>
+          <div className='lg:col-span-2 flex justify-between'>
+             <div>
+               <h6 className='text-pink-600 font-semibold'>Solutions</h6>
+                <ul>
+                  <li className='py-2 text-sm'>Analytics</li>
+                  <li className='py-2 text-sm'>Marketing</li>
+                  <li className='py-2 text-sm'>Commerce</li>
+                  <li className='py-2 text-sm'>Insights</li>
+                </ul>
+             </div>
+             <div>
+               <h6 className='text-pink-600 font-semibold'>Solutions</h6>
+                <ul>
+                  <li className='py-2 text-sm'>Analytics</li>
+                  <li className='py-2 text-sm'>Marketing</li>
+                  <li className='py-2 text-sm'>Commerce</li>
+                  <li className='py-2 text-sm'>Insights</li>
+                </ul>
+             </div>
+             <div>
+               <h6 className='text-pink-600 font-semibold'>Solutions</h6>
+                <ul>
+                  <li className='py-2 text-sm'>Analytics</li>
+                  <li className='py-2 text-sm'>Marketing</li>
+                  <li className='py-2 text-sm'>Commerce</li>
+                  <li className='py-2 text-sm'>Insights</li>
+                </ul>
+             </div>
+          </div>
         </div>
-      </footer>
-    );
+     );
   };
   
   export default Footer;

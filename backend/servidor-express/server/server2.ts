@@ -13,11 +13,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
-interface User extends Document {
-  username: String;
-  email: String;
-  password: String;
-}
+
 
 const db: Connection = mysql.createConnection({
   host: 'localhost',
@@ -57,7 +53,7 @@ app.post('/', (req: Request, res: Response) => {
   });
 });
 
-app.post('/login', (req, res) => {
+app.post('/log', (req: Request, res: Response) => {
   const { email, password } = req.body;
   const sql = 'SELECT * FROM users WHERE email = ?';
 
@@ -67,10 +63,9 @@ app.post('/login', (req, res) => {
       res.status(500).json({ message: 'Error en el servidor' });
       return;
     }
-
     if (Array.isArray(results) && results.length > 0) {
-      const User = results[0];
-      if (password.User === password) {
+      const user = results[0] as { password: string };
+      if (user.password === password) {
         res.status(200).json({ message: 'Inicio de sesión exitoso' });
       } else {
         res.status(401).json({ message: 'Contraseña incorrecta' });
