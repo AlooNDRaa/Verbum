@@ -22,6 +22,8 @@ const App: FC<AppProps> = (): JSX.Element => {
     return authenticated ? element : <Navigate to="/" />;
   };
 
+  //Hola buenos dias 
+
   return (
     <BrowserRouter>
       <Routes>
