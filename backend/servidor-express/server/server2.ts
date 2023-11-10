@@ -13,6 +13,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
+
+
 const db: Connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -30,7 +32,7 @@ db.connect((err) => {
 
 app.get('/user', (req: Request, res: Response) => {
   const { username, email, password } = req.body;
-  const sql = 'SELECT * FROM USERS';
+  const sql = 'SELECT * FROM users';
   db.query(sql, function (err, result) {
     if (err) throw err;
     res.send(result);
@@ -51,20 +53,19 @@ app.post('/', (req: Request, res: Response) => {
   });
 });
 
-app.post('/login', (req, res) => {
-  const { Email, Password } = req.body;
-  const sql = 'SELECT * FROM usuarios WHERE email = ?';
+app.post('/log', (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  const sql = 'SELECT * FROM users WHERE email = ?';
 
-  db.query(sql, [Email], (err, results) => {
+  db.query(sql, [email], (err, results) => {
     if (err) {
       console.error('Error en la consulta: ' + err.message);
       res.status(500).json({ message: 'Error en el servidor' });
       return;
     }
-
-    if (results.length > 0) {
-      const user = results[0];
-      if (user.password === Password) {
+    if (Array.isArray(results) && results.length > 0) {
+      const user = results[0] as { password: string };
+      if (user.password === password) {
         res.status(200).json({ message: 'Inicio de sesión exitoso' });
       } else {
         res.status(401).json({ message: 'Contraseña incorrecta' });
@@ -74,6 +75,7 @@ app.post('/login', (req, res) => {
     }
   });
 });
+
 
 
 app.listen(PORT, () => {
