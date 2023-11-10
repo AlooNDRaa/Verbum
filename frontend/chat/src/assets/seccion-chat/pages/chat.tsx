@@ -9,7 +9,7 @@ Socket
 
 function Chat() {
   return (
-    <div className='flex items-stretch '>
+    <div className='flex h-screen items-stretch '>
       <Nav/>
       <Fusion/>
       <Chatopen/>
