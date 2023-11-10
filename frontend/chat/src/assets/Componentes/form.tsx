@@ -1,8 +1,11 @@
 import { SetStateAction,  useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export default  function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false); 
+
 
   const handleEmailChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setEmail(e.target.value);
@@ -26,6 +29,10 @@ export default  function LoginForm() {
 
       if (response.status === 200) {
         console.log("acceso permitido");
+        setLoggedIn(true); 
+        const data = await response.json();
+        const login = data.login;
+        localStorage.setItem('login', login);
       } 
        else {
         console.error('Acceso denegado');
@@ -35,6 +42,10 @@ export default  function LoginForm() {
       console.error('Error al enviar la solicitud:', error);
     }
   };
+
+  if (loggedIn) {
+    return <Navigate to="/home" />;
+  }
 
   return (
     <div className="text-white lg:w-1/2">
