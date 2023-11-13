@@ -17,6 +17,10 @@ export default function Form2() {
   
 
   const handleCreateUser = async () => {
+    if (userData.username.trim() === '' || userData.email.trim() === '' || userData.password.trim() === '') {
+      console.error('Por favor completa todos los campos.');
+      return;
+    }
     try {
       const response = await fetch('http://localhost:3000/', {
         method: 'POST',
