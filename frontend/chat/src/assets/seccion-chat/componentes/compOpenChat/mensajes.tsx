@@ -42,14 +42,14 @@ function Mensajes() {
                         placeholder="Escribir"
                         value={chat}
                         onChange={(e) => setChat(e.target.value)}
-                        className="bg-[#be185d] border-stone-700 bg-stone-900 rounded-md flex-auto  h-[50px]  "
+                        className="bg-[#ec4899] border-stone-700 bg-stone-900 rounded-md flex-auto  h-[50px]  "
                     />
                     <button type="submit" className=" text-[#fdf4ff]">Enviar</button>
                 </form>
                 <ul>
                     {chats.map((chat, i) => (
-                        <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === 'me' ? 'bg-[#C83C83] ': `bg-[#f472b6] ml-[50px] `}`} key={i}>
-                            <span className="text- font-bold block ">{chat.from}</span> <span className="text-sm ">{chat.body}</span> 
+                        <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === 'me' ? 'bg-[#C83C83] ml-[40vw]': `bg-[#f472b6] mr[5vw]`}`} key={i}>
+                            <span className=" font-bold block ">{chat.from}</span> <span className="text-sm ">{chat.body}</span> 
                         </li>
                     ))}
                 </ul>

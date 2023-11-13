@@ -20,7 +20,7 @@ export function Login() {
         </button>
       </div>
       <div className="h-full w-1/2 items-center bg-[#101015] justify-center lg:flex hidden">
-        <img src={Logo} alt="img-logo" className="w-60 animate-pulse" />
+        <img src={Logo} alt="img-logo" className="w-64 animate-pulse" />
       </div>
     </div>
   );
