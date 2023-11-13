@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 const db = mysql2_1.default.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'nebulosadelvelo2023',
+    password: '1234',
     database: 'verbum',
 });
 db.connect((err) => {
