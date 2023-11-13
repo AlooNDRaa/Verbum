@@ -22,6 +22,8 @@ const db: Connection = mysql.createConnection({
   database: 'verbum',
 });
 
+// hello
+
 db.connect((err) => {
   if (err) {
     console.error('Error de conexión a la base de datos', err);

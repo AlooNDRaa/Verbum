@@ -11,7 +11,7 @@ function Buscador () {
                 </a>  
             </div>
             <p className="pl-5 pt-5 ">
-                <input type="text" className=" bg-stone-900 rounded-md bg-[#C83C83]" placeholder=" Search.." />
+                <input type="text" className=" bg-stone-900 rounded-md bg-[#ec4899]" placeholder=" Search.." />
             </p>
                    
         </div>
