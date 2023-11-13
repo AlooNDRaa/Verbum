@@ -21,7 +21,7 @@ function Home() {
                 </div>
                 </div>
                 <div className='son3 col-span-2'>
-                   <h2 className='font-semibold mt-48 mx-10 text-4xl text-white'>Solta tu vomito verbal junto a tus amigos usando nuestra version de chat clasica.  </h2>
+                   <h2 className='font-semibold mt-48 mx-10 text-4xl text-white'>Habla y ríe junto a tus amigos usando nuestra version de chat clasica.  </h2>
                 </div>
                 <div className='son4 col-start-3 col-end-5 mt-48 mb-10 '>
                   <img src={imgchat} alt="img-chat" className=""/>
