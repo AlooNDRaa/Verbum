@@ -1,6 +1,9 @@
 import express, { Request, Response } from 'express';
 import mysql, { Connection } from 'mysql2';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
 const PORT = 3000;
@@ -15,14 +18,13 @@ app.set('view engine', 'ejs');
 
 
 
-const db: Connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'nebulosadelvelo2023',
-  database: 'verbum',
-});
+  const db: Connection = mysql.createConnection({
+    host: process.env.DB_HOST = process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
 
-// hello
 
 db.connect((err) => {
   if (err) {
