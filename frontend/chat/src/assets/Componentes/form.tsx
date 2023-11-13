@@ -1,10 +1,11 @@
 import { SetStateAction,  useState } from 'react';
 import { Navigate } from 'react-router-dom';
+// import { ModalShow } from './forgotpassword/openmodal';
 
 export default  function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false); 
+  const [loggedIn, setLoggedIn] = useState(Boolean); 
 
 
   const handleEmailChange = (e: { target: { value: SetStateAction<string>; }; }) => {
@@ -46,6 +47,7 @@ export default  function LoginForm() {
   if (loggedIn) {
     return <Navigate to="/home" />;
   }
+  
 
   return (
     <div className="text-white lg:w-1/2">
@@ -80,7 +82,7 @@ export default  function LoginForm() {
               <input type="checkbox" id="remember" />
               <label className="ml-2 font-medium text-base" htmlFor="remember"> Remember me</label>
             </div>
-            <button className="font-medium text-base text-pink-800">Forgot password?</button>
+            {/* <ModalShow/> */}
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button

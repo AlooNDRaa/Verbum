@@ -5,7 +5,7 @@ import { Login } from './assets/pages/login';
 import Chat from './assets/seccion-chat/pages/chat';
 import './assets/Styles/index.css';
 import Home from './assets/pages/home';
-import { Error404 } from './assets/Componentes/errorpage';
+import { Error404 } from './assets/pages/errorpage';
 import AboutUs from './assets/pages/About-us';
 
 interface AppProps {}
