@@ -6,6 +6,7 @@ import Chat from './assets/seccion-chat/pages/chat';
 import './assets/Styles/index.css';
 import Home from './assets/pages/home';
 import { Error404 } from './assets/Componentes/errorpage';
+import AboutUs from './assets/pages/About-us';
 
 interface AppProps {}
 
@@ -29,6 +30,7 @@ const App: FC<AppProps> = (): JSX.Element => {
       <Routes>
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
         <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
+        <Route path="/about-us" element={<PrivateRoute element={<AboutUs/>} />} />
         <Route path="/game" element={<PrivateRoute element={<GameCYR />} />} />
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Error404 />} />
