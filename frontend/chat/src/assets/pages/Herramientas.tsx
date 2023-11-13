@@ -37,7 +37,7 @@ function Herramientas() {
               <p className="simple-text__bottom  text-zinc-800 text-left text-[20px] -mr-[150px] "> Haz click aquí </p>
              </h2>
             <h2 className=" bg-neutral-700 hover:bg-pink-600 rounded-lg w-[45px] h-10 text-center text-neutral-200  hover:text-stone-600 text-[30px] pt-[80px] pr-[408px] pb-[120px] pl-[140px] -ml-[20px] font-medium  hover:pr-[518px] hover:pl-[30px] hover:mr-[50px] font-['DM Sans']">Windows/Mac
-              <p className=" text-zinc-800 text-left text-[20px] -mr-[150px] "> hola </p>
+              <p className=" text-zinc-800 text-left text-[20px] -mr-[150px] "> Haz click aquí </p>
             </h2>
           </div>
         </div>
