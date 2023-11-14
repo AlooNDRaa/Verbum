@@ -1,3 +1,4 @@
+import nodemailer, { Transporter } from 'nodemailer';
 import express, { Request, Response } from 'express';
 import mysql, { Connection } from 'mysql2';
 import cors from 'cors';
@@ -79,6 +80,40 @@ app.post('/log', (req: Request, res: Response) => {
     }
   });
 });
+
+
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+app.post('/recover-password', (req, res) => {
+  const email = req.body.email;
+  sendPasswordRecoveryEmail(email, 'token-unico');
+  res.send('Correo de recuperación de contraseña enviado.');
+})
+
+const sendPasswordRecoveryEmail = (email: string, token: string): void => {
+  const mailOptions = {
+    from: 'tuemail@gmail.com',
+    to: email,
+    subject: 'Recuperación de contraseña',
+    text: `Para restablecer tu contraseña, haz clic en este enlace: https://tuaplicacion.com/reset-password/${token}`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Correo enviado: ' + info.response);
+    }
+  });
+};
+
 
 
 
