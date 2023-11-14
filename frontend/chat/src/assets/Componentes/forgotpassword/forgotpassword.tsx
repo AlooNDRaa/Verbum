@@ -21,12 +21,12 @@ export function Modal(props: {
               <div className="p-2">
                   <input className="border-moving-input rounded lg:ml-2 justify-center p-3 bg-transparent text-white" type="email" placeholder="Email" />
               </div>
-              <div className="p-2 flex justify-around">
+              <div className="p-3 flex justify-around items-center">
                   <button onClick={props.onClose} 
                   className="text-white lg:mt-2">
                       <IoIosCloseCircleOutline size={21}/>
                   </button>
-                  <button className="text-white">
+                  <button className="text-white mt-2">
                     <BiMailSend size={21}/>
                   </button>
               </div>
