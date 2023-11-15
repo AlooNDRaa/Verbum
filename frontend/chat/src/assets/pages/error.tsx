@@ -1,8 +1,5 @@
 function Error() {
 
-    let personName = prompt("ingresa tu nombre");
-    
-
     return (
         <div className="bg-blue-800">
             <div className="hover:invisible">
