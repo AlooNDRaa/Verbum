@@ -1,8 +1,9 @@
-import { Link } from 'react-scroll';
+
 import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
 import Logo from '../imgs/verbumlog.png';
+import {Link} from 'react-router-dom';
 
 
 function Navbar () {
@@ -12,17 +13,17 @@ function Navbar () {
     const content = <>
        <div className="lg:hidden block absolute bg-[#191A26] bg-opacity-40 top-10 w-full left-0 right-0 transition rounded-md ">
           <ul className='text-center text-x1 p-5'>
-            <Link spy={true} smooth={true} to="home">
-              <li className='my-4 py-4 border-b border-slate-800 hover:bg.slate-800 hover:rounded'>Inicio</li>
+            <Link to="/">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Inicio</li>
               </Link>
-            <Link spy={true} smooth={true} to="About">
-              <li className='my-4 py-4 border-b border-slate-800 hover:bg.slate-800 hover:rounded'>Verbum Blog</li>  
+            <Link to="/game">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Verbum Blog</li>  
               </Link>          
-            <Link spy={true} smooth={true} to="Services">
-              <li className='my-4 py-4 border-b border-slate-800 hover:bg.slate-800 hover:rounded'>Ayuda</li>    
+            <Link to="Services">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Ayuda</li>    
               </Link>        
-            <Link spy={true} smooth={true} to="Projects">
-              <li className='my-4 py-4 border-b border-slate-800 hover:bg.slate-800 hover:rounded'>Projects</li>
+            <Link to="Projects">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Projects</li>
               </Link>
           </ul>
         </div>
@@ -39,17 +40,17 @@ function Navbar () {
                 <div className="lg:flex md:flex lg:flex-1 bg-white items center justify-end font-normal hidden">
                     <div className="flex-10">
                     <ul className="flex gap-16 mr-16 text-[18px]">
-            <Link spy={true} smooth={true} to="home">
-              <li className='hover:text-pink-600 font-semibold transition  hover:scale-110 cursor-pointer -mt-2'>Inicio</li>
+            <Link to="/">
+              <li className='hover:text-pink-600 font-semibold transition border-b-2   border-slate-900 hover:border-pink-600 hover:scale-105 cursor-pointer -mt-2'>Inicio</li>
               </Link>
-            <Link spy={true} smooth={true} to="About">
-              <li className='hover:text-pink-600 transition font-semibold  hover:scale-110 cursor-pointer -mt-2'>Verbum Blog</li> 
+            <Link to="/ActiveSlider">
+              <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Verbum Blog</li> 
               </Link>           
-            <Link spy={true} smooth={true} to="Services">
-              <li className='hover:text-pink-600 transition font-semibold  hover:scale-110 cursor-pointer -mt-2'>Ayuda</li> 
+            <Link to="Services">
+              <li className='hover:text-pink-600 transition  border-b-2 border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Ayuda</li> 
               </Link>          
-            <Link spy={true} smooth={true} to="Projects">
-              <li className='hover:text-pink-600 transition font-semibold  hover:scale-110 cursor-pointer -mt-2'>Verbum privado</li>
+            <Link to="Projects">
+              <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Verbum privado</li>
               </Link>
          </ul>
                     </div>

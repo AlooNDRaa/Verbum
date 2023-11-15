@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const nodemailer_1 = __importDefault(require("nodemailer"));
 const express_1 = __importDefault(require("express"));
 const mysql2_1 = __importDefault(require("mysql2"));
 const cors_1 = __importDefault(require("cors"));
@@ -17,7 +18,7 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.set('view engine', 'ejs');
 const db = mysql2_1.default.createConnection({
-    host: process.env.DB_HOST = process.env.DB_HOST || 'localhost',
+    host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
@@ -76,6 +77,34 @@ app.post('/log', (req, res) => {
         }
     });
 });
+const transporter = nodemailer_1.default.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
+});
+app.post('/recover-password', (req, res) => {
+    const email = req.body.email;
+    sendPasswordRecoveryEmail(email, 'token-unico');
+    res.send('Correo de recuperación de contraseña enviado.');
+});
+const sendPasswordRecoveryEmail = (email, token) => {
+    const mailOptions = {
+        from: 'tuemail@gmail.com',
+        to: email,
+        subject: 'Recuperación de contraseña',
+        text: `Para restablecer tu contraseña, haz clic en este enlace: https://tuaplicacion.com/reset-password/${token}`,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log('Correo enviado: ' + info.response);
+        }
+    });
+};
 app.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });
