@@ -19,14 +19,19 @@ export function Modal(props: {
                   <h3 className="flex text-white lg:mb-2 justify-center">Restore your account</h3>
               </div>
               <div className="p-2">
-                  <input className="border-moving-input rounded lg:ml-2 justify-center p-3 bg-transparent text-white" type="email" placeholder="Email" />
+                  <input className="border-moving-input rounded lg:ml-2 justify-center p-3 bg-transparent text-white" 
+                  type="email"
+                  required 
+                  placeholder="Email" />
               </div>
               <div className="p-3 flex justify-around items-center">
                   <button onClick={props.onClose} 
                   className="text-white lg:mt-2">
                       <IoIosCloseCircleOutline size={21}/>
                   </button>
-                  <button className="text-white mt-2">
+                  <button
+                  type="submit" 
+                  className="text-white mt-2">
                     <BiMailSend size={21}/>
                   </button>
               </div>
