@@ -3,9 +3,11 @@ import Navbar from '../Componentes/navbarhome';
 import imgchat from '../imgs/Chat-user.png';
 import LogoHover from '../imgs/Group 3 (1).png';
 import Footer from '../Componentes/footerhome';
+import ActiveSlider from '../Componentes/ActiveSlider';
 
 function Home() {
     return (
+        <>
     <div className='container-global relative flex bg-[#101015]'>
          <Navbar></Navbar>
         <div className="container-father grid grid-cols-6 gap-4 grid-rows-[auto, 1fr] mb-96">
@@ -20,19 +22,18 @@ function Home() {
                 <img src={LogoHover} alt="img-logo-hover" className="logo-hover-image absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 ease-in-out"/>
                 </div>
                 </div>
-                <div className='son3 col-span-2'>
-                   <h2 className='font-semibold mt-48 mx-10 text-4xl text-white'>Habla y ríe junto a tus amigos usando nuestra version de chat clasica.  </h2>
+                <div className=' flex items-center flex-col z-40 mt-4 col-span-6'>
+   
+                <ActiveSlider/>
+             
+   
                 </div>
-                <div className='son4 col-start-3 col-end-5 mt-48 mb-10 '>
-                  <img src={imgchat} alt="img-chat" className=""/>
-                
-                </div>
-                <div className='son5 col-span-2'>
-                    <h2 className='font-semibold mt-48 mx-10 text-4xl text-white'> Juga online al tic tac toe. Personaliza el color de tu chat.</h2>
-                </div>
+        
         </div>
         <Footer/>
     </div>
+
+    </>
     );
 }
             
