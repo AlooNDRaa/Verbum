@@ -17,6 +17,10 @@ export default function Form2() {
   
 
   const handleCreateUser = async () => {
+    if (userData.username.trim() === '' || userData.email.trim() === '' || userData.password.trim() === '') {
+      console.error('Por favor completa todos los campos.');
+      return;
+    }
     try {
       const response = await fetch('http://localhost:3000/', {
         method: 'POST',
@@ -87,17 +91,8 @@ export default function Form2() {
             />
           </div>
           <div className="mt-8 flex justify-between items-center">
-            <div>
-              <input type="Checkbox" id="remember" />
-              <label
-                className="ml-2 font-medium text-base"
-                htmlFor="remember"
-              >
-                Remember me
-              </label>
-            </div>
           </div>
-          <div className="mt-8 flex flex-col gap-y-4">
+          <div className="mt-4 flex flex-col gap-y-4">
             <button
               className="bg-pink-600 text-white text-lg font-bold rounded-xl py-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out"
               onClick={handleCreateUser}

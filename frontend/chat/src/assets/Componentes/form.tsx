@@ -1,6 +1,6 @@
 import { SetStateAction,  useState } from 'react';
 import { Navigate } from 'react-router-dom';
-// import { ModalShow } from './forgotpassword/openmodal';
+import { ModalShow } from './forgotpassword/openmodal';
 
 export default  function LoginForm() {
   const [email, setEmail] = useState('');
@@ -82,11 +82,12 @@ export default  function LoginForm() {
               <input type="checkbox" id="remember" />
               <label className="ml-2 font-medium text-base" htmlFor="remember"> Remember me</label>
             </div>
-            {/* <ModalShow/> */}
+            <ModalShow/>
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button
-              className="bg-pink-600 text-white text-lg font-bold rounded-xl py-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out"
+            type="submit"
+            className="bg-pink-600 text-white text-lg font-bold rounded-xl py-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out"
             >
               Sign in
             </button>

@@ -1,6 +1,10 @@
+import nodemailer, { Transporter } from 'nodemailer';
 import express, { Request, Response } from 'express';
 import mysql, { Connection } from 'mysql2';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
 const PORT = 3000;
@@ -15,14 +19,13 @@ app.set('view engine', 'ejs');
 
 
 
-const db: Connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'nebulosadelvelo2023',
-  database: 'verbum',
-});
+  const db: Connection = mysql.createConnection({
+    host: process.env.DB_HOST = process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+  });
 
-// hello
 
 db.connect((err) => {
   if (err) {
@@ -77,6 +80,40 @@ app.post('/log', (req: Request, res: Response) => {
     }
   });
 });
+
+
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+app.post('/recover-password', (req, res) => {
+  const email = req.body.email;
+  sendPasswordRecoveryEmail(email, 'token-unico');
+  res.send('Correo de recuperación de contraseña enviado.');
+})
+
+const sendPasswordRecoveryEmail = (email: string, token: string): void => {
+  const mailOptions = {
+    from: 'tuemail@gmail.com',
+    to: email,
+    subject: 'Recuperación de contraseña',
+    text: `Para restablecer tu contraseña, haz clic en este enlace: https://tuaplicacion.com/reset-password/${token}`,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Correo enviado: ' + info.response);
+    }
+  });
+};
+
 
 
 

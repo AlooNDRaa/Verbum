@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mysql2_1 = __importDefault(require("mysql2"));
 const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = 3000;
 let corsOptions = {
@@ -15,10 +17,10 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.set('view engine', 'ejs');
 const db = mysql2_1.default.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '1234',
-    database: 'verbum',
+    host: process.env.DB_HOST = process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 db.connect((err) => {
     if (err) {
