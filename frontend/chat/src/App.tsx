@@ -7,6 +7,8 @@ import './assets/Styles/index.css';
 import Home from './assets/pages/home';
 import { Error404 } from './assets/pages/errorpage';
 import AboutUs from './assets/pages/About-us';
+import ActiveSlider from './assets/Componentes/ActiveSlider';
+
 import Herramientas from './assets/pages/Herramientas';
 
 interface AppProps {}
@@ -29,12 +31,14 @@ const App: FC<AppProps> = (): JSX.Element => {
       <Routes>
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
         <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
-        <Route path="/about-us" element={<PrivateRoute element={<AboutUs/>} />} />
         <Route path="/game" element={<PrivateRoute element={<GameCYR />} />} />
+        <Route path='/About-Us' element={<PrivateRoute element={<AboutUs />} />} />
         <Route path="/" element={<Login />} />
         <Route path="/about-us1" element={<AboutUs />} />
         <Route path="/Herramientas" element={<Herramientas />} />
         <Route path="*" element={<Error404 />} />
+        <Route path='/ActiveSlider' element={<ActiveSlider/>}/>
+       
       </Routes>
     </BrowserRouter>
   );
