@@ -3,6 +3,7 @@ function Herramientas() {
   return (
     <>
       <div className='bg-[#101015] max-width pt-[80px] pl-[70px]'>
+      <Navbar></Navbar>
         <div className='grid grid-cols-2 gap-[10px] -mb-[700px]'>
           <div className="container  h-screen">
             <h3 className="text-white text-[40px] font-medium font-['DM Sans']">Envía mensajes privados</h3> <br />
