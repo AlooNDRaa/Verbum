@@ -11,6 +11,7 @@ const io: SocketServer = new SocketServer(server, {
     },
 });
 
+
 io.on('connection', (socket: Socket) => {
     Console.log(socket.id);
     socket.on('chat', (body: string) => {

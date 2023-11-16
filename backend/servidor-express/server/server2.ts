@@ -3,7 +3,6 @@ import express, { Request, Response } from 'express';
 import mysql, { Connection } from 'mysql2';
 import cors from 'cors';
 import dotenv from 'dotenv';
-dotenv.config();
 
 
 const app = express();
@@ -16,6 +15,7 @@ let corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
+dotenv.config();
 
 
 
@@ -80,7 +80,6 @@ app.post('/log', (req: Request, res: Response) => {
     }
   });
 });
-
 
 
 const transporter = nodemailer.createTransport({

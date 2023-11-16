@@ -1,14 +1,12 @@
+import './assets/Styles/index.css';
 import { FC, useEffect, useState } from 'react';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { GameCYR } from './assets/pages/gamep';
 import { Login } from './assets/pages/login';
 import Chat from './assets/seccion-chat/pages/chat';
-import './assets/Styles/index.css';
 import Home from './assets/pages/home';
 import { Error404 } from './assets/pages/errorpage';
 import AboutUs from './assets/pages/About-us';
-import ActiveSlider from './assets/Componentes/ActiveSlider';
-
 import Herramientas from './assets/pages/Herramientas';
 import Error from './assets/pages/error';
 
@@ -34,13 +32,10 @@ const App: FC<AppProps> = (): JSX.Element => {
         <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
         <Route path="/game" element={<PrivateRoute element={<GameCYR />} />} />
         <Route path='/About-Us' element={<PrivateRoute element={<AboutUs />} />} />
+        <Route path="/Herramientas" element={<PrivateRoute element={<Herramientas/>}/>} />
         <Route path="/" element={<Login />} />
-        <Route path="/about-us1" element={<AboutUs />} />
-        <Route path="/Herramientas" element={<Herramientas />} />
         <Route path="*" element={<Error404 />} />
         <Route path="oops" element={<Error />} />
-        <Route path='/ActiveSlider' element={<ActiveSlider/>}/>
-       
       </Routes>
     </BrowserRouter>
   );
