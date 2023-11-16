@@ -1,19 +1,15 @@
-import {
-    RxCrop,
-    RxDesktop,
-    RxPencil2,
-    RxReader,
-    RxRocket,
-    RxAccessibility,
-  } from "react-icons/rx";
-  
-  
-  import ChatUser from "../imgs/Chat-user.png";
-  import Colores from "../imgs/colores.jpeg";
+  import { CiChat1, CiAlignBottom  } from "react-icons/ci";
+  import { IoLogoGameControllerB } from "react-icons/io";
+  import { IconType } from "react-icons";
+  import chat2 from '../imgs/chat1.png'
+  import Game from '../imgs/game.png'
+  import herramientas from '../imgs/herramientas.png'
+  import recuperacion from '../imgs/seguro.png'
+  import { SiSpringsecurity } from "react-icons/si";
   
   
   interface Service {
-    icon: any;
+    icon: IconType;
     title: string;
     content: string;
     backgroundImage: string;
@@ -21,39 +17,27 @@ import {
   
   export const ServiceData: Service[] = [
     {
-      icon: RxCrop,
-      title: "Development",
-      content: "Lorem ipsum dolor sit /amet, consectetur adipiscing elit.",
-      backgroundImage: ChatUser,
+      icon: CiChat1,
+      title: "Chat",
+      content: "",
+      backgroundImage: chat2,
     },
     {
-      icon: RxPencil2,
-      title: "Branding",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      backgroundImage: Colores,
+      icon: CiAlignBottom,
+      title: "Herramientas",
+      content: "",
+      backgroundImage: herramientas,
     },
     {
-      icon: RxDesktop,
-      title: "Design",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      backgroundImage: ChatUser,
+      icon: SiSpringsecurity,
+      title: "Seguro",
+      content: "",
+      backgroundImage: recuperacion,
     },
     {
-      icon: RxReader,
-      title: "Seo",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      backgroundImage: ChatUser,
-    },
-    {
-      icon: RxAccessibility,
-      title: "Management",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      backgroundImage: ChatUser,
-    },
-    {
-      icon: RxRocket,
-      title: "Production",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      backgroundImage: ChatUser,
+      icon: IoLogoGameControllerB,
+      title: "Game",
+      content: "",
+      backgroundImage: Game,
     },
   ];

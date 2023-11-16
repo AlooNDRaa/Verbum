@@ -40,6 +40,8 @@
   }
 }
 
+/* Animacion del Juego */
+
 .board-row:after {
   content: "";
 }

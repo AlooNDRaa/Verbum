@@ -11,19 +11,22 @@ function Navbar () {
     const handleClick = () => setClick(!click);
    
     const content = <>
-       <div className="lg:hidden block absolute bg-[#191A26] bg-opacity-40 top-10 w-full left-0 right-0 transition rounded-md ">
-          <ul className='text-center text-x1 p-5'>
-            <Link to="/">
-              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Inicio</li>
-              </Link>
+       <div className="lg:hidden block absolute bg-[#000] bg-opacity-90  top-0 left-0 right-0 transition rounded-md">
+          <ul className='text-center text-x1 p-7 h-screen'>
+          <Link to="/home">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Home</li>
+            </Link>
+            <Link to="/chat">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Chat</li>
+            </Link>
             <Link to="/game">
-              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Verbum Blog</li>  
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Game</li>  
               </Link>          
-            <Link to="Services">
-              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Ayuda</li>    
+            <Link to="/About-Us">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Verbum Blog</li>    
               </Link>        
-            <Link to="Projects">
-              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Projects</li>
+            <Link to="/herramientas">
+              <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Tools</li>
               </Link>
           </ul>
         </div>
@@ -32,34 +35,36 @@ function Navbar () {
 
     return (
         <nav>
-
-           <div className="fixed top-0 left-0 right-0 h-5 flex justify-between bg-[#191A26] bg-opacity-40 z-50 text-white lg:py-8 xl:py-10 px-10  p-4">
-                <div className="flex items-center flex-1">
-                <img src={Logo} alt="img-logo" className="w-6 h-6 max-w-full  sm:w-8 sm:h-8 md:w-15 md:h-15 lg:w-10 lg:h-10 xl:w-12 xl:h-12"/>
+           <div className="fixed top-0 left-0 right-0 flex justify-between bg-[#191A26] bg-opacity-70 z-50 items-center text-white lg:py-8 xl:py-12 px-9 h-[4rem]">
+                <div className="flex flex-1">
+                <img src={Logo} alt="img-logo" className="w-6 h-6  sm:w-8 sm:h-8 md:w-15 md:h-15 lg:w-10 lg:h-10 xl:w-12 xl:h-12"/>
                 </div>
-                <div className="lg:flex md:flex lg:flex-1 bg-white items center justify-end font-normal hidden">
-                    <div className="flex-10">
-                    <ul className="flex gap-16 mr-16 text-[18px]">
-            <Link to="/">
-              <li className='hover:text-pink-600 font-semibold transition border-b-2   border-slate-900 hover:border-pink-600 hover:scale-105 cursor-pointer -mt-2'>Inicio</li>
-              </Link>
-            <Link to="/ActiveSlider">
-              <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Verbum Blog</li> 
-              </Link>           
-            <Link to="Services">
-              <li className='hover:text-pink-600 transition  border-b-2 border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Ayuda</li> 
-              </Link>          
-            <Link to="Projects">
-              <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Verbum privado</li>
-              </Link>
-         </ul>
+                <div className="lg:flex md:hidden lg:flex-1 items center justify-end font-normal hidden">
+                  <div className="flex-10">
+                  <ul className="flex gap-16 mr-16 text-[18px]">
+                  <Link to="/home">
+                    <li className='hover:text-pink-600 font-semibold transition border-b-2   border-slate-900 hover:border-pink-600 hover:scale-105 cursor-pointer -mt-2'>Home</li>
+                  </Link>
+                <Link to="/chat">
+                    <li className='hover:text-pink-600 font-semibold transition border-b-2   border-slate-900 hover:border-pink-600 hover:scale-105 cursor-pointer -mt-2'>Chat</li>
+                  </Link>
+                <Link to="/game">
+                    <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Game</li> 
+                  </Link>           
+                <Link to="/About-Us">
+                     <li className='hover:text-pink-600 transition  border-b-2 border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Blog</li> 
+                </Link>          
+                  <Link to="Projects">
+                      <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Private</li>
+                </Link>
+              </ul>
                     </div>
                 </div>
                 <div>
                    {click && content}
                 </div>
 
-                <button className='block sm:hidden transition' onClick={handleClick}>
+                <button className='block z-40 lg:hidden transition' onClick={handleClick}>
                   {click ? <FaTimes/> : <CiMenuFries/>}  
                 </button>
            </div>

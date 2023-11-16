@@ -20,29 +20,29 @@ function Herramientas() {
         <div className='Cajas grid mt-[4rem] mb-[9rem] pl-[6rem] gap-3'>
           <div className='Cajas__vertical grid grid-cols-4 mr-[50px]'>
             <h2 className="w-[110px] h-[45px] bg-neutral-700 hover:bg-pink-600 rounded-lg text-neutral-200  hover:text-stone-600 text-[30px] pt-[150px] pr-[175px] pb-[150px] pl-[90px] font-medium font-['DM Sans'] hover:pt-[100px] hover:pb-[200px] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Simple
-              <p className="simple-text  text-zinc-800 text-left text-[20px] -mr-[160px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-800">Es tan simple que ya
+              <p className="simple-text  text-left text-[20px] -mr-[160px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-900">Es tan simple que ya
               sabes cómo utilizarla.</p>
             </h2>
             <h2 className="w-[110px] h-[45px] bg-neutral-700 hover:bg-pink-600 rounded-lg text-neutral-200  hover:text-stone-600 text-[30px] pt-[150px] pr-[175px] pb-[150px] pl-[90px] font-medium font-['DM Sans'] hover:pt-[100px] hover:pb-[200px] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Rápido
-              <p className="simple-text  text-zinc-800 text-left text-[20px] -mr-[160px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-800">Entrega mensajes más rápido
+              <p className="simple-text  text-left text-[20px] -mr-[160px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-800">Entrega mensajes más rápido
               que cualquier otra aplicación.</p>
             </h2>
             <h2 className="w-[110px] h-[45px] bg-neutral-700 hover:bg-pink-600 rounded-lg text-neutral-200  hover:text-stone-600 text-[30px] pt-[150px] pr-[185px] pb-[150px] pl-[80px] font-medium font-['DM Sans'] hover:pt-[100px] hover:pb-[200px] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Seguro
-              <p className="simple-text text-zinc-800 text-left text-[20px] -mr-[160px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-800">Mantiene tus mensajes a
+              <p className="simple-text text-left text-[20px] -mr-[160px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-800">Mantiene tus mensajes a
               salvo de ataques de hackers.</p>
             </h2>
             <h2 className="w-[110px] h-[45px] bg-neutral-700 hover:bg-pink-600 rounded-lg text-neutral-200  hover:text-stone-600 text-[30px] pt-[150px] pr-[195px] pb-[150px] pl-[70px] font-medium font-['DM Sans'] hover:pt-[100px] hover:pb-[200px] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Moderno
-              <p className="simple-text text-zinc-800 text-left text-[20px] -mr-[180px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-800">Permite que personalices completamente tu aplicación.</p>
+              <p className="simple-text text-left text-[20px] -mr-[180px] -ml-[50px] pt-[30px] text-transparent hover:text-zinc-800">Permite que personalices completamente tu aplicación.</p>
             </h2>
-          <div className='Cajas__horizontal flex mt-[50px] mb-[200px] gap-[10.5rem]'>
-            <div className=" ">
-            <h2 className=" bg-neutral-700 hover:bg-pink-600 rounded-lg w-[35rem]  h-[12rem] text-center text-neutral-200 hover:text-stone-600 text-[30px]  font-medium font-['DM Sans'] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Android/ios
-              <p className="simple-text__bottom  text-zinc-800 text-left text-[20px] -mr-[150px] "> Haz click aquí </p>
+          <div className='Cajas__horizontal flex text-center mt-[50px] mb-[200px] gap-[14rem]'>
+            <div className="">
+            <h2 className=" bg-neutral-700 hover:bg-pink-600 rounded-lg w-[32rem] p-9 h-[12rem] text-center text-neutral-200 hover:text-stone-600 text-[30px]  font-medium font-['DM Sans'] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Android/ios
+              <p className="simple-text__bottom text-[20px] text-center mt-2"> Haz click aquí </p>
              </h2>
             </div>
             <div className=" ">
-            <h2 className=" bg-neutral-700 hover:bg-pink-600 rounded-lg w-[35rem]  h-[12rem] text-center text-neutral-200  hover:text-stone-600 text-[30px]  font-medium  font-['DM Sans'] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Windows/Mac
-              <p className=" text-zinc-800 text-left text-[20px] "> Haz click aquí </p>
+            <h2 className=" bg-neutral-700 hover:bg-pink-600 rounded-lg w-[32rem] text-center p-9 h-[12rem] text-neutral-200  hover:text-stone-600 text-[30px]  font-medium  font-['DM Sans'] active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">Windows/Mac
+              <p className=" text-[20px] text-center mt-2 "> Haz click aquí </p>
             </h2>
             </div>
             </div>
