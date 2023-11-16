@@ -2,13 +2,24 @@ import '../Styles/index.css'
 
 function Error() {
 
-    return (
-        <div className="bg-blue-800 hover:invisible">
-            <div className="errorText ">
-                <h1 className="w-[1164px] h-[296px] text-center text-white text-[129px] font-normal font-['Digital Numbers'] pt-[100px]">ERROR </h1>
-                <div className="Texto text-justify text-white text-[15px] font-normal font-['Digital Numbers'] pt-[40px] pl-[40px] pr-[40px] pb-[96px]">
-                    <p>
+    //window.alert("El sitio no es seguro")
 
+    return (
+        <div className="bg-black hover:invisible">
+            <div className="errorText ">
+                <div>
+                    <p className='numbers text-justify text-black text-[15px] font-normal'>01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101  </p>
+                    <p className='numbers text-justify text-black text-[15px] font-normal'>01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101  </p>
+                    <p className='numbers text-justify text-black text-[15px] font-normal'>01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101  </p>
+                    <h1 className="text-center text-red-600 text-[129px] font-normal font-['Digital Numbers']">ERROR </h1>
+                    <p className='numbers text-justify text-black text-[15px] font-normal'>01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101  </p>
+                    <p className='numbers text-justify text-black text-[15px] font-normal'>01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101  </p>
+                    <p className='numbers text-justify text-black text-[15px] font-normal'>01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101 01101  </p>
+                    
+                </div>
+                <div className="Texto text-justify text-red-800 text-[15px] font-normal font-['Digital Numbers'] pl-[40px] pr-[40px] pb-[103px]">
+                    <p>
+                        .
                         ألم
 
                         أود بعد ظهر هذا اليوم الإلهي من شهر أكتوبر
