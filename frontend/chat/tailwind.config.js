@@ -10,6 +10,10 @@ export default {
         'Nosi-Fer': ['Nosifer', 'sans-serif'],
         'md': ['DM serif Display' , 'sans-serif']      
     },
+    backgroundImage: {
+      'dph': "url('src/assets/imgs/dph.png')",
+      'gif': "src/assets/imgs/migif.gif"
+    },
     },
     // [ screens: {
     //   'tablet': '640px',

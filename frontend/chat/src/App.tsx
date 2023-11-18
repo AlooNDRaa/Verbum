@@ -8,6 +8,7 @@ import Home from './assets/pages/home';
 import { Error404 } from './assets/pages/errorpage';
 import Herramientas from './assets/pages/Herramientas';
 import Error from './assets/pages/error';
+import { EnterPas } from './assets/Componentes/enterP';
 
 interface AppProps {}
 
@@ -34,6 +35,7 @@ const App: FC<AppProps> = (): JSX.Element => {
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Error404 />} />
         <Route path="oops" element={<Error />} />
+        <Route path="eponion" element={<EnterPas />} />
       </Routes>
     </BrowserRouter>
   );
