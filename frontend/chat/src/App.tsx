@@ -35,7 +35,7 @@ const App: FC<AppProps> = (): JSX.Element => {
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Error404 />} />
         <Route path="oops" element={<Error />} />
-        <Route path="eponion" element={<EnterPas />} />
+        <Route path="priv" element={<EnterPas />} />
       </Routes>
     </BrowserRouter>
   );

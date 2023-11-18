@@ -51,7 +51,7 @@ function Navbar () {
                 <Link to="/blog">
                      <li className='hover:text-pink-600 transition  border-b-2 border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Blog</li> 
                 </Link>          
-                  <Link to="Projects">
+                  <Link to="/priv">
                       <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Private</li>
                 </Link>
               </ul>
