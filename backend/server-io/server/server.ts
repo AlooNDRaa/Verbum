@@ -11,6 +11,8 @@ const io: SocketServer = new SocketServer(server, {
         origin: 'http://localhost:5173',
     },
 });
+
+
 io.on('connection', (socket: Socket) => {
     Console.log(socket.id);
 

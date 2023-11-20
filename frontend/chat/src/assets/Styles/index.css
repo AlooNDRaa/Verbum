@@ -40,6 +40,8 @@
   }
 }
 
+/* Animacion del Juego */
+
 .board-row:after {
   content: "";
 }
@@ -88,6 +90,8 @@ section span:hover {
     height: calc(20vw - 2px);
   }
 }
+
+
 
 
 
@@ -299,4 +303,17 @@ section span:hover {
                        animate-svg-fill-4 0.7s cubic-bezier(0.55, 0.055, 0.675, 0.19) 1.1s both;
           animation: animate-svg-stroke-4 6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.36s both,
                animate-svg-fill-4 0.7s cubic-bezier(0.55, 0.055, 0.675, 0.19) 1.1s both;
+}
+
+.errorText{
+  animation: Teclear 1.5s steps(35);
+}
+
+@keyframes Teclear {
+  From{
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  to{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
 }

@@ -1,10 +1,8 @@
-import nodemailer, { Transporter } from 'nodemailer';
 import express, { Request, Response } from 'express';
 import mysql, { Connection } from 'mysql2';
 import cors from 'cors';
+import axios from 'axios';
 import dotenv from 'dotenv';
-dotenv.config();
-
 
 const app = express();
 const PORT = 3000;
@@ -16,16 +14,14 @@ let corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
+dotenv.config();
 
-
-
-  const db: Connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-  });
-
+const db: Connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
 
 db.connect((err) => {
   if (err) {
@@ -36,9 +32,8 @@ db.connect((err) => {
 });
 
 app.get('/user', (req: Request, res: Response) => {
-  const { username, email, password } = req.body;
   const sql = 'SELECT * FROM users';
-  db.query(sql, function (err, result) {
+  db.query(sql, (err, result) => {
     if (err) throw err;
     res.send(result);
   });
@@ -81,43 +76,41 @@ app.post('/log', (req: Request, res: Response) => {
   });
 });
 
-
-
-const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+app.post('/recover-password', async (req, res) => {
+  const email = req.body.email;
+  try {
+    await sendPasswordRecoveryEmail(email, 'token-unico');
+    res.send('Correo de recuperación de contraseña enviado.');
+  } catch (error) {
+    console.error('Error al enviar el correo de recuperación:', error);
+    res.status(500).json({ message: 'Error al enviar el correo de recuperación' });
+  }
 });
 
-app.post('/recover-password', (req, res) => {
-  const email = req.body.email;
-  sendPasswordRecoveryEmail(email, 'token-unico');
-  res.send('Correo de recuperación de contraseña enviado.');
-})
+const sendPasswordRecoveryEmail = async (email: string, token: string): Promise<void> => {
+  const sendGridApiKey = process.env.SENDGRID_API_KEY;
+  const sendGridUrl = 'https://api.sendgrid.com/v3/mail/send';
 
-const sendPasswordRecoveryEmail = (email: string, token: string): void => {
-  const mailOptions = {
-    from: 'tuemail@gmail.com',
-    to: email,
-    subject: 'Recuperación de contraseña',
-    text: `Para restablecer tu contraseña, haz clic en este enlace: https://tuaplicacion.com/reset-password/${token}`,
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${sendGridApiKey}`,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Correo enviado: ' + info.response);
-    }
-  });
+  const mailOptions = {
+    personalizations: [{ to: [{ email: email }] }],
+    from: { email: 'tuemail@gmail.com' },
+    subject: 'Recuperación de contraseña',
+    content: [{ type: 'text/plain', value: `Para restablecer tu contraseña, haz clic en este enlace: https://tuaplicacion.com/reset-password/${token}` }],
+  };
+
+  try {
+    await axios.post(sendGridUrl, mailOptions, { headers });
+    console.log('Correo de recuperación enviado a:', email);
+  } catch (error) {
+    throw new Error('Error al enviar el correo de recuperación: ');
+  }
 };
-
-
-
 
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });
-

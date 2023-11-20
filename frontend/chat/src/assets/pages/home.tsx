@@ -1,38 +1,42 @@
-import Logo from '../imgs/verbumlog.png';
 import Navbar from '../Componentes/navbarhome';
-import imgchat from '../imgs/Chat-user.png';
-import LogoHover from '../imgs/Group 3 (1).png';
-import Footer from '../Componentes/footerhome';
+import Logo from '../imgs/verbumlog.png';
+import LogoHover from '../imgs/Group-3.png';
 import ActiveSlider from '../Componentes/ActiveSlider';
+import Footer from '../Componentes/footerhome';
+import { Link } from 'react-router-dom';
 
 function Home() {
     return (
-        <>
-    <div className='container-global relative flex bg-[#101015]'>
-         <Navbar></Navbar>
-        <div className="container-father grid grid-cols-6 gap-4 grid-rows-[auto, 1fr] mb-96">
-               <div className="son1 flex items-center mt-48 flex flex-col col-span-3">
-                  <h1 className=" font-semibold text-9xl text-white">Verbum</h1>
-                  <h2 className='font-semibold text-pink-600 text-3xl hover:uppercase mt-8'>Ahora podes estar en todos lados!</h2>
-                  <h2 className='font-semibold text-gray-500 text-2xl hover:uppercase hover:text-transparent mt-8'>Incluso sin dejar rastro </h2>
-               </div>
-                <div className='son2 flex items-center mt-20 mx-8 col-span-3'>
-                    <div className='relative group'>
-                <img src={Logo} alt="img-logo" className=""/>
-                <img src={LogoHover} alt="img-logo-hover" className="logo-hover-image absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 ease-in-out"/>
+    <>
+        <div className='bg-[#101015]'>
+            <Navbar/>
+            <div className='grid h-screen lg:grid-cols-2 lg:gap-[10rem] pt-[7rem]'>
+                 <div className='flex flex-col lg:ml-12 lg:mt-[5rem] text-center'>
+                    <h1 className=" font-bold text-7xl lg:text-9xl text-white">Verbum</h1>
+                        <Link to={'/priv'}>
+                    <button className='cursor-pointer bg-white flex justify-center h-1'>
+                    </button>
+                        </Link>
+                    <h2 className='font-semibold text-pink-600 text-2xl lg:text-3xl hover:uppercase mt-2 lg:mt-6'>Now you can be everywhere!!</h2>
+                    <h2 className='font-semibold text-gray-500 text-xl lg:text-2xl hover:uppercase hover:text-transparent mt-2 lg:mt-8'>Even without leaving a trace...</h2>
                 </div>
-                </div>
-                <div className=' flex items-center flex-col z-40 mt-4 col-span-6'>
-   
+                <div className=' lg:hidden lx:hidden grid justify-center mb-9'>
                 <ActiveSlider/>
-             
-   
                 </div>
-        
+                <div className='img-conts ml-15 mt-4 hidden lg:flex relative group'>
+                    <img src={Logo} className='h-[32rem]' alt="img-logo"/>
+                    <img src={LogoHover} 
+                    alt="img-logo-hover" 
+                    className="logo-hover-image absolute h-[32rem] inset-0 opacity-0 group-hover:opacity-100 transition-duration-500 ease-in-out"/>
+                </div>
+            </div>
+            <div className='slider-cont flex justify-center py-2 mt-7 hidden lg:flex'>
+                <ActiveSlider/>
+            </div>
+            <div className='relative pt-[25rem] lg:pt-[17rem]'>
+                <Footer/>
+            </div>
         </div>
-        <Footer/>
-    </div>
-
     </>
     );
 }
