@@ -1,14 +1,22 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const nodemailer_1 = __importDefault(require("nodemailer"));
 const express_1 = __importDefault(require("express"));
 const mysql2_1 = __importDefault(require("mysql2"));
 const cors_1 = __importDefault(require("cors"));
+const axios_1 = __importDefault(require("axios"));
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = 3000;
 let corsOptions = {
@@ -17,6 +25,7 @@ let corsOptions = {
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.set('view engine', 'ejs');
+dotenv_1.default.config();
 const db = mysql2_1.default.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -32,9 +41,8 @@ db.connect((err) => {
     }
 });
 app.get('/user', (req, res) => {
-    const { username, email, password } = req.body;
     const sql = 'SELECT * FROM users';
-    db.query(sql, function (err, result) {
+    db.query(sql, (err, result) => {
         if (err)
             throw err;
         res.send(result);
@@ -77,34 +85,38 @@ app.post('/log', (req, res) => {
         }
     });
 });
-const transporter = nodemailer_1.default.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-    },
-});
-app.post('/recover-password', (req, res) => {
+app.post('/recover-password', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = req.body.email;
-    sendPasswordRecoveryEmail(email, 'token-unico');
-    res.send('Correo de recuperación de contraseña enviado.');
-});
-const sendPasswordRecoveryEmail = (email, token) => {
-    const mailOptions = {
-        from: 'tuemail@gmail.com',
-        to: email,
-        subject: 'Recuperación de contraseña',
-        text: `Para restablecer tu contraseña, haz clic en este enlace: https://tuaplicacion.com/reset-password/${token}`,
+    try {
+        yield sendPasswordRecoveryEmail(email, 'token-unico');
+        res.send('Correo de recuperación de contraseña enviado.');
+    }
+    catch (error) {
+        console.error('Error al enviar el correo de recuperación:', error);
+        res.status(500).json({ message: 'Error al enviar el correo de recuperación' });
+    }
+}));
+const sendPasswordRecoveryEmail = (email, token) => __awaiter(void 0, void 0, void 0, function* () {
+    const sendGridApiKey = process.env.SENDGRID_API_KEY;
+    const sendGridUrl = 'https://api.sendgrid.com/v3/mail/send';
+    const headers = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sendGridApiKey}`,
     };
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-        }
-        else {
-            console.log('Correo enviado: ' + info.response);
-        }
-    });
-};
+    const mailOptions = {
+        personalizations: [{ to: [{ email: email }] }],
+        from: { email: 'tuemail@gmail.com' },
+        subject: 'Recuperación de contraseña',
+        content: [{ type: 'text/plain', value: `Para restablecer tu contraseña, haz clic en este enlace: https://tuaplicacion.com/reset-password/${token}` }],
+    };
+    try {
+        yield axios_1.default.post(sendGridUrl, mailOptions, { headers });
+        console.log('Correo de recuperación enviado a:', email);
+    }
+    catch (error) {
+        throw new Error('Error al enviar el correo de recuperación: ');
+    }
+});
 app.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });
