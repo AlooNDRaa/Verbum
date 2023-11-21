@@ -1,6 +1,6 @@
-import Nav from "../componentes/navChat";
-import Fusion from "../componentes/buscador+personas";
-import Chatopen from "../componentes/chatOpen";
+import Nav from "../Componentes/chat/navChat";
+import Fusion from "../Componentes/chat/buscador+personas";
+import Chatopen from "../Componentes/chat/chatOpen";
 import io from 'socket.io-client';
 
 const Socket = io("/")

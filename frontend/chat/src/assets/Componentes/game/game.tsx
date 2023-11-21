@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Board from "./board";
-import "../Styles/index.css";
+import "../../Styles/index.css";
 
 function Game() {
   const [history, setHistory] = useState([{ squares: new Array(9) }]);
@@ -42,7 +42,7 @@ function Game() {
   const status = winner
     ? "Winner: " + winner
     : "Next player: " + (xIsNext ? "X" : "O");
-  const moves = _history.map((step, move) => {
+  const moves = _history.map((_step, move) => {
     const desc = move ? "Move number #" + move : "Start Game";
     return (
       <li className="p-3"

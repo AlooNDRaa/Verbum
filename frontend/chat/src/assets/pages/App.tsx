@@ -1,14 +1,14 @@
-import './assets/Styles/index.css';
+import '../Styles/index.css';
 import { FC, useEffect, useState } from 'react';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
-import { GameCYR } from './assets/pages/gamep';
-import { Login } from './assets/pages/login';
-import Chat from './assets/seccion-chat/pages/chat';
-import Home from './assets/pages/home';
-import { Error404 } from './assets/pages/errorpage';
-import Blog from './assets/pages/blog';
-import Error from './assets/pages/error';
-import { EnterPas } from './assets/Componentes/enterP';
+import { GameCYR } from './gamep';
+import { Login } from './login';
+import Chat from './chat';
+import Home from './home';
+import { Error404 } from './errorpage';
+import Blog from './blog';
+import Error from '../Componentes/priv/error';
+import { EnterPas } from '../Componentes/priv/enterP';
 
 interface AppProps {}
 

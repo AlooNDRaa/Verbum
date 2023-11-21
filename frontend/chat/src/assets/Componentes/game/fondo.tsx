@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 import { Span } from './animationgame';
-import '../Styles/index.css';
+import '../../Styles/index.css';
 
 interface NameanimateProps {
   style?: CSSProperties; // Permite pasar estilos personalizados
