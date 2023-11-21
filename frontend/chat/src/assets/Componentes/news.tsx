@@ -14,8 +14,8 @@ interface SliderProps {
 }
 
 const Slide: React.FC<Card> = ({ id, title, content }) => (
-  <div key={id} className="p-4 flex justify-center">
-    <div className="bg-neutral-700 rounded-lg p-9 shadow-md ">
+  <div key={id} className="lg:p-4 flex justify-center">
+    <div className="bg-neutral-700 rounded-lg p-4 shadow-md ">
       <h2 className="text-2xl text-zinc-300 mb-7 font-semibold">
         {title}
         </h2>

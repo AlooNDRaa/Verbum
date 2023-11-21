@@ -8,7 +8,7 @@ import { RxArrowTopRight } from 'react-icons/rx';
 
 const ActiveSlider = () => {
   return (
-    <div className='flex items-center mb-[3rem]'>
+    <div className='flex items-center'>
         <Swiper
           breakpoints={{  
             340: {
@@ -16,7 +16,7 @@ const ActiveSlider = () => {
               spaceBetween: 15
             },
             700: {
-              slidesPerView: 3,
+              slidesPerView: 2,
               spaceBetween: 15
             }
           }}
@@ -26,22 +26,22 @@ const ActiveSlider = () => {
              clickable: true
            }}
            modules={[FreeMode, Pagination]}
-           className='w-[28rem] md:w-[35rem] lg:w-[70rem] mb-[10%] '
+           className='w-[28rem] md:w-[30rem] lg:w-[70rem] mb-[10%] '
         > 
         {ServiceData.map((item) => (
         <SwiperSlide key={item.title}>
-          <div className='flex group shadow-lg text-white p-2 text-sm lg:text-medium lg:px-6 lg:py-8 h-[15rem] w-[15rem] lg:h-[30rem] lg:w-[50%] cursor-pointer'>
+          <div className='flex opacity-70 group shadow-lg text-white p-2 text-sm lg:text-medium lg:px-6 lg:py-8 h-[15rem] w-[15rem] lg:h-[30rem] lg:w-[50%] cursor-pointer'>
               <div
                 className='absolute inset-0 bg-cover bg-center'
                 style={{ backgroundImage: `url(${item.backgroundImage})` }}
               />
-             <div className='absolute inset-0 bg-[#191A26] opacity-10 group-hover:opacity-40' />
+             <div className='absolute inset-0 bg-[#191A26] group-hover:opacity-40' />
              <div className='group relative flex flex-col gap-3'>
               <item.icon className="text-white group-hover:text-gray-400 w-[2rem] h-[2rem]"/>
               <h1 className='text-x1 lg:text-2x1'>{item.title}</h1>
-              <p className='lg:text-[18px]'>{item.content}</p>
+              <p className='items'>{item.content}</p>
              </div>
-            <RxArrowTopRight className="absolute bottom-2 lg:left-5 h-[2rem] w-[2rem] lg:w-[3rem] lg:h-[3rem] text-white group-hover:text-cyan-800 group-hover:rotate-45 duration-100"/>
+            <RxArrowTopRight className="absolute bottom-2 lg:left-5 h-[2rem] w-[2rem] lg:w-[3rem] lg:h-[3rem] text-white group-hover:text-pink-600 group-hover:rotate-45 duration-100"/>
            </div>
       </SwiperSlide> 
         ))}
