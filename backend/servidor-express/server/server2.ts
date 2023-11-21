@@ -1,20 +1,45 @@
+import { Server as SocketServer, Socket } from 'socket.io';
 import express, { Request, Response } from 'express';
 import mysql, { Connection } from 'mysql2';
-import cors from 'cors';
-import axios from 'axios';
+import Console from 'console';
 import dotenv from 'dotenv';
+import http from 'http';
+import axios from 'axios';
+import cors from 'cors'
 
-const app = express();
-const PORT = 3000;
 
-let corsOptions = {
+const PORT = process.env.PORTT || 3000;
+const app: express.Application = express();
+const server: http.Server = http.createServer(app);
+const io: SocketServer = new SocketServer(server, {
+  cors: {
+      origin: 'http://localhost:5173',
+  },
+});
+
+const corsOptions = {
   origin: "http://localhost:5173"
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
 dotenv.config();
+
+io.on("connection", (socket: Socket) => {
+  Console.log("client connected")
+
+  socket.on ('chat', (body: string) => {
+      console.log(body)
+      console.log(body)
+      socket.broadcast.emit("chat", {
+          body:body,
+          from: socket.id.slice(6)
+        })
+        Console.log(socket.id)
+})})
+
 
 const db: Connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -111,7 +136,7 @@ const sendPasswordRecoveryEmail = async (email: string, token: string): Promise<
   }
 };
 
-app.post('/save-message', (req, res) => {
+/*app.post('/save-message', (req, res) => {
 
   const messages = req.body.message;
 
@@ -126,8 +151,10 @@ app.post('/save-message', (req, res) => {
           res.status(200).json({ messages: 'Mensaje guardado exitosamente' });
       }
   });
-});
+});*/
 
-app.listen(PORT, () => {
+
+
+server.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });

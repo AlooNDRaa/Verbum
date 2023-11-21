@@ -8,7 +8,7 @@ export default defineConfig({
   server : {
     proxy: {
       '/socket.io': {
-        target: 'http://localhost:3100',
+        target: 'http://localhost:3000',
         ws: true,
       }
     }
