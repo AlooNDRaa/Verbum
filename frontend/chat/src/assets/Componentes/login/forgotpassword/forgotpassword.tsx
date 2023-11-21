@@ -6,6 +6,7 @@ import { BiMailSend } from "react-icons/bi";
 export function Modal(props: {
   onClose: MouseEventHandler | undefined,
   show: unknown,
+  Onclick: undefined
 }) {
   if (!props.show) {
       return null;
@@ -17,20 +18,23 @@ export function Modal(props: {
           <div onClick={(e) => e.stopPropagation()} className="lg:w-[20%] lg:h-[13rem] flex z-40 bg-[#101015] flex-col p-4">
               <div className="p-2">
                   <h3 className="flex text-white lg:mb-2 justify-center">Restore your account</h3>
+                  <p className="flex text-xs text-white justify-center">Please, enter your email</p>
               </div>
               <div className="p-2">
                   <input className="border-moving-input rounded lg:ml-2 justify-center p-3 bg-transparent text-white" 
                   type="email"
+                  name="email"
                   required 
                   placeholder="Email" />
               </div>
-              <div className="p-3 flex justify-around items-center">
+              <div className="p-3  flex justify-around items-center">
                   <button onClick={props.onClose} 
                   className="text-white lg:mt-2">
                       <IoIosCloseCircleOutline size={21}/>
                   </button>
                   <button
-                  type="submit" 
+                  onClick={props.Onclick}
+                  type="button" 
                   className="text-white mt-2">
                     <BiMailSend size={21}/>
                   </button>

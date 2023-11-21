@@ -1,6 +1,7 @@
 import { SetStateAction,  useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { ModalShow } from './forgotpassword/openmodal';
+// import { ModalShowRestore } from './restorePassword/modalP';
 
 export default  function LoginForm() {
   const [email, setEmail] = useState('');
@@ -47,7 +48,7 @@ export default  function LoginForm() {
   if (loggedIn) {
     return <Navigate to="/home" />;
   }
-  
+   
 
   return (
     <div className="text-white lg:w-1/2">
@@ -83,6 +84,7 @@ export default  function LoginForm() {
               <label className="ml-2 font-medium text-base" htmlFor="remember"> Remember me</label>
             </div>
             <ModalShow/>
+            {/* <ModalShowRestore/> */}
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button
