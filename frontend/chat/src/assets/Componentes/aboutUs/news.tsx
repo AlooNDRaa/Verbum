@@ -37,10 +37,10 @@ const SimpleSlider: React.FC<SliderProps> = ({ cards }) => {
 
   return (
     <>
-    <div className='text-6xl text-white font-semibold mt-8'>
+    <div className='text-5xl lg:text-6xl pb-6 text-white font-semibold mt-8'>
       News
     </div>
-    <div className="w-[20rem] lg:w-[60rem] m-auto mt-8 mb-12">
+    <div className="w-[16rem] lg:w-[25rem] xl:w-[60rem] lg:w-[60rem] m-auto mt-8 mb-12">
       <Slider {...settings}>
         {cards.map((card) => (
           <Slide key={card.id} {...card} />

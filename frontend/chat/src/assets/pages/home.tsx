@@ -33,7 +33,7 @@ function Home() {
             <div className='slider-cont flex justify-center py-2 mt-7 hidden lg:flex'>
                 <ActiveSlider/>
             </div>
-            <div className='relative pt-[25rem] lg:pt-[17rem]'>
+            <div className='pt-[10rem] lg:pt-[17rem]'>
                 <Footer/>
             </div>
         </div>

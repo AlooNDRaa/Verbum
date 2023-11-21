@@ -8,15 +8,19 @@ import { RxArrowTopRight } from 'react-icons/rx';
 
 const ActiveSlider = () => {
   return (
-    <div className='flex items-center'>
+    <div className='flex items-center h-full'>
         <Swiper
           breakpoints={{  
             340: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 15
             },
             700: {
               slidesPerView: 2,
+              spaceBetween: 15
+            },
+            1000: {
+              slidesPerView: 3,
               spaceBetween: 15
             }
           }}
@@ -26,7 +30,7 @@ const ActiveSlider = () => {
              clickable: true
            }}
            modules={[FreeMode, Pagination]}
-           className='w-[22rem] lg:w-[30rem] xl:w-[70rem] mb-[30%] mt-[25%]'
+           className='w-[22rem] lg:w-[30rem] xl:w-[70rem] mb-[5%] mt-[25%]'
         > 
         {ServiceData.map((item) => (
         <SwiperSlide key={item.title}>
