@@ -1,9 +1,9 @@
-import Navbar from "../Componentes/navbarhome";
-import Footer from "../Componentes/footerhome";
-import AboutUs from "../Componentes/About-us";
-import { Team } from "../Componentes/team";
-import { Tools } from "../Componentes/tools";
-import SimpleSlider from "../Componentes/news";
+import Navbar from "../Componentes/generals/navbarhome";
+import Footer from "../Componentes/generals/footerhome";
+import AboutUs from "../Componentes/aboutUs/About-us";
+import { Team } from "../Componentes/aboutUs/team";
+import { Tools } from "../Componentes/aboutUs/tools";
+import SimpleSlider from "../Componentes/aboutUs/news";
 
 function Blog() {
 

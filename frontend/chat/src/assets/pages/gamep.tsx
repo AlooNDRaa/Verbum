@@ -1,5 +1,5 @@
-import { Nameanimate } from '../Componentes/fondo';
-import Game from '../Componentes/game';
+import { Nameanimate } from '../Componentes/game/fondo';
+import Game from '../Componentes/game/game';
 
 export function GameCYR() {
   return (

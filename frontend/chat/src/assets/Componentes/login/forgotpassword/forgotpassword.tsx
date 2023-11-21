@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react"
-import '../../Styles/index.css'
+import '../../../Styles/index.css'
 import {IoIosCloseCircleOutline} from 'react-icons/io'
 import { BiMailSend } from "react-icons/bi";
 

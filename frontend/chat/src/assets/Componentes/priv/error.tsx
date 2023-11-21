@@ -1,4 +1,4 @@
-import '../Styles/index.css'
+import '../../Styles/index.css'
 
 function Error() {
 

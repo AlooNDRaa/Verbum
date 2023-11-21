@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
-import Logo from '../imgs/verbumlog.png';
+import Logo from '../../imgs/verbumlog.png';
 import {Link} from 'react-router-dom';
 
 

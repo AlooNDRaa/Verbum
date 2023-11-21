@@ -1,8 +1,8 @@
-import Navbar from '../Componentes/navbarhome';
+import Navbar from '../Componentes/generals/navbarhome';
 import Logo from '../imgs/verbumlog.png';
 import LogoHover from '../imgs/Group-3.png';
-import ActiveSlider from '../Componentes/ActiveSlider';
-import Footer from '../Componentes/footerhome';
+import ActiveSlider from '../Componentes/home/ActiveSlider';
+import Footer from '../Componentes/generals/footerhome';
 import { Link } from 'react-router-dom';
 
 function Home() {

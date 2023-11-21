@@ -1,10 +1,10 @@
   import { CiChat1, CiAlignBottom  } from "react-icons/ci";
   import { IoLogoGameControllerB } from "react-icons/io";
   import { IconType } from "react-icons";
-  import chat2 from '../imgs/chat1.png'
-  import Game from '../imgs/game.png'
-  import herramientas from '../imgs/herramientas.png'
-  import recuperacion from '../imgs/seguro.png'
+  import chat2 from '../../../imgs/chat1.png'
+  import Game from '../../../imgs/game.png'
+  import herramientas from '../../../imgs/herramientas.png'
+  import recuperacion from '../../../imgs/seguro.png'
   import { SiSpringsecurity } from "react-icons/si";
   
   

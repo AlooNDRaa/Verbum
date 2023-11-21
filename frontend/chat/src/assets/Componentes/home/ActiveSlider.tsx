@@ -3,7 +3,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
 import { FreeMode, Pagination } from 'swiper/modules'
-import { ServiceData } from '../constants/slider';
+import { ServiceData } from './constants/slider';
 import { RxArrowTopRight } from 'react-icons/rx';
 
 const ActiveSlider = () => {
