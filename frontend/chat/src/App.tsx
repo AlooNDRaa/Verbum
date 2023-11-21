@@ -22,7 +22,7 @@ const App: FC<AppProps> = (): JSX.Element => {
 
 
   const PrivateRoute: FC<{ element: JSX.Element }> = ({ element }): JSX.Element => {
-    return authenticated ? element : <Navigate to="/" />;
+    return authenticated ? element : <Navigate to="/"/>;
   };
 
   return (
@@ -32,8 +32,8 @@ const App: FC<AppProps> = (): JSX.Element => {
         <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
         <Route path="/game" element={<PrivateRoute element={<GameCYR />} />} />
         <Route path="/blog" element={<PrivateRoute element={<Blog/>}/>} />
-        <Route path="*" element={<Error404 />} />
         <Route path="/" element={<Login />} />
+        <Route path="*" element={<Error404 />} />
         <Route path="oops" element={<Error />} />
         <Route path="priv" element={<EnterPas />} />
       </Routes>

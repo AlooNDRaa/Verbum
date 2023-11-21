@@ -45,7 +45,7 @@ export function Tools() {
           </div>
         </div>
         <div className="Cajas-horizontal mb-20 mt-7 flex flex-wrap gap-7 justify-around text-center aling-center ">
-          <div className="lg:w-[28rem] lg:h-[12rem] w-[17rem] h-[17rem] text-neutral-200 hover:text-zinc-900 bg-neutral-700 hover:bg-pink-600 rounded-lg  pt-20 pl-22 pr-22 hover:pb-8 active:scale-[.99] active:duration-75 transition-all hover:scale-[1.08] ease-in-out">
+          <div className="lg:w-[28rem] lg:h-[12rem] w-[17rem] h-[17rem] text-neutral-200 hover:text-zinc-900 bg-neutral-700 hover:bg-pink-600 rounded-lg  pt-16 pl-22 pr-22 hover:pb-8 active:scale-[.99] active:duration-75 transition-all hover:scale-[1.08] ease-in-out">
             <h2 className="text-2xl mb-1">
               Android/Ios
             </h2>
@@ -53,8 +53,8 @@ export function Tools() {
                 Click here
               </p>
           </div>
-          <div className="lg:w-[28rem] lg:h-[12rem] w-[17rem] h-[17rem]  text-neutral-200 hover:text-zinc-900 bg-neutral-700 hover:bg-pink-600 rounded-lg  pt-20 pl-22 pr-22 hover:pb-8 active:scale-[.99] active:duration-75 transition-all hover:scale-[1.08] ease-in-out">
-            <h2 className="text-2xl mb-1 ">
+          <div className="lg:w-[28rem] lg:h-[12rem] w-[17rem] h-[17rem]  text-neutral-200 hover:text-zinc-900 bg-neutral-700 hover:bg-pink-600 rounded-lg  pt-16 pl-22 pr-22 hover:pb-8 active:scale-[.99] active:duration-75 transition-all hover:scale-[1.08] ease-in-out">
+            <h2 className="text-2xl mb-1">
               Windows/Mac
             </h2>
               <p className="text-xl text-white">
