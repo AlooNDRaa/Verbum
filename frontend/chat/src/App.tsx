@@ -6,7 +6,7 @@ import { Login } from './assets/pages/login';
 import Chat from './assets/seccion-chat/pages/chat';
 import Home from './assets/pages/home';
 import { Error404 } from './assets/pages/errorpage';
-import Herramientas from './assets/pages/Herramientas';
+import Blog from './assets/pages/blog';
 import Error from './assets/pages/error';
 import { EnterPas } from './assets/Componentes/enterP';
 
@@ -31,9 +31,9 @@ const App: FC<AppProps> = (): JSX.Element => {
         <Route path="/home" element={<PrivateRoute element={<Home />} />} />
         <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
         <Route path="/game" element={<PrivateRoute element={<GameCYR />} />} />
-        <Route path="/blog" element={<PrivateRoute element={<Herramientas/>}/>} />
-        <Route path="/" element={<Login />} />
+        <Route path="/blog" element={<PrivateRoute element={<Blog/>}/>} />
         <Route path="*" element={<Error404 />} />
+        <Route path="/" element={<Login />} />
         <Route path="oops" element={<Error />} />
         <Route path="priv" element={<EnterPas />} />
       </Routes>

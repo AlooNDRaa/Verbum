@@ -5,7 +5,7 @@ import { Team } from "../Componentes/team";
 import { Tools } from "../Componentes/tools";
 import SimpleSlider from "../Componentes/news";
 
-function Herramientas() {
+function Blog() {
 
   const card = [
     {
@@ -50,4 +50,4 @@ function Herramientas() {
   )
 }
 
-export default Herramientas
+export default Blog;

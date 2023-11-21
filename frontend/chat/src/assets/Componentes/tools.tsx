@@ -4,7 +4,7 @@ export function Tools() {
         <h1 className="text-white text-6xl font-semibold font-['DM Sans']">
           Tools
         </h1>
-      <div className="sm:mt-5 ml-2 flex flex-col md:flex-wrap">
+      <div className="sm:mt-5 ml-2 flex flex-col flex-wrap">
         <h3 className="text-white lg:text-3xl font-medium font-['DM Sans']">Send private messages</h3> <br />
         <h3 className="text-pink-600 lg:text-2xl font-medium font-['DM Sans'] -mt-[20px]">Send free messages and calls in a <br />simple, reliable and private way</h3> <br />
         <h3 className="text-pink-600 lg:text-2xl font-medium font-['DM Sans'] -mt-[20px]">available worldwide.</h3>
