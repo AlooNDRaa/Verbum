@@ -18,20 +18,14 @@ io.on('connection', (socket: Socket) => {
 
     socket.on('chat', (body: string) => {
         console.log(body);
-        // Envía el mensaje a Express para que lo guarde en la base de datos
         axios.post('http://localhost:3000/save-message', { body })
             .then((response) => {
                 console.log(response.data);
+                socket.emit('chat', { body: body, from: socket.id.slice(6) }); // Enviar el mensaje al cliente que lo envió
             })
             .catch((error) => {
                 console.error('Error al enviar mensaje a Express', error);
             });
-
-        // Emite el mensaje a todos los clientes conectados
-        socket.broadcast.emit('chat', {
-            body: body,
-            from: socket.id.slice(6),
-        });
     });
 });
 

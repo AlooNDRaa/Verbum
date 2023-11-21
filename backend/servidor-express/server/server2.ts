@@ -111,6 +111,23 @@ const sendPasswordRecoveryEmail = async (email: string, token: string): Promise<
   }
 };
 
+app.post('/save-message', (req, res) => {
+
+  const messages = req.body.message;
+
+  
+  const sql = 'INSERT INTO messages (user_id, message_content) VALUES (?, ?)';
+  db.query(sql, [messages, 'Servidor'], (err, result) => {
+      if (err) {
+          console.error('Error al guardar en la base de datos', err);
+          res.status(500).json({ messages: 'Error al guardar mensaje' });
+      } else {
+          console.log('Mensaje guardado en la base de datos');
+          res.status(200).json({ messages: 'Mensaje guardado exitosamente' });
+      }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });
