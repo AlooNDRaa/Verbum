@@ -7,7 +7,7 @@ const router = Router();
 export const setupUserRoutes = (db: Connection) => {
     router.use(express.json());
 
-    router.get('/', (req, res) => getAllUsers(db, req, res));
+    router.get('/users', (req, res) => getAllUsers(db, req, res));
     router.post('/', (req, res) => createUser(db, req, res));
     router.post('/login', (req, res) => loginUser(db, req, res));
 

@@ -6,6 +6,7 @@ export const getAllUsers = (db: Connection, req: Request, res: Response) => {
     db.query(sql, (err, result) => {
         if (err) throw err;
         res.send(result);
+        req.body
     });
 };
 

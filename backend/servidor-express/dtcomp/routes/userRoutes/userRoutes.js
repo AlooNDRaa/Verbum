@@ -30,7 +30,7 @@ const userController_1 = require("../../controllers/usercontroller/userControlle
 const router = (0, express_1.Router)();
 const setupUserRoutes = (db) => {
     router.use(express_1.default.json());
-    router.get('/', (req, res) => (0, userController_1.getAllUsers)(db, req, res));
+    router.get('/users', (req, res) => (0, userController_1.getAllUsers)(db, req, res));
     router.post('/', (req, res) => (0, userController_1.createUser)(db, req, res));
     router.post('/login', (req, res) => (0, userController_1.loginUser)(db, req, res));
     return router;

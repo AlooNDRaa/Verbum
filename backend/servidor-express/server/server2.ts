@@ -1,10 +1,9 @@
 import { Server as SocketServer, Socket } from 'socket.io';
-import express, { Request, Response } from 'express';
+import express, { Request, Response, urlencoded } from 'express';
 import mysql, { Connection } from 'mysql2';
 import Console from 'console';
 import dotenv from 'dotenv';
 import http from 'http';
-import axios from 'axios';
 import cors from 'cors'
 import { setupUserRoutes } from '../routes/userRoutes/userRoutes';
 
@@ -22,7 +21,7 @@ const corsOptions = {
   origin: "http://localhost:5173"
 };
 
-
+app.use(urlencoded({extended:false}));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
