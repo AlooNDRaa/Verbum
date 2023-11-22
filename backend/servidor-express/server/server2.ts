@@ -9,7 +9,7 @@ import cors from 'cors'
 import { setupUserRoutes } from '../routes/userRoutes/userRoutes';
 
 
-const PORT = process.env.PORTT || 3000;
+const PORT = process.env.PORT || 3000;
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
 const io: SocketServer = new SocketServer(server, {
