@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { Connection } from 'mysql2';
 
-export const getAllUsers = (db: Connection, req: Request, res: Response) => {
-    const sql = 'SELECT * FROM users';
-    db.query(sql, (err, result) => {
+export const getAllUsers = (db: Connection, req: Request, res: Response): void => {
+    const sql: string = 'SELECT * FROM users';
+    db.query(sql, (err: Error, result: any) => {
         if (err) throw err;
         res.send(result);
-        req.body
+        req.body;
     });
 };
 

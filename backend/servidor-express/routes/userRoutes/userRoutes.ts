@@ -1,15 +1,15 @@
-// routes/userRoutes.ts
-import express, { Router } from 'express';
+import express, { Router, Request, Response } from 'express';
 import { Connection } from 'mysql2';
 import { createUser, getAllUsers, loginUser } from '../../controllers/usercontroller/userController';
-const router = Router();
 
-export const setupUserRoutes = (db: Connection) => {
+const router: Router = Router();
+
+export const setupUserRoutes = (db: Connection): Router => {
     router.use(express.json());
 
-    router.get('/users', (req, res) => getAllUsers(db, req, res));
-    router.post('/', (req, res) => createUser(db, req, res));
-    router.post('/login', (req, res) => loginUser(db, req, res));
+    router.get('/users', (req: Request, res: Response): void => getAllUsers(db, req, res));
+    router.post('/', (req: Request, res: Response): void => createUser(db, req, res));
+    router.post('/login', (req: Request, res: Response): void => loginUser(db, req, res));
 
     return router;
 };
