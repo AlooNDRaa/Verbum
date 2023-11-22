@@ -3,7 +3,7 @@ import { FaFacebookSquare, FaGithubSquare, FaInstagramSquare, FaTwitterSquare } 
 
 const Footer = () => {
     return (
-        <div className="w-full mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-gray-500 bg-[#191A26] bg-opacity-40 absolute bottom-0">
+        <div className="w-full mx-auto py-16 px-4 grid lg:grid-cols-3 gap-8 text-gray-500 bg-[#191A26] bg-opacity-40  bottom-0">
           <div className='mx-4'>
             <h1 className=' font-semibold text-pink-600'>Verbum</h1>
             <p className='py-4'>Rapidez, comodidad, diversión, anonimato</p>
