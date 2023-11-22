@@ -5,7 +5,7 @@
   "main": "server2.js",
   "scripts": {
     "test": "echo \"Error:s no test specified\" && exit 1",
-    "start": "node dtcomp/server2.js"
+    "start": "node dtcomp/server/server2.js"
   },
   "keywords": [],
   "author": "",

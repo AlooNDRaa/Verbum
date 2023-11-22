@@ -10,7 +10,7 @@ function Home() {
     <>
         <div className='bg-[#101015]'>
             <Navbar/>
-            <div className='grid h-screen lg:grid-cols-2 lg:gap-[10rem] pt-[7rem]'>
+            <div className='grid xl:grid-cols-2 xl:gap-[10rem] pt-[7rem]'>
                  <div className='flex flex-col lg:ml-12 lg:mt-[5rem] text-center'>
                     <h1 className=" font-bold text-7xl lg:text-9xl text-white">Verbum</h1>
                         <Link to={'/priv'}>
@@ -23,7 +23,7 @@ function Home() {
                 <div className=' lg:hidden lx:hidden grid justify-center mb-9'>
                 <ActiveSlider/>
                 </div>
-                <div className='img-conts ml-15 mt-4 hidden lg:flex relative group'>
+                <div className='img-conts ml-15 mt-4 hidden xl:flex relative group'>
                     <img src={Logo} className='h-[32rem]' alt="img-logo"/>
                     <img src={LogoHover} 
                     alt="img-logo-hover" 
@@ -33,7 +33,7 @@ function Home() {
             <div className='slider-cont flex justify-center py-2 mt-7 hidden lg:flex'>
                 <ActiveSlider/>
             </div>
-            <div className='relative pt-[25rem] lg:pt-[17rem]'>
+            <div className='pt-[10rem] lg:pt-[17rem]'>
                 <Footer/>
             </div>
         </div>
