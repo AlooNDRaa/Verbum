@@ -11,7 +11,7 @@ export function ModalShow() {
     <h5
     className="animate-pulse"
     >Forgot password?</h5>  
-      <Modal onClose={() => setShow(false)} show={show}/>
+      <Modal onClose={() => setShow(false)} show={show} Onclick={undefined}/>
     </div>
     
     )
