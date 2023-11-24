@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.createUser = exports.getAllUsers = void 0;
 const getAllUsers = (db, req, res) => {
     const sql = 'SELECT * FROM users';
-    db.query(sql, (err, result) => {
+    db.query(sql, (err, results) => {
         if (err)
             throw err;
-        res.send(result);
+        res.send(results);
     });
 };
 exports.getAllUsers = getAllUsers;
@@ -34,8 +34,9 @@ const loginUser = (db, req, res) => {
             res.status(500).json({ message: 'Error en el servidor' });
             return;
         }
-        if (Array.isArray(results) && results.length > 0) {
-            const user = results[0];
+        const users = results;
+        if (users.length > 0) {
+            const user = users[0];
             if (user.password === password) {
                 res.status(200).json({ message: 'Inicio de sesión exitoso' });
             }

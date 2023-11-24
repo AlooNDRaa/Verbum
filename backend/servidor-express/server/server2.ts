@@ -5,7 +5,7 @@ import Console from 'console';
 import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
-import { setupUserRoutes } from '../routes/userRoutes/userRoutes';
+import { setupUserRoutes } from '../routes/userRoutes/user.routes';
 
 
 const PORT = process.env.PORT || 3000;
@@ -56,7 +56,9 @@ db.connect((err) => {
   }
 });
 
-app.use('/user', setupUserRoutes(db));
+app.use('/user', setupUserRoutes);
+app.use('/login', setupUserRoutes(db));
+app.use('/', setupUserRoutes);
 
 
 server.listen(PORT, () => {
