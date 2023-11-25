@@ -45,3 +45,6 @@ export const loginUser = (db: Connection, req: Request, res: Response) => {
         }
     });
 };
+export const messages = (db: Connection, req: Request, res: Response) => {
+    
+}
