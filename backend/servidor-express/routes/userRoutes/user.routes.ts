@@ -1,6 +1,6 @@
 import express, { Router, Request, Response } from 'express';
 import { Connection } from 'mysql2';
-import { createUser, getAllUsers, loginUser } from '../../controllers/usercontroller/userController';
+import { createUser, getAllUsers, loginUser } from '../../controllers/usercontroller/user.controller';
 
 const router: Router = Router();
 
