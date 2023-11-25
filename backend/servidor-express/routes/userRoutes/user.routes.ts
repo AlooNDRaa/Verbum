@@ -1,0 +1,15 @@
+import express, { Router, Request, Response } from 'express';
+import { Connection } from 'mysql2';
+import { createUser, getAllUsers, loginUser } from '../../controllers/usercontroller/userController';
+
+const router: Router = Router();
+
+export const setupUserRoutes = (db: Connection): Router => {
+    router.use(express.json());
+
+    router.get('/user', (req: Request, res: Response): void => getAllUsers(db, req, res));
+    router.post('/', (req: Request, res: Response): void => createUser(db, req, res));
+    router.post('/login', (req: Request, res: Response): void => loginUser(db, req, res));
+
+    return router;
+};

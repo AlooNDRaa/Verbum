@@ -21,7 +21,7 @@ export default  function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/log', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

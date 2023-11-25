@@ -24,21 +24,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupUserRoutes = void 0;
-// routes/userRoutes.ts
 const express_1 = __importStar(require("express"));
-const user_controller_1 = require("../../controllers/usercontroller/user.controller");
+const userController_1 = require("../../controllers/usercontroller/userController");
 const router = (0, express_1.Router)();
 const setupUserRoutes = (db) => {
     router.use(express_1.default.json());
-<<<<<<< HEAD
-    router.get('/user', (req, res) => (0, user_controller_1.getAllUsers)(db, req, res));
-    router.post('/', (req, res) => (0, user_controller_1.createUser)(db, req, res));
-    router.post('/log', (req, res) => (0, user_controller_1.loginUser)(db, req, res));
-=======
-    router.get('/users', (req, res) => (0, userController_1.getAllUsers)(db, req, res));
+    router.get('/user', (req, res) => (0, userController_1.getAllUsers)(db, req, res));
     router.post('/', (req, res) => (0, userController_1.createUser)(db, req, res));
     router.post('/login', (req, res) => (0, userController_1.loginUser)(db, req, res));
->>>>>>> b1a2fb2aabe11e1cd330fc3fc1ac8d887c54a71a
     return router;
 };
 exports.setupUserRoutes = setupUserRoutes;

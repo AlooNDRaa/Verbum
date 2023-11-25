@@ -8,10 +8,8 @@ export const setupUserRoutes = (db: Connection) => {
     router.use(express.json());
 
     router.get('/user', (req, res) => getAllUsers(db, req, res));
-
     router.post('/', (req, res) => createUser(db, req, res));
-    
-    router.post('/log', (req, res) => loginUser(db, req, res));
+    router.post('/login', (req, res) => loginUser(db, req, res));
 
     return router;
 };
