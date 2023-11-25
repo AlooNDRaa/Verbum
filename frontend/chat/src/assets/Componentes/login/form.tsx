@@ -29,6 +29,8 @@ export default  function LoginForm() {
         body: JSON.stringify({ email: email, password: password }),
       });
 
+      
+
       if (response.status === 200) {
         console.log("acceso permitido");
         setLoggedIn(true); 

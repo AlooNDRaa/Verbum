@@ -57,7 +57,10 @@ db.connect((err) => {
   }
 });
 
-app.use('/user', setupUserRoutes(db));
+app.get('/user', setupUserRoutes(db));
+app.post('/log', setupUserRoutes(db));
+app.post('/', setupUserRoutes(db));
+
 
 
 server.listen(PORT, () => {
