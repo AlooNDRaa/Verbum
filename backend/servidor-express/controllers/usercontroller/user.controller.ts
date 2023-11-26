@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
 import { Connection } from 'mysql2';
+import { User } from '../../models/user.model';
 
-export const getAllUsers = (db: Connection, req: Request, res: Response) => {
-    const sql = 'SELECT * FROM users';
-    db.query(sql, (err, result) => {
+
+export const getAllUsers = (db: Connection, req: Request, res: Response): void => {
+    const sql: string = 'SELECT * FROM users';
+    db.query(sql, (err: Error, results: User[]) => {
         if (err) throw err;
-        res.send(result);
+        res.send(results);
     });
 };
 
@@ -33,8 +35,11 @@ export const loginUser = (db: Connection, req: Request, res: Response) => {
             res.status(500).json({ message: 'Error en el servidor' });
             return;
         }
-        if (Array.isArray(results) && results.length > 0) {
-            const user = results[0] as { password: string };
+
+        const users: User[] = results as User[]; 
+
+        if (users.length > 0) {
+            const user = users[0];
             if (user.password === password) {
                 res.status(200).json({ message: 'Inicio de sesión exitoso' });
             } else {
@@ -45,6 +50,3 @@ export const loginUser = (db: Connection, req: Request, res: Response) => {
         }
     });
 };
-export const messages = (db: Connection, req: Request, res: Response) => {
-    
-}

@@ -2,7 +2,7 @@ function AboutUs() {
   return (
     <div className='pl-4 lg:pl-12 pt-6 flex flex-col'>
       <div className="text-white ml-3 text-5xl lg:text-8xl mt-14">
-        <h1 className="font-semibold">About us:</h1>
+        <h1 className="font-semibold">About <span className="text-pink-600">us</span>:</h1>
       </div>
       <div className="mt-8 flex flex-wrap lg:flex-nowrap lg:justify-bertween px-3">
         <div className="md:flex md:flex-col">
@@ -15,7 +15,7 @@ function AboutUs() {
         <span className="text-pink-600">Within</span>  that journey, we <span className="text-pink-600">began</span> with the development of this project, a <span className="text-pink-600">chat</span>.
         </h2>
         </div>
-      <div className="lg:mt-56 mt-3 mr-4 xl:mt-60 ">
+      <div className="lg:mt-[19rem] mt-6 mr-4 xl:mt-60 ">
         <h2 className="text-xl lg:text-3xl text-white">
         <span className="text-pink-600">Maybe</span> as a user you <span className="text-pink-600">say</span>: "What's so <span className="text-pink-600">special</span> about it?"
         There are many <span className="text-pink-600">alike.</span>"
