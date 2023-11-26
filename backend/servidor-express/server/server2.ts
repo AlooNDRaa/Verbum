@@ -59,6 +59,7 @@ db.connect((err) => {
 app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/', setupUserRoutes(db));
+app.get('/secretpass', setupUserRoutes(db))
 
 
 
