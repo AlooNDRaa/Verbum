@@ -48,7 +48,7 @@ function Game() {
       <li className="p-3"
        key={move}>
         <button 
-        className="mt-1" 
+        className="mt-1 " 
         onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     );
@@ -61,9 +61,9 @@ function Game() {
         finished={finished}
         onClick={i => handleClick(i)}
       />
-    <div className="ml-6 text-white p-5 h-[30rem] border">
+    <div className=" ml-6 text-white p-5 h-[30rem] border">
         <div className="font-bold">{status}</div>
-        <ol className="pl-8">{moves}</ol>
+        <ol className="pl-8 overflow-y-auto max-h-[25rem] ">{moves}</ol>
       </div>
     </div>
     </div>
