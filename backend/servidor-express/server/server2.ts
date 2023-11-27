@@ -62,6 +62,7 @@ app.post('/', setupUserRoutes(db));
 
 
 
+
 server.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });
