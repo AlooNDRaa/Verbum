@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
 import { setupUserRoutes } from '../routes/userRoutes/user.routes';
+import { setUpPassword } from '../routes/eggroutes/egg.route';
 
 
 const PORT = process.env.PORT || 3000;
@@ -59,7 +60,7 @@ db.connect((err) => {
 app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/', setupUserRoutes(db));
-app.get('/secretpass', setupUserRoutes(db))
+app.get('/secretpass', setUpPassword(db))
 
 
 
