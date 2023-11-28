@@ -2,6 +2,7 @@
 import sequelize from '../config/database';
 import { User }  from './user.model';
 
+
 const Mensaje = sequelize.define('Mensaje', {
     id: {
         type: DataTypes.INTEGER,
