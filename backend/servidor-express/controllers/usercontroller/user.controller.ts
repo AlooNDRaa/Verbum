@@ -50,23 +50,3 @@ export const loginUser = (db: Connection, req: Request, res: Response) => {
         }
     });
 };
-
-
-export const SecretPassword = (db:Connection, req: Request, res:Response) => {
-    const secretpassword = req.body;
-    const sql = 'SELECT * FROM users WHERE secretpassword = secretpassword';
-
-    db.query(sql, secretpassword, (err, results) => {
-        if (err) {
-            console.log('You do not have permission' + err.message);
-            res.status(500).json({ message: 'You do not have permission' });
-            return;
-        }
-
-        if(secretpassword === secretpassword) {
-            res.status(200).json({ message: 'You got permission' });
-        } else {
-            res.status(401).json({ message: 'Go back bicht' });
-        } 
-    })
-};
