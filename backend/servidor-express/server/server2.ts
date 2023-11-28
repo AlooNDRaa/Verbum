@@ -32,7 +32,7 @@ io.on("connection", (socket: Socket) => {
 
   socket.on ('chat', (body: string) => {
       console.log(body)
-      console.log(body)
+  
       socket.broadcast.emit("chat", {
           body:body,
           from: socket.id.slice(6)
@@ -59,6 +59,7 @@ db.connect((err) => {
 app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/', setupUserRoutes(db));
+
 
 
 

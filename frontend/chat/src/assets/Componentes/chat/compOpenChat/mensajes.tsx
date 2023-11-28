@@ -42,7 +42,7 @@ function Mensajes() {
                         placeholder="Escribir"
                         value={chat}
                         onChange={(e) => setChat(e.target.value)}
-                        className="bg-[#ec4899] border-stone-700 bg-stone-900 rounded-md flex-auto  h-[50px]  "
+                        className="text-white bg-[#ec4899] border-stone-700 bg-stone-900 rounded-md flex-auto  h-[50px]  "
                     />
                     <button type="submit" className=" text-[#fdf4ff]">Enviar</button>
                 </form>

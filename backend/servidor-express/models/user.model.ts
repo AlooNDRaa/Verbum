@@ -15,4 +15,4 @@ export interface User {
   }
 
 
-  
+  //encargado de la informacion, sentencias sql aqui. 

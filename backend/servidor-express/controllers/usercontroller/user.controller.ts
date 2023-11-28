@@ -11,8 +11,10 @@ export const getAllUsers = (db: Connection, req: Request, res: Response): void =
     });
 };
 
-export const createUser = (db: Connection, req: Request, res: Response) => {
-    const { username, email, password } = req.body;
+//db connection aca NO, en el modelo
+
+export const createUser = (db: Connection , req: Request, res: Response) => {
+    const { username, email, password } = req.body; //esto debe estar
     const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
     db.query(sql, [username, email, password], (err, result) => {
         if (err) {
@@ -20,9 +22,10 @@ export const createUser = (db: Connection, req: Request, res: Response) => {
             res.status(500).json({ message: 'Error al registrar usuario' });
         } else {
             console.log('Registro exitoso');
-            res.status(200).json({ message: 'Registro exitoso' });
+            res.status(200).json({ message: 'Registro exitoso' }); //estos si son parte del controlador
         }
-    });
+        //Error para credenciales incorrecta 
+    }); //parte del modelo la const sql 
 };
 
 export const loginUser = (db: Connection, req: Request, res: Response) => {
