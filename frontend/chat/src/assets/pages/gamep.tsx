@@ -1,7 +1,17 @@
+import { useState, useEffect } from 'react';
 import { Nameanimate } from '../Componentes/game/fondo';
 import Game from '../Componentes/game/game';
 
 export function GameCYR() {
+
+  const [xxx, methodxxx] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/user")
+      .then((response) => response.json())
+      .then((users) => console.log(users));
+  }, []);
+
   return (
     <>
       <div className="contpag text-white" >

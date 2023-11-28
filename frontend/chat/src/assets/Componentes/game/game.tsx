@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Board from "./board";
 import "../../Styles/index.css";
 
+
 function Game() {
+
+const [xxx, methodxxx] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/user")
+      .then((response) => response.json())
+      .then((users) => {
+        //.log(users);
+         methodxxx(users)
+     });
+  }, []);
+
+ console.log(xxx);
+
   const [history, setHistory] = useState([{ squares: new Array(9) }]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
@@ -46,7 +61,7 @@ function Game() {
     const desc = move ? "Move number #" + move : "Start Game";
     return (
       <li className="p-3"
-       key={move}>
+      key={move}>
         <button 
         className="mt-1 " 
         onClick={() => jumpTo(move)}>{desc}</button>
@@ -55,6 +70,7 @@ function Game() {
   });
   return (
     <div className="w-full backdrop-blur-md bg-opacity-75">
+      <div> {xxx[0]} </div>
     <div className="flex flex-flow">
       <Board
         squares={squares}
