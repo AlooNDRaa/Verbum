@@ -4,12 +4,29 @@ import Game from '../Componentes/game/game';
 
 export function GameCYR() {
 
-  const [xxx, methodxxx] = useState([])
+  const [players, setPlayers] = useState({
+    player1: '' ,
+    player2: '',
+  })
 
   useEffect(() => {
-    fetch("http://localhost:3000/user")
-      .then((response) => response.json())
-      .then((users) => console.log(users));
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/user");
+        const users = await response.json();
+  
+        if (users.length > 0) {
+          setPlayers((prevPlayers) => ({
+            ...prevPlayers,
+            player1: users[0].username,
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
   }, []);
 
   return (
@@ -20,8 +37,20 @@ export function GameCYR() {
           <div className="conectplayers pl-4">
             <div>
                 <h2 className='text-xl mb-3'>Players:</h2>
-              <input className="rounded mb-3 bg-transparent border p-1" type="text" placeholder="Player 1" style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(10px)' }} /><br />
-              <input className="rounded bg-transparent border p-1" type="text" placeholder="Player 2" style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(10px)' }} />
+                <input
+                className="rounded mb-3 bg-transparent border p-1"
+                type="text"
+                placeholder="Player 1"
+                value={players.player1}
+                style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(10px)' }}
+              /><br />
+              <input
+                className="rounded bg-transparent border p-1"
+                type="text"
+                placeholder="Player 2"
+                value={players.player2}
+                style={{ background: 'rgba(255, 255, 255, 0.2)', backdropFilter: 'blur(10px)' }}
+              />
             </div>
           </div>
         </div>

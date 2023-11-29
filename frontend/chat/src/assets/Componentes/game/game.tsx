@@ -1,91 +1,128 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Board from "./board";
 import "../../Styles/index.css";
+import io from 'socket.io-client';
 
+const socket = io('http://localhost:3000');
 
-function Game() {
-
-const [xxx, methodxxx] = useState([])
-
-  useEffect(() => {
-    fetch("http://localhost:3000/user")
-      .then((response) => response.json())
-      .then((users) => {
-        //.log(users);
-         methodxxx(users)
-     });
-  }, []);
-
- console.log(xxx);
-
-  const [history, setHistory] = useState([{ squares: new Array(9) }]);
+const Game = () => {
+  const [history, setHistory] = useState([{ squares: new Array(9).fill(null) }]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
   const [finished, setFinished] = useState(false);
+  const [players, setPlayers] = useState({
+    player1: '',
+    player2: '',
+  });
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/user");
+        const users = await response.json();
+
+        if (users.length > 0) {
+          setPlayers((prevPlayers) => ({
+            ...prevPlayers,
+            player1: users[0].username,
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+
+    socket.on('move', ({ squares, stepNumber, xIsNext }) => {
+  
+      setHistory([...history, { squares }]);
+      setStepNumber(stepNumber);
+      setXIsNext(xIsNext);
+      setFinished(calculateWinner(squares) || stepNumber >= 9);
+    });
+
+    socket.on('players', (users) => {
+      if (users.length > 0) {
+        setPlayers((prevPlayers) => ({
+          ...prevPlayers,
+          player1: users[0].username,
+          player2: users[1] ? users[1].username : '',
+        }));
+      }
+    });
+
+    return () => {
+      socket.off('move');
+      socket.off('players');
+      socket.disconnect();
+    };
+  }, [history]);
+
   const handleClick = (i: number) => {
     if (finished) {
       return;
     }
-    if (stepNumber >= 9) {
-      setFinished(true);
-      return;
-    }
+
     const _history = history.slice(0, stepNumber + 1);
-    const squares = [..._history[_history.length - 1].squares];
-    console.log("history:", _history.length, stepNumber);
-    if (squares[i]) {
+    const squares = _history[_history.length - 1].squares.slice();
+
+    if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const winner = calculateWinner(squares);
-    if (winner) {
-      setFinished(true);
-      return;
-    }
+
     squares[i] = xIsNext ? "X" : "O";
+
+    socket.emit('move', { squares, stepNumber: _history.length, xIsNext });
+
     setHistory([..._history, { squares }]);
     setStepNumber(_history.length);
     setXIsNext(!xIsNext);
+    setFinished(calculateWinner(squares) || _history.length >= 9);
   };
-  const jumpTo = (step: number) => {
+
+  const jumpTo = (step: React.SetStateAction<any>) => {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
     setFinished(false);
   };
-  const _history = [...history];
-  const squares = [..._history[stepNumber].squares];
-  const winner = calculateWinner(squares);
-  const status = winner
-    ? "Winner: " + winner
-    : "Next player: " + (xIsNext ? "X" : "O");
-  const moves = _history.map((_step, move) => {
-    const desc = move ? "Move number #" + move : "Start Game";
-    return (
-      <li className="p-3"
-      key={move}>
-        <button 
-        className="mt-1 " 
-        onClick={() => jumpTo(move)}>{desc}</button>
-      </li>
-    );
-  });
+
+  const status = finished
+    ? "Game Over"
+    : `Next player: ${xIsNext ? "X" : "O"}`;
+
   return (
     <div className="w-full backdrop-blur-md bg-opacity-75">
-      <div> {xxx[0]} </div>
-    <div className="flex flex-flow">
-      <Board
-        squares={squares}
-        finished={finished}
-        onClick={i => handleClick(i)}
-      />
-    <div className=" ml-6 text-white p-5 h-[30rem] border">
-        <div className="font-bold">{status}</div>
-        <ol className="pl-8 overflow-y-auto max-h-[25rem] ">{moves}</ol>
+      <div className="flex flex-flow">
+        <Board
+          squares={history[stepNumber].squares}
+          finished={finished}
+          onClick={(i) => handleClick(i)}
+        />
+        <div className="ml-6 text-white p-5 h-[30rem] border">
+          <div className="font-bold">{status}</div>
+          <div className="mb-2">Players:</div>
+          <div className="mb-3">{players.player1}</div>
+          <div>{players.player2}</div>
+          <ol className="pl-8 overflow-y-auto max-h-[25rem] ">
+            {history.map((_step, move) => (
+              <li className="p-3" key={move}>
+                <button
+                  className="mt-1 "
+                  onClick={() => jumpTo(move)}
+                >
+                  {move ? `Move number #${move}` : "Start Game"}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </div>
-    </div>
   );
-}
-function calculateWinner(squares: Array<string>) {
+};
+
+function calculateWinner(squares: any[]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -96,12 +133,10 @@ function calculateWinner(squares: Array<string>) {
     [0, 4, 8],
     [2, 4, 6]
   ];
-  const length = lines.length;
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    const player = squares[a];
-    if (player && player === squares[b] && player === squares[c]) {
-      return player;
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
     }
   }
   return null;

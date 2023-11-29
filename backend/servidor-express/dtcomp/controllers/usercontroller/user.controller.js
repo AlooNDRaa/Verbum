@@ -10,8 +10,9 @@ const getAllUsers = (db, req, res) => {
     });
 };
 exports.getAllUsers = getAllUsers;
+//db connection aca NO, en el modelo
 const createUser = (db, req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password } = req.body; //esto debe estar
     const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
     db.query(sql, [username, email, password], (err, result) => {
         if (err) {
@@ -20,9 +21,10 @@ const createUser = (db, req, res) => {
         }
         else {
             console.log('Registro exitoso');
-            res.status(200).json({ message: 'Registro exitoso' });
+            res.status(200).json({ message: 'Registro exitoso' }); //estos si son parte del controlador
         }
-    });
+        //Error para credenciales incorrecta 
+    }); //parte del modelo la const sql 
 };
 exports.createUser = createUser;
 const loginUser = (db, req, res) => {

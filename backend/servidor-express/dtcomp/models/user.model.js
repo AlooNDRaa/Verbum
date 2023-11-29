@@ -5,3 +5,4 @@ const User = function (user) {
     this.email = user.email;
     this.password = user.password;
 };
+//encargado de la informacion, sentencias sql aqui. 
