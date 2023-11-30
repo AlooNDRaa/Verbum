@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
 import { setupUserRoutes } from '../routes/userRoutes/user.routes';
-import { createUserModel } from '../models/user.model';
 
 
 const PORT = process.env.PORT || 3000;
@@ -57,14 +56,12 @@ db.connect((err) => {
   }
 });
 
-const userModel = createUserModel(db);
-userModel;
-
-app.get('/user', setupUserRoutes);
-app.post('/login', setupUserRoutes);
-app.post('/', setupUserRoutes);
 
 
+app.get('/user', setupUserRoutes(db));
+app.post('/login', setupUserRoutes(db));
+app.post('/', setupUserRoutes(db));
+app.use(setupUserRoutes)
 
 server.listen(PORT, () => {
   console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);

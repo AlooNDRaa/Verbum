@@ -76,9 +76,10 @@ db.connect((err) => {
         console.log('Conexión exitosa a la base de datos');
     }
 });
-app.get('/user', user_routes_1.setupUserRoutes);
-app.post('/login', user_routes_1.setupUserRoutes);
-app.post('/', user_routes_1.setupUserRoutes);
+app.get('/user', (0, user_routes_1.setupUserRoutes)(db));
+app.post('/login', (0, user_routes_1.setupUserRoutes)(db));
+app.post('/', (0, user_routes_1.setupUserRoutes)(db));
+app.use(user_routes_1.setupUserRoutes);
 server.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });
