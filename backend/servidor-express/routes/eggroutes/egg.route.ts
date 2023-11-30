@@ -1,13 +1,16 @@
-import express, { Router, Request, Response } from 'express';
+import express, { Router } from 'express';
 import { Connection } from 'mysql2';
 import { getThePassword } from '../../controllers/eegcontroller/egg.controller';
+import { DbService } from '../../dtservice/dt.service';
 
-const router: Router = Router();
+const router: Router = express.Router();
 
-export const setUpPassword = (db: Connection): Router => {
-    router.use(express.json());
+export const setupEggRoutesWithDb = (db: Connection): Router => {
+  const dbService = new DbService(db);
 
-    router.get('/secretpass', (req: Request, res: Response): void => getThePassword(db, req, res));
+  router.use(express.json());
 
-    return router;
+  router.post('/password', (req, res) => getThePassword(dbService, req, res));
+
+  return router;
 };

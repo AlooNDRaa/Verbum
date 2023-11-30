@@ -34,6 +34,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
 const user_routes_1 = require("../routes/userRoutes/user.routes");
+const egg_route_1 = require("../routes/eggroutes/egg.route");
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -79,6 +80,7 @@ db.connect((err) => {
 app.get('/user', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/login', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/', (0, user_routes_1.setupUserRoutes)(db));
+app.post('/password', (0, egg_route_1.setupEggRoutesWithDb)(db));
 app.use(user_routes_1.setupUserRoutes);
 server.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);

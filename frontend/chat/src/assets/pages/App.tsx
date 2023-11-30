@@ -9,7 +9,6 @@ import { Error404 } from './errorpage';
 import Blog from './blog';
 import Error from '../Componentes/priv/error';
 import { EnterPas } from '../Componentes/priv/enterP';
-import { Easteregg } from '../Componentes/priv/easteregg';
 
 interface AppProps {}
 
@@ -33,7 +32,6 @@ const App: FC<AppProps> = (): JSX.Element => {
         <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
         <Route path="/game" element={<PrivateRoute element={<GameCYR />} />} />
         <Route path="/blog" element={<PrivateRoute element={<Blog/>}/>} />
-        <Route path="/easterEgg" element={<PrivateRoute element={<Easteregg/>}/>} />
         <Route path="/" element={<Login />} />
         <Route path="*" element={<Error404 />} />
         <Route path="oops" element={<Error />} />
