@@ -1,3 +1,4 @@
+"use strict";
 /*import { Request, Response } from 'express';
 import { Connection } from 'mysql2';
 
@@ -34,7 +35,7 @@ export const chat = (): void => {
 
     const crearMensaje = async (body, from, user_id) => {
          const messages = req.body.message;
-        const query = 'INSERT INTO mensajes (message_content, user_id) VALUES (?, ?)'; 
+        const query = 'INSERT INTO mensajes (message_content, user_id) VALUES (?, ?)';
 
         try {
             const result = await pool.query(query, [body, user_id]);
@@ -42,7 +43,7 @@ export const chat = (): void => {
                 id: result.insertId,
                 message_content: body,
                 user_id,
-                username: from, 
+                username: from,
             };
 
             return nuevoMensaje;
@@ -57,4 +58,4 @@ export const chat = (): void => {
     };
     
 }
-*/
+*/ 

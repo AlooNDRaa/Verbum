@@ -14,5 +14,4 @@ export interface User {
     this.password = user.password;
   }
 
-
   

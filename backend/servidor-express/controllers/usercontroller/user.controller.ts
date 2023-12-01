@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Connection } from 'mysql2';
-import { User } from '../../models/user.model';
+import  {User}  from '../../models/user.model';
 
 
 export const getAllUsers = (db: Connection, req: Request, res: Response): void => {
