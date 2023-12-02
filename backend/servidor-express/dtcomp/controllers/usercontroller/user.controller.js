@@ -33,7 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.createUser = exports.getAllUsers = void 0;
-const UserModel = __importStar(require("../../models/user.model"));
+const UserModel = __importStar(require("../../models/usermodel/user.model"));
 const getAllUsers = (db, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield UserModel.getAllUsers(db);

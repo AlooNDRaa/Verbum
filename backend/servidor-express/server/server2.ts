@@ -1,12 +1,12 @@
-import { Server as SocketServer, Socket } from 'socket.io';
+import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
+import { setupUserRoutes } from '../routes/userRoutes/user.routes';
 import express, { Request, Response, urlencoded } from 'express';
+import { Server as SocketServer, Socket } from 'socket.io';
 import mysql, { Connection } from 'mysql2';
 import Console from 'console';
 import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
-import { setupUserRoutes } from '../routes/userRoutes/user.routes';
-import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
 
 const PORT = process.env.PORT || 3000;
 const app: express.Application = express();

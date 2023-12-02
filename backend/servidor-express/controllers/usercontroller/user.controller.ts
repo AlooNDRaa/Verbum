@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Connection } from 'mysql2';
-import * as UserModel from '../../models/user.model';
+import * as UserModel from '../../models/usermodel/user.model';
 
 export const getAllUsers = async (db: Connection, req: Request, res: Response): Promise<void> => {
   try {
