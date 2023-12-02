@@ -1,4 +1,4 @@
-import { Connection } from 'mysql2';
+import { DbService } from '../../dtservice/dt.service';
 
 export interface User {
   id: number;
@@ -7,46 +7,19 @@ export interface User {
   password: string;
 }
 
-export const getAllUsers = (db: Connection): Promise<User[]> => {
-  return new Promise((resolve, reject) => {
-    const sql: string = 'SELECT * FROM users';
-    db.query(sql, (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(results as User[]);
-      }
-    });
-  });
+export const getAllUsers = (dbService: DbService): Promise<User[]> => {
+  const sql: string = 'SELECT * FROM users';
+  return dbService.query(sql) as Promise<User[]>;
 };
 
-export const createUser = (db: Connection, username: string, email: string, password: string): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-    db.query(sql, [username, email, password], (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
+export const createUser = (dbService: DbService, username: string, email: string, password: string): Promise<void> => {
+  const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+  const values = [username, email, password];
+  return dbService.query(sql, values) as Promise<void>;
 };
 
-export const loginUser = (db: Connection, email: string, password: string): Promise<User | null> => {
-  return new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM users WHERE email = ?';
-    db.query(sql, [email], (err, results) => {
-      if (err) {
-        reject(err);
-      } else {
-        const users: User[] = results as User[];
-        if (users.length > 0) {
-          resolve(users[0]);
-        } else {
-          resolve(null);
-        }
-      }
-    });
-  });
+export const loginUser = (dbService: DbService, email: string, password: string): Promise<User | null> => {
+  const sql = 'SELECT * FROM users WHERE email = ? AND password = ?';
+  const values = [email, password];
+  return dbService.query(sql, values) as Promise<User | null>;
 };

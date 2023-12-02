@@ -34,9 +34,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.createUser = exports.getAllUsers = void 0;
 const UserModel = __importStar(require("../../models/usermodel/user.model"));
-const getAllUsers = (db, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllUsers = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield UserModel.getAllUsers(db);
+        const users = yield UserModel.getAllUsers(dbService);
         res.send(users);
     }
     catch (err) {
@@ -45,10 +45,10 @@ const getAllUsers = (db, req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.getAllUsers = getAllUsers;
-const createUser = (db, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, email, password } = req.body;
     try {
-        yield UserModel.createUser(db, username, email, password);
+        yield UserModel.createUser(dbService, username, email, password);
         console.log('Registro exitoso');
         res.status(200).json({ message: 'Registro exitoso' });
     }
@@ -58,10 +58,10 @@ const createUser = (db, req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.createUser = createUser;
-const loginUser = (db, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const loginUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     try {
-        const user = yield UserModel.loginUser(db, email, password);
+        const user = yield UserModel.loginUser(dbService, email, password);
         if (user) {
             res.status(200).json({ message: 'Inicio de sesión exitoso' });
         }
