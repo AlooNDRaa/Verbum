@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import IconChat from '../../imgs/Group 5.svg'
 import io from "socket.io-client";
+import { Link } from "react-router-dom";
 
 const Socket = io('/');
 function Mensajes() {
@@ -38,6 +39,9 @@ function Mensajes() {
   
     return (
       <>
+      <Link to="/home">
+        <button className="py-5 px-4 text-white font-bold text-sm fixed">Destroy record now</button>
+        </Link>
         <div className="w-full flex items-center justify-center">
           <form onSubmit={handleSubmit} className="absolute bottom-0 flex justify-center mb-8">
             <input
