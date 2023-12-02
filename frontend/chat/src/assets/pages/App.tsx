@@ -12,7 +12,7 @@ import { ThePrivatePage } from './private';
 interface AppProps {}
 
 const App: FC<AppProps> = (): JSX.Element => {
-  const [authenticated, setAuthenticated] = useState<boolean>(true);
+  const [authenticated, setAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('login') !== null;
