@@ -18,22 +18,22 @@ const App: FC<AppProps> = (): JSX.Element => {
     const isAuthenticated = localStorage.getItem('login') !== null;
     setAuthenticated(isAuthenticated);
   }, []);
-
-
-  const PrivateRoute: FC<{ element: JSX.Element }> = ({ element }): JSX.Element => {
-    return authenticated ? element : <Navigate to="/"/>;
-  };
+  
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<PrivateRoute element={<Home />} />} />
-        <Route path="/chat" element={<PrivateRoute element={<Chat />} />} />
-        <Route path="/game" element={<PrivateRoute element={<GameCYR />} />} />
-        <Route path="/blog" element={<PrivateRoute element={<Blog/>}/>} />
-        <Route path="/priv" element={<PrivateRoute element={<ThePrivatePage/>}/>} />
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={authenticated ? <Navigate to="/home" /> : <Login />} />
         <Route path="*" element={<Error404 />} />
+        {authenticated && (
+          <>
+            <Route path="/home" element={<Home />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/game" element={<GameCYR />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/priv" element={<ThePrivatePage />} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );
