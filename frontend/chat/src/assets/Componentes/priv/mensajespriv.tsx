@@ -11,7 +11,7 @@ function Mensajes() {
       e.preventDefault();
   
       if (!chat.trim()) {
-        return;
+        return console.error("Don't be null")
       }
   
       const newChat = {
@@ -44,6 +44,7 @@ function Mensajes() {
               type="text"
               placeholder="يرسل"
               value={chat}
+              required
               onChange={(e) => setChat(e.target.value)}
               className="text-red-300 px-5 bg-stone-950 rounded-md flex lg:w-[40rem] mr-3 h-[3rem]"
             />
@@ -52,7 +53,7 @@ function Mensajes() {
                 className="h-12"/>
             </button>
           </form>
-          <ul className="lg:w-[49rem] border-2 rounded-xl border-red-800 py-3 h-[470px] overflow-y-auto">
+          <ul className="lg:w-[49rem] border-2 fixed rounded-xl border-red-800 py-3 h-[490px] overflow-y-auto">
             {chats.map((chat, i) => (
               <li className={`text-white text-1xl p-8 rounded-md ${chat.from === 'Anonimus' ? ' ml-[40vw]' : ' mr-[5vw]'}`} key={i}>
                 <span className=" font-semibold text-red-400 block ">{chat.from}</span>{" "}
