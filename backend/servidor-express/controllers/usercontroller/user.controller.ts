@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { Connection } from 'mysql2';
 import * as UserModel from '../../models/usermodel/user.model';
+import { DbService } from '../../dtservice/dt.service';
 
-export const getAllUsers = async (db: Connection, req: Request, res: Response): Promise<void> => {
+export const getAllUsers = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
   try {
-    const users = await UserModel.getAllUsers(db);
+    const users = await UserModel.getAllUsers(dbService);
     res.send(users);
   } catch (err) {
     console.error('Error al obtener usuarios: ', err);
@@ -12,11 +12,11 @@ export const getAllUsers = async (db: Connection, req: Request, res: Response): 
   }
 };
 
-export const createUser = async (db: Connection, req: Request, res: Response): Promise<void> => {
+export const createUser = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
   const { username, email, password } = req.body;
 
   try {
-    await UserModel.createUser(db, username, email, password);
+    await UserModel.createUser(dbService, username, email, password);
     console.log('Registro exitoso');
     res.status(200).json({ message: 'Registro exitoso' });
   } catch (err) {
@@ -25,11 +25,11 @@ export const createUser = async (db: Connection, req: Request, res: Response): P
   }
 };
 
-export const loginUser = async (db: Connection, req: Request, res: Response): Promise<void> => {
+export const loginUser = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   try {
-    const user = await UserModel.loginUser(db, email, password);
+    const user = await UserModel.loginUser(dbService, email, password);
 
     if (user) {
       res.status(200).json({ message: 'Inicio de sesión exitoso' });
