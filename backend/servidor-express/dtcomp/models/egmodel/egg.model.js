@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getThePassword = void 0;
-const getThePassword = (dbService) => __awaiter(void 0, void 0, void 0, function* () {
-    const sql = 'SELECT * FROM easter_egg';
-    const results = yield dbService.query(sql);
-    return results;
+const getThePassword = (dbService, providedPassword) => __awaiter(void 0, void 0, void 0, function* () {
+    const sql = 'SELECT * FROM easter_egg WHERE easterpassword = ?';
+    const results = yield dbService.query(sql, [providedPassword]);
+    return results.length > 0 ? results[0] : null;
 });
 exports.getThePassword = getThePassword;

@@ -32,16 +32,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getThePassword = void 0;
+exports.checkPassword = void 0;
 const EggModel = __importStar(require("../../models/egmodel/egg.model"));
-const getThePassword = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const checkPassword = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const easterEggs = yield EggModel.getThePassword(dbService);
-        res.send(easterEggs);
+        const { password } = req.body;
+        const easterEgg = yield EggModel.getThePassword(dbService, password);
+        if (easterEgg) {
+            res.status(200).json({ message: 'Contraseña correcta' });
+        }
+        else {
+            res.status(401).json({ message: 'Contraseña incorrecta' });
+        }
     }
     catch (err) {
-        console.error('Error al obtener la contraseña de Pascua: ', err);
+        console.error('Error al verificar la contraseña: ', err);
         res.status(500).json({ message: 'Error en el servidor' });
     }
 });
-exports.getThePassword = getThePassword;
+exports.checkPassword = checkPassword;

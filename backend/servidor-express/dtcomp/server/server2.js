@@ -82,6 +82,7 @@ app.post('/login', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/password', (0, egg_route_1.setupEggRoutesWithDb)(db));
 app.use(user_routes_1.setupUserRoutes);
+app.use(egg_route_1.setupEggRoutesWithDb);
 server.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });

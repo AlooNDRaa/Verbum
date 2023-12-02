@@ -3,14 +3,12 @@ import Timer from "./temporizador";
 import Chat2 from './chat2';
 
 export function EnterPas() {
-  const [password, setPassword] = useState('');
-  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false);
+  const [password, setPassword] = useState<string>("");
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState<boolean>(false);
+  const backgroundImageUrl: string = 'url(https://i.pinimg.com/originals/a7/d4/09/a7d409d7bae019934e8511a85f8e4ff8.gif)';
 
-  const backgroundImageUrl = 'url(https://i.pinimg.com/originals/a7/d4/09/a7d409d7bae019934e8511a85f8e4ff8.gif)';
-
-  const handlePasswordSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault(); 
-
+  const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
     try {
       const response = await fetch('http://localhost:3000/password', {
         method: 'POST',
@@ -19,12 +17,15 @@ export function EnterPas() {
         },
         body: JSON.stringify({ password }),
       });
-
       if (response.ok) {
         setIsPasswordCorrect(true);
+        console.log("Ingreso correcto");
       } else {
         setIsPasswordCorrect(false);
+        console.error("You not have permission");
+        
       }
+      
     } catch (error) {
       console.error('Error al verificar la contraseña:', error);
     }
@@ -33,16 +34,17 @@ export function EnterPas() {
   return (
     <>
       <div className="relative">
-        <div
-          className=" h-screen absolute w-full"
-          style={{ backgroundImage: backgroundImageUrl }}
-        />
-        <div className="fixed opacity-60 z-50 ml-9">
-          <Timer />
-        </div>
+      {!isPasswordCorrect && (
+        <><div
+            className=" h-screen absolute w-full"
+            style={{ backgroundImage: backgroundImageUrl }} />
+            <div className="fixed opacity-60 z-50 ml-9">
+              <Timer />
+            </div></>
+        )}
         {!isPasswordCorrect ? (
           <div className="bg-cover bg-center h-screen bg-dph opacity-60 flex justify-center items-center relative z-20">
-            <form onSubmit={handlePasswordSubmit}> {/* Agrega el evento onSubmit */}
+            <form onSubmit={handlePasswordSubmit}>
               <div className="bg-gray-500 rounded w-[20rem] lg:w-[42rem] h-[12rem] lg:h-[17rem] flex flex-col justify-center p-14">
                 <h1 className="text-4xl lg:text-6xl text-center mb-9 font-semibold opacity- text-[#fe0000]">
                   Password required
@@ -56,16 +58,19 @@ export function EnterPas() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit"> {/* Cambia el tipo de botón a "submit" */}
+                <button type="submit"
+                className='font-semibold text-2xl mt-3 text-red-500'>
                   ǝıp puɐ ɹǝʇuƎ
                 </button>
               </div>
             </form>
           </div>
         ) : (
-          <Chat2/>
+          <Chat2 />
         )}
       </div>
     </>
   );
 }
+
+
