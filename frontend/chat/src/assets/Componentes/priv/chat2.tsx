@@ -1,16 +1,11 @@
-import Fusion from "../chat/buscador+personas";
-import Chatopen from "../chat/chatOpen";
-import Nav from "../chat/navChat";
-
+import Mensajes from "./mensajespriv";
 
 
 
 function Chat2() {
   return (
-    <div className='flex h-screen items-stretch '>
-      <Nav/>
-      <Fusion/>
-      <Chatopen/>
+    <div className='flex h-screen items-stretch bg-black'>
+     <Mensajes/>
     </div>
   )
 }
