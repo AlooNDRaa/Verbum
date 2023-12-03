@@ -1,3 +1,38 @@
+import { Request, Response } from 'express';
+import Mensaje from '../models/chat.model';
+import User from '../models/user.chat.model';
+
+const mensajesController = {
+  async createMensaje(req: Request, res: Response) {
+    try {
+      // Obtener datos del cuerpo de la solicitud
+      const { message_content, user_id, id }: { message_content: string, user_id: number, id: number } = req.body;
+
+      // Verificar si el usuario existe
+      const user = await User.findByPk(user_id);
+      if (!user) {
+        return res.status(404).json({ error: 'Usuario no encontrado' });
+      }
+
+      // Crear un nuevo mensaje y asociarlo con el usuario
+      const nuevoMensaje = await Mensaje.create({
+        id,
+        user_id,
+        message_content,
+      });
+
+      // Enviar respuesta exitosa
+      return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Error en el servidor' });
+    }
+  },
+};
+
+export default mensajesController;
+
+
 /*import { Request, Response } from 'express';
 import { Connection } from 'mysql2';
 

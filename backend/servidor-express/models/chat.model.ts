@@ -40,27 +40,12 @@ Mensaje.init(
 
 Mensaje.belongsTo(User, { foreignKey: 'user_id' });
 
-/*async function findUserById(user_id: number): Promise<void> {
-  try {
-    const user = await User.findByPk(user_id);
-    if (user === null) {
-      console.log('Not found!');
-    } else {
-      console.log(user instanceof User);
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-findUserById(1); // Llama a la función con el ID deseado
-*/
 async function findAllUsers(): Promise<void> {
     try {
       const users = await User.findAll();
       if (users.length === 0) {
         console.log('No users found!');
-      } else {
+      } else { 
         users.forEach(user => {
           console.log(user instanceof User);
         });
@@ -68,7 +53,9 @@ async function findAllUsers(): Promise<void> {
     } catch (error) {
       console.error(error);
     }
-  }
+}
   
-  findAllUsers();
+findAllUsers();
+
+
 export default Mensaje;
