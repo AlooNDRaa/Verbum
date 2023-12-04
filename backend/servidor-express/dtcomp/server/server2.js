@@ -55,7 +55,6 @@ io.on("connection", (socket) => {
     console_1.default.log("client connected");
     socket.on('chat', (body) => {
         console.log(body);
-        console.log(body);
         socket.broadcast.emit("chat", {
             body: body,
             from: socket.id.slice(6)
