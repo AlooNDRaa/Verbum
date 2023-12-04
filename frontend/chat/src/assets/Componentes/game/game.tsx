@@ -72,25 +72,26 @@ const Game = () => {
     if (finished) {
       return;
     }
-
-    const _history = history.slice(0, stepNumber + 1);
-    const squares = _history[_history.length - 1].squares.slice();
-
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-
-    squares[i] = xIsNext ? "X" : "O";
-
-    socket.emit('move', { squares, stepNumber: _history.length, xIsNext });
-
-    setHistory([..._history, { squares }]);
-    console.log(history)
-    setStepNumber(_history.length);
-    setXIsNext(!xIsNext);
-    setFinished(calculateWinner(squares) || _history.length >= 9);
+  
+    setHistory((prevHistory) => {
+      const _history = prevHistory.slice(0, stepNumber + 1);
+      const squares = _history[_history.length - 1].squares.slice();
+  
+      if (calculateWinner(squares) || squares[i]) {
+        return prevHistory;
+      }
+  
+      squares[i] = xIsNext ? "X" : "O";
+  
+      socket.emit('move', { squares, stepNumber: _history.length, xIsNext });
+  
+      return [..._history, { squares }];
+    });
+  
+    setStepNumber((prevStepNumber) => prevStepNumber + 1);
+    setXIsNext((prevXIsNext) => !prevXIsNext);
+    setFinished((prevFinished) => prevFinished || calculateWinner(history[history.length - 1].squares) || (stepNumber + 1) >= 9);
   };
-
   const jumpTo = (step: React.SetStateAction<any>) => {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
