@@ -33,10 +33,12 @@ const Game = () => {
     };
 
     fetchUsers();
+    
 
     socket.on('move', ({ squares, stepNumber, xIsNext }) => {
   
-      setHistory([...history, { squares }]);
+      setHistory(prevHistory => [...prevHistory, { squares }]);
+      console.log(history);
       setStepNumber(stepNumber);
       setXIsNext(xIsNext);
       setFinished(calculateWinner(squares) || stepNumber >= 9);
@@ -52,12 +54,19 @@ const Game = () => {
       }
     });
 
+    socket.on('gameState', (newGameState) => {
+      setHistory(newGameState.history);
+      setStepNumber(newGameState.stepNumber);
+      setXIsNext(newGameState.xIsNext);
+      setFinished(calculateWinner(newGameState.history[newGameState.stepNumber].squares) || newGameState.stepNumber >= 9);
+    });
+
     return () => {
       socket.off('move');
       socket.off('players');
-      socket.disconnect();
+      socket.off('gameState'); 
     };
-  }, [history]);
+  }, []);
 
   const handleClick = (i: number) => {
     if (finished) {
@@ -76,6 +85,7 @@ const Game = () => {
     socket.emit('move', { squares, stepNumber: _history.length, xIsNext });
 
     setHistory([..._history, { squares }]);
+    console.log(history)
     setStepNumber(_history.length);
     setXIsNext(!xIsNext);
     setFinished(calculateWinner(squares) || _history.length >= 9);

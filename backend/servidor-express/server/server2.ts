@@ -27,8 +27,26 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 dotenv.config();
 
+let gameState = {
+  history: [{ squares: Array(9).fill(null) }],
+  stepNumber: 0,
+  xIsNext: true,
+};
+
 io.on("connection", (socket: Socket) => {
   Console.log("client connected")
+
+  socket.emit('gameState', gameState);
+
+  socket.on('move', ({ squares }) => {
+    gameState = {
+      history: [...gameState.history, { squares }],
+      stepNumber: gameState.history.length,
+      xIsNext: !gameState.xIsNext,
+    };
+
+    io.emit('gameState', gameState);
+  });
 
   socket.on ('chat', (body: string) => {
       console.log(body)
