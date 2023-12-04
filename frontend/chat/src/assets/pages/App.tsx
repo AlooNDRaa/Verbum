@@ -19,22 +19,30 @@ const App: FC<AppProps> = (): JSX.Element => {
     setAuthenticated(isAuthenticated);
   }, []);
 
-  const redirectToLogin = () => {
-    if (!authenticated) {
-      return <Navigate to="/" />;
-    }
-    return null;
-  };
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={redirectToLogin() || <Home />} />
-        <Route path="/chat" element={redirectToLogin() || <Chat />} />
-        <Route path="/game" element={redirectToLogin() || <GameCYR />} />
-        <Route path="/blog" element={redirectToLogin() || <Blog />} />
-        <Route path="/priv" element={redirectToLogin() || <ThePrivatePage />} />
+        <Route
+          path="/home"
+          element={authenticated ? <Home /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/chat"
+          element={authenticated ? <Chat /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/game"
+          element={authenticated ? <GameCYR /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/blog"
+          element={authenticated ? <Blog /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/priv"
+          element={authenticated ? <ThePrivatePage /> : <Navigate to="/" />}
+        />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>

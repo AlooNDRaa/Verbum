@@ -1,0 +1,31 @@
+Explicación del archivo de testing en login:
+
+Se realiza prueba unitaria para comprobar la funcionalidad del login y el acceso del usuario.
+
+Se utiliza una funcion extraida de la libreria de react/testing-library, para renderizar componentes en entorno de prueba.
+se utiliza fireEvent, una funcion para simular eventos.
+se utiliza waitfor, totalmente necesaria para esperar la respuesta del test antes de continuarlo.
+
+
+Implemente MemoryRouter para envolver el componente de prueba, para proporcionar un contexto de enrutamiento.
+
+Mocks:
+
+Es, en el contexto de pruebas, un objeto que simula ser el real en el verdadero sistema. 
+Se utiliza justamente para simular el comportamiento de una dependencia externa. Sin tener que depender de implementarla realmente.
+Por ejemplo el mock que simula el fetch en lugar de realizar una solicitud HTTP real durante la prueba, esta función "mock" devuelve una promesa 
+resuelta con un objeto que simula una respuesta exitosa. Esto permite controlar y predecir el comportamiento de la función fetch en el contexto
+ de la prueba, sin depender de una red real.
+
+type FetchMock: Define un tipo para el mock de la función fetch.
+createFetchMock: Una función que crea un mock de la función fetch. Toma un objeto de datos como argumento y devuelve una función mock que simula una respuesta exitosa.
+
+global.fetch= mockFetch - configura globalmente la funcion fetch para que sea el mock que se crea de prueba.
+
+getByPlaceholderText y getByText: Funciones de selección para obtener referencias a elementos del DOM por su texto o texto de marcador de posición.
+
+En si, esta prueba simula el envio del formulario y verifica la funcion fetch para recibir los datos esperados. 
+
+Pasa la prueba de inisio de sesion para una experencia de usuario buena. 
+-------------------------------------------
+
