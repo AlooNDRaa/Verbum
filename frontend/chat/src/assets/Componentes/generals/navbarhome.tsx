@@ -5,20 +5,18 @@ import { CiMenuFries } from 'react-icons/ci';
 import Logo from '../../imgs/verbumlog.png';
 import { Link, useNavigate } from 'react-router-dom';
 
-interface NavbarProps {
-  onLogout: () => void; // Propiedad de función de cierre de sesión
-}
 
-function Navbar({ onLogout }: NavbarProps): JSX.Element {
+function Navbar(): JSX.Element {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
+  
 
-  const handleClick = () => setClick(!click);
-
+  const handleClick = () => setClick(!click);  
   const handleLogoutClick = () => {
-    onLogout(); 
-    navigate('/login'); 
+    localStorage.removeItem('login');
+    navigate('/');
   };
+
     const content = <>
        <div className="lg:hidden block absolute bg-[#000] bg-opacity-90  top-0 left-0 right-0 transition rounded-md">
           <ul className='text-center text-x1 p-7 h-screen'>
