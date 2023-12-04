@@ -14,6 +14,7 @@ const getAllUsers = (db) => {
         });
     });
 };
+<<<<<<< HEAD
 exports.getAllUsers = getAllUsers;
 const createUser = (db, username, email, password) => {
     return new Promise((resolve, reject) => {
@@ -49,3 +50,6 @@ const loginUser = (db, email, password) => {
     });
 };
 exports.loginUser = loginUser;
+=======
+//encargado de la informacion, sentencias sql aqui. 
+>>>>>>> 874e1781970df4587e5f6860a6f6ee544c0c45ad

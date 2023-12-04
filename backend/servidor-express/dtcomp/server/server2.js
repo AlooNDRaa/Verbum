@@ -53,8 +53,14 @@ app.set('view engine', 'ejs');
 dotenv_1.default.config();
 io.on("connection", (socket) => {
     console_1.default.log("client connected");
+    socket.on("move", (move) => {
+        // Lógica para manejar el movimiento recibido del cliente
+        // Puedes almacenar el movimiento en la base de datos, realizar verificaciones, etc.
+        console.log("Movimiento recibido:", move);
+        // Reenvía el movimiento a todos los clientes conectados (broadcast)
+        io.emit("move", move);
+    });
     socket.on('chat', (body) => {
-        console.log(body);
         console.log(body);
         socket.broadcast.emit("chat", {
             body: body,
