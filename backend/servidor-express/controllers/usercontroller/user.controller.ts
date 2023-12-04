@@ -1,52 +1,43 @@
 import { Request, Response } from 'express';
-import { Connection } from 'mysql2';
-import { User } from '../../models/user.model';
+import * as UserModel from '../../models/usermodel/user.model';
+import { DbService } from '../../dtservice/dt.service';
 
-
-export const getAllUsers = (db: Connection, req: Request, res: Response): void => {
-    const sql: string = 'SELECT * FROM users';
-    db.query(sql, (err: Error, results: User[]) => {
-        if (err) throw err;
-        res.send(results);
-    });
+export const getAllUsers = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
+  try {
+    const users = await UserModel.getAllUsers(dbService);
+    res.send(users);
+  } catch (err) {
+    console.error('Error al obtener usuarios: ', err);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
 };
 
-export const createUser = (db: Connection, req: Request, res: Response) => {
-    const { username, email, password } = req.body;
-    const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-    db.query(sql, [username, email, password], (err, result) => {
-        if (err) {
-            console.error('Error al guardar en la base de datos', err);
-            res.status(500).json({ message: 'Error al registrar usuario' });
-        } else {
-            console.log('Registro exitoso');
-            res.status(200).json({ message: 'Registro exitoso' });
-        }
-    });
+export const createUser = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
+  const { username, email, password } = req.body;
+
+  try {
+    await UserModel.createUser(dbService, username, email, password);
+    console.log('Registro exitoso');
+    res.status(200).json({ message: 'Registro exitoso' });
+  } catch (err) {
+    console.error('Error al guardar en la base de datos', err);
+    res.status(500).json({ message: 'Error al registrar usuario' });
+  }
 };
 
-export const loginUser = (db: Connection, req: Request, res: Response) => {
-    const { email, password } = req.body;
-    const sql = 'SELECT * FROM users WHERE email = ?';
+export const loginUser = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
+  const { email, password } = req.body;
 
-    db.query(sql, [email], (err, results) => {
-        if (err) {
-            console.error('Error en la consulta: ' + err.message);
-            res.status(500).json({ message: 'Error en el servidor' });
-            return;
-        }
+  try {
+    const user = await UserModel.loginUser(dbService, email, password);
 
-        const users: User[] = results as User[]; 
-
-        if (users.length > 0) {
-            const user = users[0];
-            if (user.password === password) {
-                res.status(200).json({ message: 'Inicio de sesión exitoso' });
-            } else {
-                res.status(401).json({ message: 'Contraseña incorrecta' });
-            }
-        } else {
-            res.status(401).json({ message: 'Usuario no encontrado' });
-        }
-    });
+    if (user) {
+      res.status(200).json({ message: 'Inicio de sesión exitoso' });
+    } else {
+      res.status(401).json({ message: 'Usuario no encontrado o contraseña incorrecta' });
+    }
+  } catch (err) {
+    console.error('Error en la consulta: ' + err);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
 };
