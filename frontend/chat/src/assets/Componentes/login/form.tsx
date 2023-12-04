@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { ModalShow } from './forgotpassword/openmodal';
 // import { ModalShowRestore } from './restorePassword/modalP';
 
+
+
 export default  function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,13 +23,15 @@ export default  function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/log', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: email, password: password }),
       });
+
+      
 
       if (response.status === 200) {
         console.log("acceso permitido");

@@ -6,8 +6,8 @@ import { FaRegSun } from "react-icons/fa";
 function Nav (){
     return(
         <>
-        <div className="text-white border border-stone-700 w-10 h-screen bg-[#161616] opacity-95 " >
-        <div className="pt-10 ...">
+        <div className="text-white border border-stone-700 w-[60px] h-screen bg-[#161616] opacity-95 " >
+        <div className="ml-[5px] pt-10 ...">
          <Link to="/chat" className=" text-[#B80E65] text-4xl hover:text-[#f472b6] active:text-[#f472b6] focus:outline-none  focus:text-[#f472b6] ">
             <BiMessageRoundedDetail/>
          </Link>
@@ -15,10 +15,12 @@ function Nav (){
             <RiPhoneLine/>
          </Link>
         </div>
-        <a href="#" className="text-4xl absolute bottom-16 text-[#B80E65] hover:text-[#f472b6] active:text-[#f472b6] focus:outline-none  focus:text-[#f472b6]">
+        <div className="ml-[7%]">
+        <a href="#" className=" text-4xl absolute bottom-16 text-[#B80E65] hover:text-[#f472b6] active:text-[#f472b6] focus:outline-none  focus:text-[#f472b6]">
             <FaRegSun/>
          </a> 
-         <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVcXrm9fqNaAC8VTQIrGsfGsfQacAHWUHSQ&usqp=CAU" alt="" className="w-10 h-10  rounded-full text-4xl absolute bottom-4 " /></a>
+         <a href="#" ><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVcXrm9fqNaAC8VTQIrGsfGsfQacAHWUHSQ&usqp=CAU" alt="" className="w-10 h-10  rounded-full text-4xl absolute bottom-4 " /></a>
+        </div>
         </div>
 
 

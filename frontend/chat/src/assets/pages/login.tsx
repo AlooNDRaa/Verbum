@@ -3,6 +3,7 @@ import Form2 from '../Componentes/login/formsingup';
 import  Form  from '../Componentes/login/form';
 import Logo from '../imgs/verbumlog.png';
 
+
 export function Login() {
   const [showForm2, setShowForm2] = useState(false);
 
