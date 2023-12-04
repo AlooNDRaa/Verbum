@@ -51,14 +51,21 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.set('view engine', 'ejs');
 dotenv_1.default.config();
+let gameState = {
+    history: [{ squares: Array(9).fill(null) }],
+    stepNumber: 0,
+    xIsNext: true,
+};
 io.on("connection", (socket) => {
     console_1.default.log("client connected");
-    socket.on("move", (move) => {
-        // Lógica para manejar el movimiento recibido del cliente
-        // Puedes almacenar el movimiento en la base de datos, realizar verificaciones, etc.
-        console.log("Movimiento recibido:", move);
-        // Reenvía el movimiento a todos los clientes conectados (broadcast)
-        io.emit("move", move);
+    socket.emit('gameState', gameState);
+    socket.on('move', ({ squares }) => {
+        gameState = {
+            history: [...gameState.history, { squares }],
+            stepNumber: gameState.history.length,
+            xIsNext: !gameState.xIsNext,
+        };
+        io.emit('gameState', gameState);
     });
     socket.on('chat', (body) => {
         console.log(body);

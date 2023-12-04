@@ -45,7 +45,6 @@ const getAllUsers = (dbService, req, res) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.getAllUsers = getAllUsers;
-<<<<<<< HEAD
 const createUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, email, password } = req.body;
     try {
@@ -58,24 +57,6 @@ const createUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(500).json({ message: 'Error al registrar usuario' });
     }
 });
-=======
-//db connection aca NO, en el modelo
-const createUser = (db, req, res) => {
-    const { username, email, password } = req.body; //esto debe estar
-    const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-    db.query(sql, [username, email, password], (err, result) => {
-        if (err) {
-            console.error('Error al guardar en la base de datos', err);
-            res.status(500).json({ message: 'Error al registrar usuario' });
-        }
-        else {
-            console.log('Registro exitoso');
-            res.status(200).json({ message: 'Registro exitoso' }); //estos si son parte del controlador
-        }
-        //Error para credenciales incorrecta 
-    }); //parte del modelo la const sql 
-};
->>>>>>> 874e1781970df4587e5f6860a6f6ee544c0c45ad
 exports.createUser = createUser;
 const loginUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
