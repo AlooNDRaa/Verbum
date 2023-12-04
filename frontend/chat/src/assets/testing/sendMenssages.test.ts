@@ -1,13 +1,14 @@
-describe('Testing sum', () => {
-   function sum(a: number, b: number) {
-      return a + b;
-   }
+// Ejemplo de prueba de handleSubmit
+/*import { render, fireEvent } from '@testing-library/react';
+import {Mensajes} from '../Componentes/chat/compOpenChat/mensajes';
 
-   it('should equal 4',()=>{
-      expect(sum(2,2)).toBe(4);
-     })
+test('handleSubmit agrega un nuevo mensaje y emite al socket', () => {
+  const { getByPlaceholderText, getByText } = render(<Mensajes />);
+  const input = getByPlaceholderText('Escribir');
+  const button = getByText('Enviar');
 
-   test('also should equal 6', () => {
-       expect(sum(2,4)).toBe(6);
-     }) 
-});
+  fireEvent.change(input, { target: { value: 'Nuevo mensaje' } });
+  fireEvent.click(button);
+
+  // Realiza afirmaciones para verificar si el nuevo mensaje está en el estado y si se emitió al socket.
+});*/
