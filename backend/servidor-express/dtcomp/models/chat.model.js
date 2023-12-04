@@ -36,6 +36,7 @@ Mensaje.init({
     modelName: 'Mensaje',
 });
 Mensaje.belongsTo(user_chat_model_1.default, { foreignKey: 'user_id' });
+<<<<<<< HEAD
 /*async function findUserById(user_id: number): Promise<void> {
   try {
     const user = await User.findByPk(user_id);
@@ -51,6 +52,8 @@ Mensaje.belongsTo(user_chat_model_1.default, { foreignKey: 'user_id' });
 
 findUserById(1); // Llama a la función con el ID deseado
 */
+=======
+>>>>>>> 513162e287c51f69576256a367335daaca339d6d
 function findAllUsers() {
     return __awaiter(this, void 0, void 0, function* () {
         try {

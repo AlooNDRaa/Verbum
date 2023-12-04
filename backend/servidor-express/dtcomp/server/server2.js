@@ -51,8 +51,22 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.set('view engine', 'ejs');
 dotenv_1.default.config();
+let gameState = {
+    history: [{ squares: Array(9).fill(null) }],
+    stepNumber: 0,
+    xIsNext: true,
+};
 io.on("connection", (socket) => {
     console_1.default.log("client connected");
+    socket.emit('gameState', gameState);
+    socket.on('move', ({ squares }) => {
+        gameState = {
+            history: [...gameState.history, { squares }],
+            stepNumber: gameState.history.length,
+            xIsNext: !gameState.xIsNext,
+        };
+        io.emit('gameState', gameState);
+    });
     socket.on('chat', (body) => {
         console.log(body);
         socket.broadcast.emit("chat", {
