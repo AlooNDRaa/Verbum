@@ -14,6 +14,10 @@ export default {
       'dph': "url('src/assets/imgs/dph.png')",
       'gif': "src/assets/imgs/migif.gif"
     },
+    screens: {
+      'sm-280px': '280px',
+      'sm-360px': '360px',
+    },
     },
     // [ screens: {
     //   'tablet': '640px',
