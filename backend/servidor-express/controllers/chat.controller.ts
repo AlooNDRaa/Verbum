@@ -8,6 +8,7 @@ const mensajesController = {
      
       const { message_content, user_id, id }: { message_content: string, user_id: number, id: number } = req.body;
 
+      
      
       const user = await User.findByPk(user_id);
       if (!user) {

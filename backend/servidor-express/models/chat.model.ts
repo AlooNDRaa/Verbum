@@ -40,22 +40,7 @@ Mensaje.init(
 
 Mensaje.belongsTo(User, { foreignKey: 'user_id' });
 
-async function findAllUsers(): Promise<void> {
-    try {
-      const users = await User.findAll();
-      if (users.length === 0) {
-        console.log('No users found!');
-      } else { 
-        users.forEach(user => {
-          console.log(user instanceof User);
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-}
-  
-findAllUsers();
+
 
 
 export default Mensaje;

@@ -6,6 +6,7 @@ const Socket = io('/');
 function Mensajes() {
     const [chat, setChat] = useState<string>("");
     const [chats, setChats] = useState<{ body: string; from: string }[]>([]); 
+  
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -31,7 +32,6 @@ function Mensajes() {
         setChats((state: { body: string; from: string }[]) => [...state, newChat]);  
              
     };
-    
 
     return (
         <>

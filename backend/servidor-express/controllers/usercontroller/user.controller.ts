@@ -1,11 +1,6 @@
 import { Request, Response } from 'express';
-<<<<<<< HEAD
 import * as UserModel from '../../models/usermodel/user.model';
 import { DbService } from '../../dtservice/dt.service';
-=======
-import { Connection } from 'mysql2';
-import  {User}  from '../../models/user.model';
->>>>>>> 9eb18872ecdc0b33e62082f566738e96a598cb3b
 
 export const getAllUsers = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
   try {
