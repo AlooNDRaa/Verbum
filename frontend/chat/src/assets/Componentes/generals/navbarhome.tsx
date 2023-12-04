@@ -3,13 +3,20 @@ import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
 import Logo from '../../imgs/verbumlog.png';
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-function Navbar () {
-    const [click, setClick] = useState(false);
-    const handleClick = () => setClick(!click);
-   
+function Navbar(): JSX.Element {
+  const [click, setClick] = useState(false);
+  const navigate = useNavigate();
+  
+
+  const handleClick = () => setClick(!click);  
+  const handleLogoutClick = () => {
+    localStorage.removeItem('login');
+    navigate('/');
+  };
+
     const content = <>
        <div className="lg:hidden block absolute bg-[#000] bg-opacity-90  top-0 left-0 right-0 transition rounded-md">
           <ul className='text-center text-x1 p-7 h-screen'>
@@ -36,7 +43,7 @@ function Navbar () {
                 <div className="flex flex-1">
                 <img src={Logo} alt="img-logo" className="w-6 h-6  sm:w-8 sm:h-8 md:w-15 md:h-15 lg:w-10 lg:h-10 xl:w-12 xl:h-12"/>
                 </div>
-                <div className="lg:flex md:hidden lg:flex-1 items center justify-end font-normal hidden">
+                <div className="lg:flex md:hidden lg:flex-1 items-center justify-end text-center font-normal hidden">
                   <div className="flex-10">
                   <ul className="flex gap-16 mr-16 text-[18px]">
                   <Link to="/home">
@@ -56,6 +63,11 @@ function Navbar () {
                 </Link>
               </ul>
                     </div>
+              <button
+              onClick={handleLogoutClick}
+              className="hover:text-pink-600 transition border-b-2 bg-[#101015] p-3 rounded-xxl border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2">
+                Log out
+              </button>
                 </div>
                 <div>
                    {click && content}

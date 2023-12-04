@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Timer: React.FC = () => {
-  const [seconds, setSeconds] = useState<number>(5);
+  const [seconds, setSeconds] = useState<number>(10);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -9,11 +11,12 @@ const Timer: React.FC = () => {
         setSeconds(seconds - 1);
       } else {
         clearInterval(intervalId);
+        navigate('/home');
       }
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [seconds]);
+  }, [seconds, navigate]);
 
   return (
     <div className="text-center mt-6">

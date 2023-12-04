@@ -32,46 +32,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = exports.createUser = exports.getAllUsers = void 0;
-const UserModel = __importStar(require("../../models/usermodel/user.model"));
-const getAllUsers = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.checkPassword = void 0;
+const EggModel = __importStar(require("../../models/egmodel/egg.model"));
+const checkPassword = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield UserModel.getAllUsers(dbService);
-        res.send(users);
-    }
-    catch (err) {
-        console.error('Error al obtener usuarios: ', err);
-        res.status(500).json({ message: 'Error en el servidor' });
-    }
-});
-exports.getAllUsers = getAllUsers;
-const createUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { username, email, password } = req.body;
-    try {
-        yield UserModel.createUser(dbService, username, email, password);
-        console.log('Registro exitoso');
-        res.status(200).json({ message: 'Registro exitoso' });
-    }
-    catch (err) {
-        console.error('Error al guardar en la base de datos', err);
-        res.status(500).json({ message: 'Error al registrar usuario' });
-    }
-});
-exports.createUser = createUser;
-const loginUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email, password } = req.body;
-    try {
-        const user = yield UserModel.loginUser(dbService, email, password);
-        if (user) {
-            res.status(200).json({ message: 'Inicio de sesión exitoso' });
+        const { password } = req.body;
+        const easterEgg = yield EggModel.getThePassword(dbService, password);
+        if (easterEgg) {
+            res.status(200).json({ message: 'Contraseña correcta' });
         }
         else {
-            res.status(401).json({ message: 'Usuario no encontrado o contraseña incorrecta' });
+            res.status(401).json({ message: 'Contraseña incorrecta' });
         }
     }
     catch (err) {
-        console.error('Error en la consulta: ' + err);
+        console.error('Error al verificar la contraseña: ', err);
         res.status(500).json({ message: 'Error en el servidor' });
     }
 });
-exports.loginUser = loginUser;
+exports.checkPassword = checkPassword;

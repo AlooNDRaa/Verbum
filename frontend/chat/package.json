@@ -9,6 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest"
+    "preview": "vite preview",
+    "test": "jest"
   },
   "dependencies": {
     "@mui/material": "^5.14.16",
@@ -30,8 +32,10 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.10",
+    "@types/jest": "^29.5.10",
     "@types/jquery": "^3.5.27",
     "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-scroll": "^1.8.9",

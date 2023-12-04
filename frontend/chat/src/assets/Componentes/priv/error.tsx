@@ -1,9 +1,6 @@
 import '../../Styles/index.css'
 
 function Error() {
-
-    //window.alert("El sitio no es seguro")
-
     return (
         <div className="bg-black fixed hover:invisible">
             <div className="errorText">
@@ -130,14 +127,8 @@ function Error() {
                         ألم
 
                         أود بعد ظهر هذا اليوم الإلهي من شهر أكتوبر
-                        المشي على طول شاطئ البحر البعيد.
-                        أن الرمال ذهبية والمياه خضراء،
-                        والسماء النقية سوف تراني أعبر.
-
-                        أن أكون طويل القامة، فخورًا، مثاليًا، أود ذلك،
-                        مثل الروماني، للاتفاق مثل الرو ل
-                        مثل
-                    </p>
+                        المشي على طول شاطئ البحر الب                   
+                     </p>
                 </div>
             </div>      
         </div>
