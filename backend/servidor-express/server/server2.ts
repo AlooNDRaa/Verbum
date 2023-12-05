@@ -80,8 +80,7 @@ app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
-app.use(setupUserRoutes)
-app.use(setupEggRoutesWithDb)
+
 
 
 server.listen(PORT, () => {
