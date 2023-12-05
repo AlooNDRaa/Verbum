@@ -12,7 +12,7 @@ import Blog from './blog';
 interface AppProps {}
 
 const App: FC<AppProps> = (): JSX.Element => {
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [authenticated, setAuthenticated] = useState<boolean>(true);
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('login') !== null;
