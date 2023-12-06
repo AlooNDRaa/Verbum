@@ -1,5 +1,6 @@
 import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
 import { setupUserRoutes } from '../routes/userRoutes/user.routes';
+import  router  from '../routes/userRoutes/chat.routes';
 import express, { Request, Response, urlencoded } from 'express';
 import { Server as SocketServer, Socket } from 'socket.io';
 import mysql, { Connection } from 'mysql2';
@@ -7,6 +8,7 @@ import Console from 'console';
 import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
+import sequelize from '../config/database'
 
 const PORT = process.env.PORT || 3000;
 const app: express.Application = express();
@@ -21,7 +23,7 @@ const corsOptions = {
   origin: "http://localhost:5173"
 };
 
-app.use(urlencoded({extended:false}));
+app.use(urlencoded({extended:true}));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.set('view engine', 'ejs');
@@ -74,6 +76,9 @@ db.connect((err) => {
   }
 });
 
+sequelize.sync({ force: false }).then(() => {
+  console.log('Base de datos conectada arlu');
+});
 
 
 app.get('/user', setupUserRoutes(db));
@@ -82,6 +87,9 @@ app.post('/', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
 app.use(setupUserRoutes)
 app.use(setupEggRoutesWithDb)
+
+
+app.use('/mensajes', router);
 
 
 server.listen(PORT, () => {
