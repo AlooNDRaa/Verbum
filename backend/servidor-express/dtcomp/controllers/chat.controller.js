@@ -17,7 +17,7 @@ const chat_model_1 = __importDefault(require("../models/chat.model"));
 const user_chat_model_1 = __importDefault(require("../models/user.chat.model"));
 const createMensaje = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { message_content, user_id, id } = req.body;
+        const { message_content, user_id, id, createdAt, updatedAt } = req.body;
         const user = yield user_chat_model_1.default.findByPk(user_id);
         if (!user) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
@@ -26,6 +26,8 @@ const createMensaje = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             id,
             user_id,
             message_content,
+            createdAt,
+            updatedAt
         });
         return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
     }

@@ -6,11 +6,13 @@ interface CreateMensajeRequest {
   message_content: string;
   user_id: number;
   id: number;
+  createdAt: Date,
+  updatedAt: Date
 }
 
 export const createMensaje = async (req: Request, res: Response) => {
   try {
-    const { message_content, user_id, id }: CreateMensajeRequest = req.body;
+    const { message_content, user_id, id, createdAt, updatedAt }: CreateMensajeRequest = req.body;
 
     const user = await User.findByPk(user_id);
     if (!user) {
@@ -21,6 +23,8 @@ export const createMensaje = async (req: Request, res: Response) => {
       id,
       user_id,
       message_content,
+      createdAt,
+      updatedAt
     });
 
     return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
