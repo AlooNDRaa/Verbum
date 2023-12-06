@@ -1,19 +1,25 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import   User   from './user.chat.model';
+import { DataTypes, Model, Sequelize } from 'sequelize';
+import User from './user.chat.model';
 
-
+const sequelize: Sequelize = new Sequelize('verbum', 'root', 'nebulosadelvelo2023', {
+  host: 'localhost',
+  dialect: 'mysql',
+});
 
 interface MensajeAttributes {
   id: number;
-  message_content: string;
   user_id: number;
+  message_content: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 class Mensaje extends Model<MensajeAttributes> {
   public id!: number;
-  public message_content!: string;
   public user_id!: number;
+  public message_content!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Mensaje.init(
@@ -31,16 +37,28 @@ Mensaje.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    }
   },
   {
     sequelize,
     modelName: 'Mensaje',
+    timestamps: false,
   }
 );
 
+sequelize.sync().then(async () => {
+  console.log('Base de datos conectada arlu');
+});
+
 Mensaje.belongsTo(User, { foreignKey: 'user_id' });
-
-
-
 
 export default Mensaje;

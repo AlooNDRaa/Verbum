@@ -76,7 +76,7 @@ db.connect((err) => {
   }
 });
 
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync().then(() => {
   console.log('Base de datos conectada arlu');
 });
 
@@ -85,11 +85,8 @@ app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
-app.use(setupUserRoutes)
-app.use(setupEggRoutesWithDb)
+app.post('/mensajes', router);
 
-
-app.use('/mensajes', router);
 
 
 server.listen(PORT, () => {

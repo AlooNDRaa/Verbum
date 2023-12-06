@@ -28,23 +28,10 @@ User.init(
   {
     sequelize,
     modelName: 'User',
+    timestamps: false
   }
 );
 
-async function findAllUsers(): Promise<void> {
-  try {
-    const users = await User.findAll();
-    if (users.length === 0) {
-      console.log('No users found!');
-    } else { 
-      users.forEach(user => {
-        console.log(user instanceof User);
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
 
 
 export default User;
