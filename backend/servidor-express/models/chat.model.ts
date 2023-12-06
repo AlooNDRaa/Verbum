@@ -1,7 +1,11 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
+import { DataTypes, Model, Sequelize } from 'sequelize';
+
 import   User   from './user.chat.model';
 
+const sequelize = new Sequelize('verbum', 'root', '1234', {
+  host: 'localhost',
+  dialect: 'mysql',
+});
 
 
 interface MensajeAttributes {

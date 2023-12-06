@@ -4,8 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const database_1 = __importDefault(require("../config/database"));
 const user_chat_model_1 = __importDefault(require("./user.chat.model"));
+const sequelize = new sequelize_1.Sequelize('verbum', 'root', '1234', {
+    host: 'localhost',
+    dialect: 'mysql',
+});
 class Mensaje extends sequelize_1.Model {
 }
 Mensaje.init({
@@ -23,7 +26,7 @@ Mensaje.init({
         allowNull: false,
     },
 }, {
-    sequelize: database_1.default,
+    sequelize,
     modelName: 'Mensaje',
 });
 Mensaje.belongsTo(user_chat_model_1.default, { foreignKey: 'user_id' });

@@ -1,6 +1,6 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize, Options } from 'sequelize';
 
-const sequelize: Sequelize = new Sequelize('verbum', 'root', '1234', {
+const sequelize = new Sequelize('verbum', 'root', '1234', {
   host: 'localhost',
   dialect: 'mysql',
 });
