@@ -28,6 +28,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const egg_route_1 = require("../routes/eggroutes/egg.route");
 const user_routes_1 = require("../routes/userRoutes/user.routes");
+const chat_routes_1 = __importDefault(require("../routes/userRoutes/chat.routes"));
 const express_1 = __importStar(require("express"));
 const socket_io_1 = require("socket.io");
 const mysql2_1 = __importDefault(require("mysql2"));
@@ -35,6 +36,7 @@ const console_1 = __importDefault(require("console"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
+const database_1 = __importDefault(require("../config/database"));
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -46,13 +48,27 @@ const io = new socket_io_1.Server(server, {
 const corsOptions = {
     origin: "http://localhost:5173"
 };
-app.use((0, express_1.urlencoded)({ extended: false }));
+app.use((0, express_1.urlencoded)({ extended: true }));
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.set('view engine', 'ejs');
 dotenv_1.default.config();
+let gameState = {
+    history: [{ squares: Array(9).fill(null) }],
+    stepNumber: 0,
+    xIsNext: true,
+};
 io.on("connection", (socket) => {
     console_1.default.log("client connected");
+    socket.emit('gameState', gameState);
+    socket.on('move', ({ squares }) => {
+        gameState = {
+            history: [...gameState.history, { squares }],
+            stepNumber: gameState.history.length,
+            xIsNext: !gameState.xIsNext,
+        };
+        io.emit('gameState', gameState);
+    });
     socket.on('chat', (body) => {
         console.log(body);
         socket.broadcast.emit("chat", {
@@ -76,12 +92,16 @@ db.connect((err) => {
         console.log('Conexión exitosa a la base de datos');
     }
 });
+database_1.default.sync({ force: false }).then(() => {
+    console.log('Base de datos conectada arlu');
+});
 app.get('/user', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/login', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/password', (0, egg_route_1.setupEggRoutesWithDb)(db));
 app.use(user_routes_1.setupUserRoutes);
 app.use(egg_route_1.setupEggRoutesWithDb);
+app.use('/mensajes', chat_routes_1.default);
 server.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });
