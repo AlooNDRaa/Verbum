@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
@@ -10,7 +9,6 @@ function Navbar(): JSX.Element {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
   
-
   const handleClick = () => setClick(!click);  
   const handleLogoutClick = () => {
     localStorage.removeItem('login');
@@ -31,7 +29,14 @@ function Navbar(): JSX.Element {
               </Link>          
             <Link to="/blog">
               <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Verbum Blog</li>    
-              </Link>        
+              </Link>    
+              <div className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded text-center'>
+              <button
+                 onClick={handleLogoutClick}
+                 className="transition border-b-2 rounded-xxl border-slate-900  hover:scale-105 cursor-pointer">
+                Log out
+              </button>  
+              </div>  
           </ul>
         </div>
      </>
@@ -58,9 +63,6 @@ function Navbar(): JSX.Element {
                 <Link to="/blog">
                      <li className='hover:text-pink-600 transition  border-b-2 border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Blog</li> 
                 </Link>          
-                  <Link to="/priv">
-                      <li className='hover:text-pink-600 transition border-b-2  border-slate-900 hover:border-pink-600 font-semibold  hover:scale-105 cursor-pointer -mt-2'>Private</li>
-                </Link>
               </ul>
                     </div>
               <button

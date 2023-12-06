@@ -1,5 +1,5 @@
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import LoginForm from '../../Componentes/login/form';
+import LoginForm from '../../Componentes/login/forms/form';
 import { MemoryRouter } from 'react-router-dom';
 
 type FetchMock = jest.Mock<Promise<Response>>;

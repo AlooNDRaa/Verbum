@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { DbService } from '../../dtservice/dt.service';
 import * as EggModel from '../../models/egmodel/egg.model';
 
-export const checkPassword = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
+export const checkPassword = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { password } = req.body;
+    const { easterpassword } = req.body;
 
-    const easterEgg = await EggModel.getThePassword(dbService, password);
+    const easterEgg = await EggModel.getThePassword(easterpassword);
 
     if (easterEgg) {
       res.status(200).json({ message: 'Contraseña correcta' });

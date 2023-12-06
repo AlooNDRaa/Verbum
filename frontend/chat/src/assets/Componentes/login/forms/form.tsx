@@ -1,9 +1,8 @@
 import { SetStateAction,  useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { ModalShow } from './forgotpassword/openmodal';
-// import { ModalShowRestore } from './restorePassword/modalP';
+import { ModalShow } from '../forgotpassword/openmodal';
 
-
+ 
 
 export default  function LoginForm() {
   const [email, setEmail] = useState('');
@@ -15,12 +14,14 @@ export default  function LoginForm() {
     setEmail(e.target.value);
   };
 
+  //Estas dos constantes manejan la actualizacion del estado del login a medida que el usuario interactua con el.
+
   const handlePasswordChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setPassword(e.target.value);
   };
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+    e.preventDefault(); //evita que la pagina al hacer click se recargue
 
     try {
       const response = await fetch('http://localhost:3000/login', {
@@ -31,14 +32,14 @@ export default  function LoginForm() {
         body: JSON.stringify({ email: email, password: password }),
       });
 
-      
-
+    
       if (response.status === 200) {
         console.log("acceso permitido");
         setLoggedIn(true); 
         const data = await response.json();
+        
         const login = data.login;
-        localStorage.setItem('login', login);
+        localStorage.setItem('login', login);        
       } 
        else {
         console.error('Acceso denegado');
@@ -52,7 +53,6 @@ export default  function LoginForm() {
   if (loggedIn) {
     return <Navigate to="/home" />;
   }
-   
 
   return (
     <div className="text-white lg:w-1/2">
@@ -88,7 +88,6 @@ export default  function LoginForm() {
               <label className="ml-2 font-medium text-base" htmlFor="remember"> Remember me</label>
             </div>
             <ModalShow/>
-            {/* <ModalShowRestore/> */}
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button

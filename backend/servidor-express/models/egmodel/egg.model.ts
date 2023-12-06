@@ -1,12 +1,20 @@
-import { DbService } from '../../dtservice/dt.service';
+import { Connection, RowDataPacket } from 'mysql2';
+
+let db: Connection;
+
+export const configureDatabase2 = (connection: Connection): void => {
+  db = connection;
+};
 
 export interface EasterEgg {
   easterpassword: string;
 }
 
-export const getThePassword = async (dbService: DbService, providedPassword: string): Promise<EasterEgg | null> => {
+export const getThePassword = async (easterpassword: string): Promise<EasterEgg | null> => {
   const sql: string = 'SELECT * FROM easter_egg WHERE easterpassword = ?';
-  const results = await dbService.query(sql, [providedPassword]);
-
-  return results.length > 0 ? results[0] as EasterEgg : null;
+  const [rows] = await db.promise().execute(sql, [easterpassword]);
+  if (Array.isArray(rows)) {
+    return rows.length > 0 ? (rows[0] as EasterEgg) : null;
+  }
+  return null;
 };

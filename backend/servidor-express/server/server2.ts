@@ -1,12 +1,14 @@
-import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
 import { setupUserRoutes } from '../routes/userRoutes/user.routes';
-import express, { Request, Response, urlencoded } from 'express';
+import express, { urlencoded } from 'express';
 import { Server as SocketServer, Socket } from 'socket.io';
 import mysql, { Connection } from 'mysql2';
 import Console from 'console';
 import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
+import { configureDatabase } from '../models/usermodel/user.model';
+import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
+import { configureDatabase2 } from '../models/egmodel/egg.model';
 
 const PORT = process.env.PORT || 3000;
 const app: express.Application = express();
@@ -72,9 +74,9 @@ db.connect((err) => {
   } else {
     console.log('Conexión exitosa a la base de datos');
   }
+  configureDatabase(db);
+  configureDatabase2(db);
 });
-
-
 
 app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));

@@ -34,10 +34,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.checkPassword = void 0;
 const EggModel = __importStar(require("../../models/egmodel/egg.model"));
-const checkPassword = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const checkPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { password } = req.body;
-        const easterEgg = yield EggModel.getThePassword(dbService, password);
+        const { easterpassword } = req.body;
+        const easterEgg = yield EggModel.getThePassword(easterpassword);
         if (easterEgg) {
             res.status(200).json({ message: 'Contraseña correcta' });
         }
