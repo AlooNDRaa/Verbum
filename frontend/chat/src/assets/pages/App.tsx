@@ -2,7 +2,7 @@ import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { FC, useEffect, useState } from 'react';
 import { ThePrivatePage } from './private';
 import '../Styles/index.css';
-import { GameCYR } from './gamep';
+import { GameCYR } from './game';
 import { Error404 } from './errorpage';
 import { Login } from './login';
 import Chat from './chat';
@@ -12,29 +12,37 @@ import Blog from './blog';
 interface AppProps {}
 
 const App: FC<AppProps> = (): JSX.Element => {
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [authenticated, setAuthenticated] = useState<boolean>(true);
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('login') !== null;
     setAuthenticated(isAuthenticated);
   }, []);
 
-  const redirectToLogin = () => {
-    if (!authenticated) {
-      return <Navigate to="/" />;
-    }
-    return null;
-  };
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={redirectToLogin() || <Home />} />
-        <Route path="/chat" element={redirectToLogin() || <Chat />} />
-        <Route path="/game" element={redirectToLogin() || <GameCYR />} />
-        <Route path="/blog" element={redirectToLogin() || <Blog />} />
-        <Route path="/priv" element={redirectToLogin() || <ThePrivatePage />} />
+        <Route
+          path="/home"
+          element={authenticated ? <Home /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/chat"
+          element={authenticated ? <Chat /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/game"
+          element={authenticated ? <GameCYR /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/blog"
+          element={authenticated ? <Blog /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/priv"
+          element={authenticated ? <ThePrivatePage /> : <Navigate to="/" />}
+        />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
