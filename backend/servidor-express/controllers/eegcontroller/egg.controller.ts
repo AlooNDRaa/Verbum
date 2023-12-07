@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import * as EggModel from '../../models/egmodel/egg.model';
 
+
 export const checkPassword = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { easterpassword } = req.body;
+    const { password } = req.body;
 
-    const easterEgg = await EggModel.getThePassword(easterpassword);
+    const easterEgg = await EggModel.getThePassword();
 
     if (easterEgg) {
       res.status(200).json({ message: 'Contraseña correcta' });
@@ -17,4 +18,3 @@ export const checkPassword = async (req: Request, res: Response): Promise<void> 
     res.status(500).json({ message: 'Error en el servidor' });
   }
 };
-

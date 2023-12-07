@@ -15,12 +15,16 @@ const configureDatabase2 = (connection) => {
     db = connection;
 };
 exports.configureDatabase2 = configureDatabase2;
-const getThePassword = (easterpassword) => __awaiter(void 0, void 0, void 0, function* () {
-    const sql = 'SELECT * FROM easter_egg WHERE easterpassword = ?';
-    const [rows] = yield db.promise().execute(sql, [easterpassword]);
-    if (Array.isArray(rows)) {
-        return rows.length > 0 ? rows[0] : null;
+const getThePassword = () => __awaiter(void 0, void 0, void 0, function* () {
+    const sql = 'SELECT * FROM easter_egg LIMIT 1';
+    const [rows] = yield db.promise().execute(sql);
+    if (Array.isArray(rows) && rows.length > 0) {
+        const row = rows[0];
+        const password = row.easterpassword;
+        return { password };
     }
-    return null;
+    else {
+        return null;
+    }
 });
 exports.getThePassword = getThePassword;

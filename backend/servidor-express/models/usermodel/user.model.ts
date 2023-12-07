@@ -1,4 +1,4 @@
-import { Connection, RowDataPacket } from 'mysql2';
+import { Connection, RowDataPacket } from 'mysql2'; 
 
 let db: Connection;
 

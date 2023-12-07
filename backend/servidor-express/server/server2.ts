@@ -80,7 +80,7 @@ db.connect((err) => {
 
 app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
-app.post('/', setupUserRoutes(db));
+app.post('/newuser', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
 
 

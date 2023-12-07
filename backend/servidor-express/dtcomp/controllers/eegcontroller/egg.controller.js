@@ -36,8 +36,8 @@ exports.checkPassword = void 0;
 const EggModel = __importStar(require("../../models/egmodel/egg.model"));
 const checkPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { easterpassword } = req.body;
-        const easterEgg = yield EggModel.getThePassword(easterpassword);
+        const { password } = req.body;
+        const easterEgg = yield EggModel.getThePassword();
         if (easterEgg) {
             res.status(200).json({ message: 'Contraseña correcta' });
         }

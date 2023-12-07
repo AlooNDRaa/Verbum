@@ -10,7 +10,7 @@ const router = express_1.default.Router();
 const setupUserRoutes = (db) => {
     router.use(express_1.default.json());
     router.get('/user', (req, res) => (0, user_controller_1.getAllUsers)(req, res));
-    router.post('/', (req, res) => (0, user_controller_1.createUser)(req, res));
+    router.post('/newuser', (req, res) => (0, user_controller_1.createUser)(req, res));
     router.post('/login', (req, res) => (0, user_controller_1.loginUser)(req, res));
     return router;
 };
