@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import confetti from 'canvas-confetti'
-
 import { Square } from '../Componentes/game/Square'
 import { TURNS } from '../Componentes/game/logic/constants'
 import { checkWinnerFrom, checkEndGame } from '../Componentes/game/logic/board'
 import { WinnerModal } from '../Componentes/game/WinnerModal'
 import { saveGameToStorage, resetGameStorage } from '../Componentes/game/logic/storage/gameStorage'
+
 
 export function GameCYR() {
   const [board, setBoard] = useState(() => {
@@ -57,10 +57,11 @@ export function GameCYR() {
   }
 
   return (
-    <main className='board'>
-      <h1>Tic tac toe</h1>
-      <button onClick={resetGame}>Reset del juego</button>
-      <section className='game'>
+    <main className='grid'>
+    <div className='board bg-[#101015] w-full h-screen  mx-auto '>
+      <h1 className='text-white mb-16 text-center'>Tic tac toe</h1>
+      <button className=' border-white text-white bg-transparent w-28 rounded-md transition duration-200 font-bold cursor-pointer hover:bg-gray-300 hover:text-gray-700' onClick={resetGame}>Reset del juego</button>
+      <section className='game grid grid-cols-3 gap-10'>
         {board.map((square, index) => {
           return (
             <Square key={index} index={index} updateBoard={updateBoard}>
@@ -70,8 +71,10 @@ export function GameCYR() {
         })}
       </section>
 
-      <section className='turn'>
-        <Square isSelected={turn === TURNS.X} updateBoard={() => {}} index={0}>
+      <section className='turn flex justify-center m-15 mx-auto w-fit-content relative rounded-10'>
+        <Square isSelected={turn === TURNS.X} updateBoard={() => {}} index={0}
+       
+        >
           {TURNS.X}
         </Square>
         <Square isSelected={turn === TURNS.O} updateBoard={() => {}} index={0}>
@@ -80,6 +83,7 @@ export function GameCYR() {
       </section>
 
       <WinnerModal resetGame={resetGame} winner={winner} />
+    </div>
     </main>
   )
 }

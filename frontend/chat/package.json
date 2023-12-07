@@ -29,6 +29,7 @@
     "swiper-react": "^1.0.0"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
     "@types/jquery": "^3.5.27",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
