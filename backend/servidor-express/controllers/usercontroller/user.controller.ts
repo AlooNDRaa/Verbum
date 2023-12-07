@@ -2,10 +2,6 @@ import { Request, Response } from 'express';
 import * as UserModel from '../../models/usermodel/user.model';
 import jwt from 'jsonwebtoken';
 
-// const token = jwt.sing({email, password}, "Stack", {
-//   expiresIn: '365d'
-// })
-
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   try {
     const users = await UserModel.getAllUsers();

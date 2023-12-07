@@ -2,6 +2,9 @@ import { SetStateAction, useState } from 'react';
 import { ModalShow } from '../forgotpassword/openmodal';
 // import { Navigate } from 'react-router-dom';
 import { parseJwt }  from '../../token/jwtoken'
+import { Navigate } from 'react-router-dom';
+// import Home from '../../../pages/home';
+// import { Login } from '../../../pages/login';
 // import Home from '../../../pages/home';
 // import Chat from '../../../pages/chat';
 
@@ -9,7 +12,7 @@ import { parseJwt }  from '../../token/jwtoken'
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [loginSuccessful, setLoginSuccesful] = useState(false)
+  const [loginSuccessful, setLoginSuccesful] = useState(false)
 
   const handleEmailChange = (e: { target: { value: SetStateAction<string> }; }) => {
     setEmail(e.target.value);
@@ -35,21 +38,22 @@ export default function LoginForm() {
         console.log("Acceso permitido");
         const result = await response.json();
         localStorage.setItem('token', result.token);
-        // setLoginSuccesful(true)
+        setLoginSuccesful(true)
         console.log(parseJwt(result.token));
       } else {
         console.error('Acceso denegado');
-        // setLoginSuccesful(false)
+        setLoginSuccesful(false)
       }
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
   };
-
  
+  if (loginSuccessful) {
+    return <Navigate to="/home" />;
+  }
+
   return (
-    <>
-    
     <div className="text-white lg:w-1/2">
       <h1 className="text-5xl font-semibold text-[#ffff]">Welcome back</h1>
       <p className="font-medium text-lg text-gray-500 mt-4">Welcome back! Please enter your details</p>
@@ -96,6 +100,5 @@ export default function LoginForm() {
         </form>
       </div>
     </div>
-    </>
   );
 }

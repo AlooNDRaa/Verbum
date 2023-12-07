@@ -16,7 +16,7 @@ const App: FC<AppProps> = (): JSX.Element => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('login') !== null;
+    const isAuthenticated = localStorage.getItem('token') !== null;
     setAuthenticated(isAuthenticated);
   }, []);
 
