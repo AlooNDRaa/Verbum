@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import User from './user.chat.model';
+import users from './user.chat.model';
 
 const sequelize: Sequelize = new Sequelize('verbum', 'root', '1234', {
   host: 'localhost',
@@ -7,29 +7,21 @@ const sequelize: Sequelize = new Sequelize('verbum', 'root', '1234', {
 });
 
 
-interface MensajeAttributes {
-  id: number;
+interface messagesAttributes {
   user_id: number;
   message_content: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+
 }
 
-class Mensaje extends Model<MensajeAttributes> {
-  public id!: number;
+class messages extends Model<messagesAttributes> {
   public user_id!: number;
   public message_content!: string;
-  public createdAt!: Date;
-  public updatedAt!: Date;
+
 }
 
-Mensaje.init(
+messages.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
+
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -38,25 +30,16 @@ Mensaje.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW
-    }
+
   },
   {
     sequelize,
-    modelName: 'Mensaje',
+    modelName: 'messages',
     timestamps: false,
   }
 );
 
 
-Mensaje.belongsTo(User, { foreignKey: 'user_id' });
+messages.belongsTo(users, { foreignKey: 'user_id' });
 
-export default Mensaje;
+export default messages;

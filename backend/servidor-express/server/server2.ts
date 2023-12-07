@@ -1,6 +1,6 @@
 import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
 import { setupUserRoutes } from '../routes/userRoutes/user.routes';
-import  router  from '../routes/userRoutes/chat.routes';
+import  setupChatRoutes  from '../routes/userRoutes/chat.routes';
 import express, { Request, Response, urlencoded } from 'express';
 import { Server as SocketServer, Socket } from 'socket.io';
 import mysql, { Connection } from 'mysql2';
@@ -85,7 +85,7 @@ app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
-app.post('/mensajes', router);
+app.post('/mensajes', setupChatRoutes);
 
 
 

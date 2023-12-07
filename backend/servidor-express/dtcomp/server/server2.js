@@ -22,6 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -32,11 +41,11 @@ const chat_routes_1 = __importDefault(require("../routes/userRoutes/chat.routes"
 const express_1 = __importStar(require("express"));
 const socket_io_1 = require("socket.io");
 const mysql2_1 = __importDefault(require("mysql2"));
-const console_1 = __importDefault(require("console"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
 const database_1 = __importDefault(require("../config/database"));
+const chat_controller_1 = require("../controllers/chat.controller");
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -59,7 +68,7 @@ let gameState = {
     xIsNext: true,
 };
 io.on("connection", (socket) => {
-    console_1.default.log("client connected");
+    console.log("client connected");
     socket.emit('gameState', gameState);
     socket.on('move', ({ squares }) => {
         gameState = {
@@ -69,14 +78,20 @@ io.on("connection", (socket) => {
         };
         io.emit('gameState', gameState);
     });
-    socket.on('chat', (body) => {
-        console.log(body);
-        socket.broadcast.emit("chat", {
-            body: body,
-            from: socket.id.slice(6)
-        });
-        console_1.default.log(socket.id);
-    });
+    socket.on('chat', (data) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log(data);
+        try {
+            const nuevoMensaje = yield (0, chat_controller_1.createMessagesHandler)({ message_content: data.body, user_id: data.user_id });
+            // Emitir el mensaje a todos los clientes conectados
+            io.emit('chat', {
+                user_id: nuevoMensaje.user_id,
+                message_content: nuevoMensaje.message_content,
+            });
+        }
+        catch (error) {
+            console.error('Error al guardar el mensaje en la base de datos a través de Socket.IO:', error);
+        }
+    }));
 });
 const db = mysql2_1.default.createConnection({
     host: process.env.DB_HOST,
@@ -94,18 +109,12 @@ db.connect((err) => {
 });
 database_1.default.sync().then(() => {
     console.log('Base de datos conectada arlu');
-    app.post('/mensajes', chat_routes_1.default);
 });
 app.get('/user', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/login', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/password', (0, egg_route_1.setupEggRoutesWithDb)(db));
-<<<<<<< HEAD
-app.use(user_routes_1.setupUserRoutes);
-app.use(egg_route_1.setupEggRoutesWithDb);
-=======
-app.post('/mensajes', chat_routes_1.default);
->>>>>>> 84d3f98abd8db513a2e094673799909e17147468
+app.post('/messages', chat_routes_1.default);
 server.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });

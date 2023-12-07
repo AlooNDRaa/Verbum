@@ -16,6 +16,7 @@ function Mensajes() {
         }
         setChats([...chats, newChat]);
         Socket.emit("chat", chat);
+        setChat("");
     };
 
     useEffect(() => {

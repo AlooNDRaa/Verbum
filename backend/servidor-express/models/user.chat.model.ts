@@ -1,18 +1,18 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 
-interface UserAttributes {
+interface usersAttributes {
   id: number;
   username: string;
 
 }
 
-class User extends Model<UserAttributes> {
+class users extends Model<usersAttributes> {
   public id!: number;
   public username!: string;
 }
 
-User.init(
+users.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -34,4 +34,4 @@ User.init(
 
 
 
-export default User;
+export default users;

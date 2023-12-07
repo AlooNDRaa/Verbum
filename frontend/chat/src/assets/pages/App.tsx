@@ -8,6 +8,7 @@ import { Login } from './login';
 import Chat from './chat';
 import Home from './home';
 import Blog from './blog';
+import Chatopen from "../Componentes/chat/chatOpen";
 
 interface AppProps {}
 
@@ -32,6 +33,7 @@ const App: FC<AppProps> = (): JSX.Element => {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={redirectToLogin() || <Home />} />
         <Route path="/chat" element={redirectToLogin() || <Chat />} />
+        <Route path="/chatopen" element={redirectToLogin() || <Chatopen />} />
         <Route path="/game" element={redirectToLogin() || <GameCYR />} />
         <Route path="/blog" element={redirectToLogin() || <Blog />} />
         <Route path="/priv" element={redirectToLogin() || <ThePrivatePage />} />

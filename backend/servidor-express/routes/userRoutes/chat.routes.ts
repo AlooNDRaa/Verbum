@@ -1,13 +1,13 @@
 import express, { Router, Request, Response  } from 'express';
 
-import { createMensaje } from '../../models/chat.model';
+import { createmessages } from '../../controllers/chat.controller';
 
-const router: Router = express.Router();
+const setupChatRoutes: Router = express.Router();
 
 
-router.post('/mensajes', (req: Request, res: Response) => {
-  createMensaje(req, res);
+setupChatRoutes.post('/messages', (req: Request, res: Response) => {
+  createmessages(req, res);
 });
 
 
-export default router;
+export default setupChatRoutes;
