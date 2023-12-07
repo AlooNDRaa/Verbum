@@ -1,5 +1,4 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { useAuth } from "../auth/authprovider";
 import { ProtectedRoute } from "../protectedRoute/ProtectedRoute";
 import { Login } from "../../../pages/login";
 import { Error404 } from "../../../pages/errorpage";
@@ -8,6 +7,7 @@ import Chat from "../../../pages/chat";
 import Blog from "../../../pages/blog";
 import { GameCYR } from "../../../pages/gamep";
 import { ThePrivatePage } from "../../../pages/private";
+import { useAuth } from "../auth/authprovider";
 
 
 export const Routees = () => {
