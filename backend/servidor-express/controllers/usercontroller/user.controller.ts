@@ -1,5 +1,10 @@
 import { Request, Response } from 'express';
 import * as UserModel from '../../models/usermodel/user.model';
+import jwt from 'jsonwebtoken';
+
+// const token = jwt.sing({email, password}, "Stack", {
+//   expiresIn: '365d'
+// })
 
 export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -31,9 +36,14 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const result = await UserModel.loginUser(email, password);
 
     if (result[0].length > 0) {
-      res.status(200).json({ message: 'Inicio de sesión exitoso' });
+      const token = jwt.sign({ email }, "Stack", {
+        expiresIn: '60d'
+      })
+      res.send({token});
+      // res.status(200).json({ message: 'Inicio de sesión exitoso' });
+      console.log(token);
     } else {
-      res.status(401).json({ message: 'Usuario no encontrado o contraseña incorrecta' });
+      res.status(401).json({ message: 'Wrong user' });
     }
   } catch (err) {
     console.error('Error en la consulta: ' + err);

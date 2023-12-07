@@ -1,27 +1,26 @@
-import { SetStateAction,  useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { SetStateAction, useState } from 'react';
 import { ModalShow } from '../forgotpassword/openmodal';
+// import { Navigate } from 'react-router-dom';
+import { parseJwt }  from '../../token/jwtoken'
+// import Home from '../../../pages/home';
+// import Chat from '../../../pages/chat';
 
- 
 
-export default  function LoginForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(Boolean); 
+  // const [loginSuccessful, setLoginSuccesful] = useState(false)
 
-
-  const handleEmailChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+  const handleEmailChange = (e: { target: { value: SetStateAction<string> }; }) => {
     setEmail(e.target.value);
   };
 
-  //Estas dos constantes manejan la actualizacion del estado del login a medida que el usuario interactua con el.
-
-  const handlePasswordChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+  const handlePasswordChange = (e: { target: { value: SetStateAction<string> }; }) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault(); //evita que la pagina al hacer click se recargue
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
 
     try {
       const response = await fetch('http://localhost:3000/login', {
@@ -32,29 +31,25 @@ export default  function LoginForm() {
         body: JSON.stringify({ email: email, password: password }),
       });
 
-    
       if (response.status === 200) {
-        console.log("acceso permitido");
-        setLoggedIn(true); 
-        const data = await response.json();
-        
-        const login = data.login;
-        localStorage.setItem('login', login);        
-      } 
-       else {
+        console.log("Acceso permitido");
+        const result = await response.json();
+        localStorage.setItem('token', result.token);
+        // setLoginSuccesful(true)
+        console.log(parseJwt(result.token));
+      } else {
         console.error('Acceso denegado');
-        
+        // setLoginSuccesful(false)
       }
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
   };
 
-  if (loggedIn) {
-    return <Navigate to="/home" />;
-  }
-
+ 
   return (
+    <>
+    
     <div className="text-white lg:w-1/2">
       <h1 className="text-5xl font-semibold text-[#ffff]">Welcome back</h1>
       <p className="font-medium text-lg text-gray-500 mt-4">Welcome back! Please enter your details</p>
@@ -88,6 +83,7 @@ export default  function LoginForm() {
               <label className="ml-2 font-medium text-base" htmlFor="remember"> Remember me</label>
             </div>
             <ModalShow/>
+            {/* <ModalShowRestore/> */}
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button
@@ -100,5 +96,6 @@ export default  function LoginForm() {
         </form>
       </div>
     </div>
+    </>
   );
 }

@@ -31,9 +31,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.createUser = exports.getAllUsers = void 0;
 const UserModel = __importStar(require("../../models/usermodel/user.model"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+// const token = jwt.sing({email, password}, "Stack", {
+//   expiresIn: '365d'
+// })
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield UserModel.getAllUsers();
@@ -63,10 +70,15 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield UserModel.loginUser(email, password);
         if (result[0].length > 0) {
-            res.status(200).json({ message: 'Inicio de sesión exitoso' });
+            const token = jsonwebtoken_1.default.sign({ email }, "Stack", {
+                expiresIn: '60d'
+            });
+            res.send({ token });
+            // res.status(200).json({ message: 'Inicio de sesión exitoso' });
+            console.log(token);
         }
         else {
-            res.status(401).json({ message: 'Usuario no encontrado o contraseña incorrecta' });
+            res.status(401).json({ message: 'Wrong user' });
         }
     }
     catch (err) {
