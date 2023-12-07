@@ -1,25 +1,37 @@
-import { SetStateAction,  useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { ModalShow } from './forgotpassword/openmodal';
-// import { ModalShowRestore } from './restorePassword/modalP';
+import { SetStateAction, useEffect, useState } from 'react';
+import { ModalShow } from '../forgotpassword/openmodal';
+import { parseJwt }  from '../../token/jwtoken'
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../token/auth/authprovider';
 
-
-
-export default  function LoginForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loggedIn, setLoggedIn] = useState(Boolean); 
+  const [loginSuccessful, setLoginSuccesful] = useState(false)
 
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
 
-  const handleEmailChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+  useEffect(() => {
+    const handleLogin = () => {
+      setToken("this is a test token");
+      navigate("/home", { replace: true });
+    };
+
+    setTimeout(() => {
+      handleLogin();
+    }, 3 * 1000);
+  }, [navigate, setToken]); 
+
+  const handleEmailChange = (e: { target: { value: SetStateAction<string> }; }) => {
     setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+  const handlePasswordChange = (e: { target: { value: SetStateAction<string> }; }) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     try {
@@ -31,28 +43,26 @@ export default  function LoginForm() {
         body: JSON.stringify({ email: email, password: password }),
       });
 
-      
-
       if (response.status === 200) {
-        console.log("acceso permitido");
-        setLoggedIn(true); 
-        const data = await response.json();
-        const login = data.login;
-        localStorage.setItem('login', login);
-      } 
-       else {
+        console.log("Acceso permitido");
+        const result = await response.json();
+        localStorage.setItem('token', result.token);
+        setLoginSuccesful(true)
+        const parsedToken = parseJwt(result.token);
+        console.log(parsedToken);
+      } else {
         console.error('Acceso denegado');
-        
+        setLoginSuccesful(false)
       }
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
   };
 
-  if (loggedIn) {
+  if (loginSuccessful) {
     return <Navigate to="/home" />;
   }
-   
+
 
   return (
     <div className="text-white lg:w-1/2">
@@ -88,13 +98,11 @@ export default  function LoginForm() {
               <label className="ml-2 font-medium text-base" htmlFor="remember"> Remember me</label>
             </div>
             <ModalShow/>
-            {/* <ModalShowRestore/> */}
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button
             type="submit"
-            className="bg-pink-600 text-white text-lg font-bold rounded-xl py-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out"
-            >
+            className="bg-pink-600 text-white text-lg font-bold rounded-xl py-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">
               Sign in
             </button>
           </div>

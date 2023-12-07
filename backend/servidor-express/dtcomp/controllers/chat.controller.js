@@ -18,16 +18,20 @@ const mensajesController = {
     createMensaje(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                // Obtener datos del cuerpo de la solicitud
                 const { message_content, user_id, id } = req.body;
+                // Verificar si el usuario existe
                 const user = yield user_chat_model_1.default.findByPk(user_id);
                 if (!user) {
                     return res.status(404).json({ error: 'Usuario no encontrado' });
                 }
+                // Crear un nuevo mensaje y asociarlo con el usuario
                 const nuevoMensaje = yield chat_model_1.default.create({
                     id,
                     user_id,
                     message_content,
                 });
+                // Enviar respuesta exitosa
                 return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
             }
             catch (error) {
