@@ -3,16 +3,17 @@ import { FaTimes } from 'react-icons/fa';
 import { CiMenuFries } from 'react-icons/ci';
 import Logo from '../../imgs/verbumlog.png';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../token/auth/authprovider';
 
 
 function Navbar(): JSX.Element {
-  const [click, setClick] = useState(false);
+  const [click] = useState(false);
+  useAuth();
   const navigate = useNavigate();
-  
-  const handleClick = () => setClick(!click);  
+
   const handleLogoutClick = () => {
-    localStorage.removeItem('login');
-    navigate('/');
+    localStorage.removeItem('token');
+        navigate("/", { replace: true });
   };
 
     const content = <>
@@ -75,7 +76,7 @@ function Navbar(): JSX.Element {
                    {click && content}
                 </div>
 
-                <button className='block z-40 lg:hidden transition' onClick={handleClick}>
+                <button className='block z-40 lg:hidden transition' onClick={handleLogoutClick}>
                   {click ? <FaTimes/> : <CiMenuFries/>}  
                 </button>
            </div>

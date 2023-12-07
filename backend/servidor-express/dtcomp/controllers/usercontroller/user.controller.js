@@ -38,9 +38,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.createUser = exports.getAllUsers = void 0;
 const UserModel = __importStar(require("../../models/usermodel/user.model"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-// const token = jwt.sing({email, password}, "Stack", {
-//   expiresIn: '365d'
-// })
 const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield UserModel.getAllUsers();
@@ -71,7 +68,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield UserModel.loginUser(email, password);
         if (result[0].length > 0) {
             const token = jsonwebtoken_1.default.sign({ email }, "Stack", {
-                expiresIn: '60d'
+                expiresIn: '2m'
             });
             res.send({ token });
             // res.status(200).json({ message: 'Inicio de sesión exitoso' });

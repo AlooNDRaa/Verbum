@@ -1,18 +1,27 @@
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import { ModalShow } from '../forgotpassword/openmodal';
-// import { Navigate } from 'react-router-dom';
 import { parseJwt }  from '../../token/jwtoken'
-import { Navigate } from 'react-router-dom';
-// import Home from '../../../pages/home';
-// import { Login } from '../../../pages/login';
-// import Home from '../../../pages/home';
-// import Chat from '../../../pages/chat';
-
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../token/auth/authprovider';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccessful, setLoginSuccesful] = useState(false)
+
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleLogin = () => {
+      setToken("this is a test token");
+      navigate("/home", { replace: true });
+    };
+
+    setTimeout(() => {
+      handleLogin();
+    }, 3 * 1000);
+  }, [navigate, setToken]); 
 
   const handleEmailChange = (e: { target: { value: SetStateAction<string> }; }) => {
     setEmail(e.target.value);
@@ -39,7 +48,8 @@ export default function LoginForm() {
         const result = await response.json();
         localStorage.setItem('token', result.token);
         setLoginSuccesful(true)
-        console.log(parseJwt(result.token));
+        const parsedToken = parseJwt(result.token);
+        console.log(parsedToken);
       } else {
         console.error('Acceso denegado');
         setLoginSuccesful(false)
@@ -48,10 +58,11 @@ export default function LoginForm() {
       console.error('Error al enviar la solicitud:', error);
     }
   };
- 
+
   if (loginSuccessful) {
     return <Navigate to="/home" />;
   }
+
 
   return (
     <div className="text-white lg:w-1/2">
@@ -87,13 +98,11 @@ export default function LoginForm() {
               <label className="ml-2 font-medium text-base" htmlFor="remember"> Remember me</label>
             </div>
             <ModalShow/>
-            {/* <ModalShowRestore/> */}
           </div>
           <div className="mt-8 flex flex-col gap-y-4">
             <button
             type="submit"
-            className="bg-pink-600 text-white text-lg font-bold rounded-xl py-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out"
-            >
+            className="bg-pink-600 text-white text-lg font-bold rounded-xl py-2 active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out">
               Sign in
             </button>
           </div>

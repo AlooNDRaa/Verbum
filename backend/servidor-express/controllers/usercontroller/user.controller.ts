@@ -33,7 +33,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
 
     if (result[0].length > 0) {
       const token = jwt.sign({ email }, "Stack", {
-        expiresIn: '60d'
+        expiresIn: '3m'
       })
       res.send({token});
       // res.status(200).json({ message: 'Inicio de sesión exitoso' });
