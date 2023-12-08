@@ -5,7 +5,8 @@ import { TURNS } from '../Componentes/game/logic/constants'
 import { checkWinnerFrom, checkEndGame } from '../Componentes/game/logic/board'
 import { WinnerModal } from '../Componentes/game/WinnerModal'
 import { saveGameToStorage, resetGameStorage } from '../Componentes/game/logic/storage/gameStorage'
-
+import Navbar from '../Componentes/generals/navbarhome'
+import Footer from '../Componentes/generals/footerhome'
 
 export function GameCYR() {
   const [board, setBoard] = useState(() => {
@@ -57,13 +58,14 @@ export function GameCYR() {
   }
 
   return (
-    <main className='bg-[#101015] w-full h-screen'>
+    <main className='bg-[#101015] w-full '>
+      <Navbar/>
       <div className='board flex justify-center items-center flex-col gap-6 '>
         <div className='son1'>
-          <h1 className='text-white mb-10 mt-10 font-bold text-5xl'>Tic tac toe</h1>
+          <h1 className='text-white mb-[1.5rem] mt-[7rem] font-bold text-5xl'>Ta te ti</h1>
         </div>
         <div className='son2'>
-          <button className=' border-white border-2 text-white bg-transparent w-28 p-[0.5rem] rounded-md transition duration-200 font-bold cursor-pointer hover:bg-gray-300 hover:text-gray-700' onClick={resetGame}>Reset del juego</button>
+          <button className=' border-white border-2 text-white bg-transparent w-28 p-[0.5rem] rounded-md transition duration-200 font-bold cursor-pointer hover:bg-gray-300 hover:text-gray-700' onClick={resetGame}>Empezar de nuevo</button>
         </div>
         <div className='son3'>
           <section className='game grid grid-cols-3 gap-1 relative'>
@@ -92,6 +94,7 @@ export function GameCYR() {
           <WinnerModal resetGame={resetGame} winner={winner} />
         </div>
       </div>
+      <Footer/>
     </main>
   )
 }
