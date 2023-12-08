@@ -57,33 +57,41 @@ export function GameCYR() {
   }
 
   return (
-    <main className='grid'>
-    <div className='board bg-[#101015] w-full h-screen  mx-auto '>
-      <h1 className='text-white mb-16 text-center'>Tic tac toe</h1>
-      <button className=' border-white text-white bg-transparent w-28 rounded-md transition duration-200 font-bold cursor-pointer hover:bg-gray-300 hover:text-gray-700' onClick={resetGame}>Reset del juego</button>
-      <section className='game grid grid-cols-3 gap-10'>
-        {board.map((square, index) => {
-          return (
-            <Square key={index} index={index} updateBoard={updateBoard}>
-              {square}
+    <main className='bg-[#101015] w-full h-screen'>
+      <div className='board flex justify-center items-center flex-col gap-6 '>
+        <div className='son1'>
+          <h1 className='text-white mb-10 mt-10 font-bold text-5xl'>Tic tac toe</h1>
+        </div>
+        <div className='son2'>
+          <button className=' border-white border-2 text-white bg-transparent w-28 p-[0.5rem] rounded-md transition duration-200 font-bold cursor-pointer hover:bg-gray-300 hover:text-gray-700' onClick={resetGame}>Reset del juego</button>
+        </div>
+        <div className='son3'>
+          <section className='game grid grid-cols-3 gap-1 relative'>
+            {board.map((square, index) => {
+              return (
+                <Square key={index} index={index} updateBoard={updateBoard}>
+                  {square}
+                </Square>
+              )
+            })}
+          </section>
+        </div>
+        <div className='son4'>
+          <section className='turn flex justify-center relative bottom-0 rounded-lg'>
+            <Square isSelected={turn === TURNS.X} updateBoard={() => { }} index={0}
+
+            >
+              {TURNS.X}
             </Square>
-          )
-        })}
-      </section>
-
-      <section className='turn flex justify-center m-15 mx-auto w-fit-content relative rounded-10'>
-        <Square isSelected={turn === TURNS.X} updateBoard={() => {}} index={0}
-       
-        >
-          {TURNS.X}
-        </Square>
-        <Square isSelected={turn === TURNS.O} updateBoard={() => {}} index={0}>
-          {TURNS.O}
-        </Square>
-      </section>
-
-      <WinnerModal resetGame={resetGame} winner={winner} />
-    </div>
+            <Square isSelected={turn === TURNS.O} updateBoard={() => { }} index={0}>
+              {TURNS.O}
+            </Square>
+          </section>
+        </div>
+        <div className='son5'>
+          <WinnerModal resetGame={resetGame} winner={winner} />
+        </div>
+      </div>
     </main>
   )
 }
