@@ -7,6 +7,7 @@ import { WinnerModal } from '../Componentes/game/WinnerModal'
 import { saveGameToStorage, resetGameStorage } from '../Componentes/game/logic/storage/gameStorage'
 import Navbar from '../Componentes/generals/navbarhome'
 import Footer from '../Componentes/generals/footerhome'
+import { Span } from '../Componentes/game/animationgame'
 
 export function GameCYR() {
   const [board, setBoard] = useState(() => {
@@ -62,7 +63,7 @@ export function GameCYR() {
       <Navbar/>
       <div className='board flex justify-center items-center flex-col gap-6 '>
         <div className='son1'>
-          <h1 className='text-white mb-[1.5rem] mt-[7rem] font-bold text-5xl'>Ta te ti</h1>
+          <h1 className='textateti text-5xl text-white mb-[1.5rem] mt-[7rem] font-bold '>Ta te ti !</h1>
         </div>
         <div className='son2'>
           <button className=' border-white border-2 text-white bg-transparent w-28 p-[0.5rem] rounded-md transition duration-200 font-bold cursor-pointer hover:bg-gray-300 hover:text-gray-700' onClick={resetGame}>Empezar de nuevo</button>

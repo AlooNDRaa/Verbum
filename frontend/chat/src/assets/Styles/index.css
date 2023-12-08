@@ -317,3 +317,26 @@ section span:hover {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   }
 }
+
+.textateti {
+  display: block;
+  white-space: nowrap;
+  border-right: 4px solid;
+  width: 6ch;
+  animation: typing 2s steps(12) infinite, 
+  blink .5s infinite step-end alternate;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 8ch;
+  }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}

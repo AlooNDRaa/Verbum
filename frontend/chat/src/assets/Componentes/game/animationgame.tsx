@@ -1,5 +1,5 @@
 
-/*export function Span() {
+export function Span() {
     return(
         <>
             <span></span>
@@ -264,4 +264,4 @@
             <span></span>
         </>
     )
-}*/
+}
