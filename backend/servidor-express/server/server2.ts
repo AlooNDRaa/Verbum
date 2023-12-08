@@ -27,26 +27,49 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 dotenv.config();
 
-let gameState = {
-  history: [{ squares: Array(9).fill(null) }],
-  stepNumber: 0,
-  xIsNext: true,
-};
 
 io.on("connection", (socket: Socket) => {
   Console.log("client connected")
 
-  socket.emit('gameState', gameState);
+io.on("connection", (socket) => {
+  let gameState = {
+    board: Array(9).fill(null),
+    turn: "❌",
+  };
 
-  socket.on('move', ({ squares }) => {
-    gameState = {
-      history: [...gameState.history, { squares }],
-      stepNumber: gameState.history.length,
-      xIsNext: !gameState.xIsNext,
-    };
+  socket.on("startGame", () => {
+    // Inicializar el estado del juego
+    gameState.board = Array(9).fill(null);
+    gameState.turn = "❌";
 
-    io.emit('gameState', gameState);
+    // Enviar el estado del juego a ambos jugadores
+    io.emit("gameState", gameState);
   });
+
+  socket.on("makeMove", (index) => {
+    // Verificar si el movimiento es válido
+    if (gameState.board[index] === null && gameState.turn === socket.id) {
+      // Actualizar el estado del juego con el nuevo movimiento
+      gameState.board[index] = gameState.turn;
+      gameState.turn = gameState.turn === "❌" ? "⚪" : "❌";
+
+      // Enviar el estado del juego actualizado a ambos jugadores
+      io.emit("gameState", gameState);
+    }
+  });
+
+  socket.on("endGame", () => {
+    // Reiniciar el estado del juego
+    gameState.board = Array(9).fill(null);
+    gameState.turn = "❌";
+
+    // Enviar un mensaje de fin de juego a ambos jugadores
+    io.emit("gameOver", "El juego ha terminado");
+
+    // Enviar el estado del juego reiniciado a ambos jugadores
+    io.emit("gameState", gameState);
+  });
+});
 
   socket.on ('chat', (body: string) => {
       console.log(body)
