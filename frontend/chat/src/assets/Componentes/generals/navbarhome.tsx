@@ -7,7 +7,9 @@ import { useAuth } from '../token/auth/authprovider';
 
 
 function Navbar(): JSX.Element {
-  const [click] = useState(false);
+
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
   useAuth();
   const navigate = useNavigate();
 
@@ -73,10 +75,10 @@ function Navbar(): JSX.Element {
               </button>
                 </div>
                 <div>
-                   {click && content}
+                {click && content}
                 </div>
 
-                <button className='block z-40 lg:hidden transition' onClick={handleLogoutClick}>
+                <button className='block z-40 lg:hidden transition' onClick={handleClick}>
                   {click ? <FaTimes/> : <CiMenuFries/>}  
                 </button>
            </div>
