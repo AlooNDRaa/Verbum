@@ -28,7 +28,7 @@ function Mensajes() {
     },);
 
     const receiveChat = (newChat: { body: string; from: string}) => {
-        const remitente = newChat.from === "me" ? "Me" : newChat.from; //cambio de remitente, o nombre de el. Para los mensajes del ME. funciona bien.
+        const remitente = newChat.from === "me" ? "Me" : newChat.from; 
         newChat.from = remitente;
         setChats((state: { body: string; from: string }[]) => [...state, newChat]);  
              

@@ -12,32 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createmessages = exports.createMessagesHandler = void 0;
+exports.createmessages = void 0;
 const chat_model_1 = __importDefault(require("../models/chat.model"));
 const user_chat_model_1 = __importDefault(require("../models/user.chat.model"));
-const createMessagesHandler = (data) => __awaiter(void 0, void 0, void 0, function* () {
+const createmessages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { message_content, user_id } = data;
+        const { message_content, user_id } = req.body;
         const user = yield user_chat_model_1.default.findByPk(user_id);
         if (!user) {
-            throw new Error('Usuario no encontrado');
+            return res.status(404).json({ error: 'Usuario no encontrado' });
         }
         const nuevoMensaje = yield chat_model_1.default.create({
             user_id,
             message_content,
         });
-        return nuevoMensaje;
-    }
-    catch (error) {
-        console.error('Error al crear el mensaje:', error);
-        throw error;
-    }
-});
-exports.createMessagesHandler = createMessagesHandler;
-const createmessages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { message_content, user_id } = req.body;
-        const nuevoMensaje = yield (0, exports.createMessagesHandler)({ message_content, user_id });
         return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
     }
     catch (error) {
