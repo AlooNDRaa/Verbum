@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
+import Navopen from "./navOpenChat";
 
 const Socket = io('/');
 
@@ -36,6 +37,7 @@ function Mensajes() {
 
     return (
         <>
+        <Navopen/>
             <div className="w-full h-screen bg-[#161616] opacity-90 flex items-center justify-center overflow-y-scroll scroll-smooth pb-[48px]  ">
                 <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-[77%]">
                     <input
@@ -47,7 +49,7 @@ function Mensajes() {
                     />
                     <button type="submit" className=" text-[#fdf4ff]">Enviar</button>
                 </form>
-                <ul>
+                <ul className="">
                     {chats.map((chat, i) => (
                         <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === 'me' ? 'bg-[#C83C83] ml-[40vw]': `bg-[#f472b6] mr[5vw]`}`} key={i}>
                             <span className=" font-bold block ">{chat.from}</span> <span className="text-sm ">{chat.body}</span> 

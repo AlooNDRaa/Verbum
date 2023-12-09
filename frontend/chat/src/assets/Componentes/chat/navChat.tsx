@@ -16,7 +16,7 @@ function Nav (){
         </div> 
         <div className="m-2 pt-[15px] ">
               
-         <Link to="/chat" className=" text-[#B80E65] text-4xl hover:text-[#f472b6] active:text-[#f472b6] focus:outline-none  focus:text-[#f472b6] ">
+         <Link to="/chats" className=" text-[#B80E65] text-4xl hover:text-[#f472b6] active:text-[#f472b6] focus:outline-none  focus:text-[#f472b6] ">
             <BiMessageRoundedDetail/>
          </Link>
 

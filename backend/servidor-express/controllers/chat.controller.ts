@@ -8,6 +8,18 @@ interface CreateMensajeRequest {
  
 }
 
+export async function getUserList() {
+  try {
+    const users = await User.findAll({
+      attributes: ['username'],
+    });
+    return users;
+  } catch (error) {
+    console.error('Error al obtener la lista de usuarios:', error);
+    throw error;
+  }
+}
+
 export const createmessages = async (req: Request, res: Response) => {
   try {
     const { message_content, user_id}: CreateMensajeRequest = req.body;

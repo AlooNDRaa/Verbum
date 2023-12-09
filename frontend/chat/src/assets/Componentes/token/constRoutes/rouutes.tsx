@@ -8,6 +8,7 @@ import Blog from "../../../pages/blog";
 import { GameCYR } from "../../../pages/gamep";
 import { ThePrivatePage } from "../../../pages/private";
 import { useAuth } from "../auth/authprovider";
+import Chatopen from "../../chat/chatOpen";
 
 
 export const Routees = () => {
@@ -35,7 +36,7 @@ const routesForOnlyAuth = [
             element: <Home/>,
         },
         {
-            path:"/chat",
+            path:"/chats",
             element: <Chat/>,
         },
         {
@@ -49,6 +50,10 @@ const routesForOnlyAuth = [
         {
             path:"/pvp",
             element: <ThePrivatePage/>,
+        },
+        {
+            path:"/chatopen",
+            element: <Chatopen/>,
         },
     ],
 },

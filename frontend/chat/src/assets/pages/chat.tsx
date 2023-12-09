@@ -7,7 +7,7 @@ import Fusion from "../Componentes/chat/buscador+personas";
 
 function Chat() {
   return (
-    <div className='flex h-screen items-stretch bg-[#161616] opacity-90 '>
+    <div className='flex items-stretch bg-[#161616] opacity-90 '>
       <Nav/>
       <Fusion/>
       

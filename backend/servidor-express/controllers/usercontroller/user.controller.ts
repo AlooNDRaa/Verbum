@@ -12,6 +12,8 @@ export const getAllUsers = async (req: Request, res: Response): Promise<void> =>
   }
 };
 
+
+
 export const createUser = async (req: Request, res: Response): Promise<void> => {
   const { username, email, password } = req.body;
 
