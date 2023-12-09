@@ -1,22 +1,22 @@
 import { Request, Response } from 'express';
 import * as UserModel from '../../models/usermodel/user.model';
-import { DbService } from '../../dtservice/dt.service';
+import jwt from 'jsonwebtoken';
 
-export const getAllUsers = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
+export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
   try {
-    const users = await UserModel.getAllUsers(dbService);
-    res.send(users);
+    const users = await UserModel.getAllUsers();
+    res.json(users);
   } catch (err) {
     console.error('Error al obtener usuarios: ', err);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 };
 
-export const createUser = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
+export const createUser = async (req: Request, res: Response): Promise<void> => {
   const { username, email, password } = req.body;
 
   try {
-    await UserModel.createUser(dbService, username, email, password);
+    await UserModel.createUser(username, email, password);
     console.log('Registro exitoso');
     res.status(200).json({ message: 'Registro exitoso' });
   } catch (err) {
@@ -25,16 +25,21 @@ export const createUser = async (dbService: DbService, req: Request, res: Respon
   }
 };
 
-export const loginUser = async (dbService: DbService, req: Request, res: Response): Promise<void> => {
+export const loginUser = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   try {
-    const user = await UserModel.loginUser(dbService, email, password);
+    const result = await UserModel.loginUser(email, password);
 
-    if (user) {
-      res.status(200).json({ message: 'Inicio de sesión exitoso' });
+    if (result[0].length > 0) {
+      const token = jwt.sign({ email }, "Stack", {
+        expiresIn: '3m'
+      })
+      res.send({token});
+      // res.status(200).json({ message: 'Inicio de sesión exitoso' });
+      console.log(token);
     } else {
-      res.status(401).json({ message: 'Usuario no encontrado o contraseña incorrecta' });
+      res.status(401).json({ message: 'Wrong user' });
     }
   } catch (err) {
     console.error('Error en la consulta: ' + err);

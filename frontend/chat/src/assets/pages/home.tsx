@@ -13,7 +13,7 @@ function Home() {
             <div className='grid xl:grid-cols-2 xl:gap-[10rem] pt-[7rem]'>
                  <div className='flex flex-col lg:ml-12 lg:mt-[5rem] text-center'>
                     <h1 className=" font-bold text-7xl lg:text-9xl text-white">Verbum</h1>
-                        <Link to={'/priv'}>
+                        <Link to={'/pvp'}>
                     <button className='cursor-pointer bg-white flex justify-center h-1'>
                     </button>
                         </Link>

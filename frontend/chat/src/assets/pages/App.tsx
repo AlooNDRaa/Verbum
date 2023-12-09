@@ -1,3 +1,8 @@
+import AuthProvider from "../Componentes/token/auth/authprovider";
+import Routees from "../Componentes/token/constRoutes/rouutes";
+
+
+function App() {
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { FC, useEffect, useState } from 'react';
 import { ThePrivatePage } from './private';
@@ -28,19 +33,12 @@ const App: FC<AppProps> = (): JSX.Element => {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={redirectToLogin() || <Home />} />
-        <Route path="/chat" element={redirectToLogin() || <Chat />} />
-        <Route path="/chatopen" element={redirectToLogin() || <Chatopen />} />
-        <Route path="/game" element={redirectToLogin() || <GameCYR />} />
-        <Route path="/blog" element={redirectToLogin() || <Blog />} />
-        <Route path="/priv" element={redirectToLogin() || <ThePrivatePage />} />
-        <Route path="*" element={<Error404 />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+    <>
+    <AuthProvider>
+      <Routees/>
+    </AuthProvider>
+    </>
+  )
+}
 
 export default App;

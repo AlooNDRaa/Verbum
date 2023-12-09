@@ -66,7 +66,7 @@ const Game = () => {
       socket.off('players');
       socket.off('gameState'); 
     };
-  }, [history]);
+  }, []);
 
   const handleClick = (i: number) => {
     if (finished) {
