@@ -13,7 +13,7 @@ interface MensajesProps {
     const [chat, setChat] = useState<string>("");
     const [chats, setChats] = useState<{ body: string; from: string }[]>([]); 
 
-    const displayedChats = chats.filter((chat) => chat.from === selectedUser || chat.from === selectedUser);
+    const displayedChats = chats.filter((chat) => chat.from === "me" || chat.from === selectedUser);
 
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -36,7 +36,7 @@ interface MensajesProps {
     },);
 
     const receiveChat = (newChat: { body: string; from: string}) => {
-        const remitente = newChat.from === selectedUser ? "Me" : newChat.from; 
+        const remitente = newChat.from === "me" ? "Me" : newChat.from; 
         newChat.from = remitente;
         setChats((state: { body: string; from: string }[]) => [...state, newChat]);  
              
@@ -58,7 +58,7 @@ interface MensajesProps {
                 </form>
                 <ul className="">
                 {displayedChats.map((chat, i) => (
-                        <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === selectedUser ? 'bg-[#C83C83] ml-[40vw]': `bg-[#f472b6] mr[5vw]`}`} key={i}>
+                        <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[40vw]': `bg-[#f472b6] mr[5vw]`}`} key={i}>
                             <span className=" font-bold block ">{chat.from}</span> <span className="text-sm ">{chat.body}</span> 
                         </li>
                     ))}

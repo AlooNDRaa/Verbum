@@ -12,7 +12,7 @@ function Chatuser() {
   return (
     <div className="flex">
       <Person onUserClick={handleUserClick} />
-      {selectedUser && <Mensajes selectedUser={selectedUser} />}
+      {selectedUser && <Mensajes selectedUser={selectedUser}/>}
     </div>
   );
 }
