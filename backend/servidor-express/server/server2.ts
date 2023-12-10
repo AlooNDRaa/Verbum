@@ -105,6 +105,7 @@ app.post('/', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
 app.use(setupUserRoutes)
 app.use(setupEggRoutesWithDb)
+app.post
 
 
 server.listen(PORT, () => {
