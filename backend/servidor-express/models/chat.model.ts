@@ -1,28 +1,27 @@
-import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import   User   from './user.chat.model';
+import { DataTypes, Model, Sequelize } from 'sequelize';
+import users from './user.chat.model';
+
+const sequelize: Sequelize = new Sequelize('verbum', 'root', '1234', {
+  host: 'localhost',
+  dialect: 'mysql',
+});
 
 
-
-interface MensajeAttributes {
-  id: number;
-  message_content: string;
+interface messagesAttributes {
   user_id: number;
+  message_content: string;
+
 }
 
-class Mensaje extends Model<MensajeAttributes> {
-  public id!: number;
-  public message_content!: string;
+class messages extends Model<messagesAttributes> {
   public user_id!: number;
+  public message_content!: string;
+
 }
 
-Mensaje.init(
+messages.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
+
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -31,31 +30,16 @@ Mensaje.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+
   },
   {
     sequelize,
-    modelName: 'Mensaje',
+    modelName: 'messages',
+    timestamps: false,
   }
 );
 
-Mensaje.belongsTo(User, { foreignKey: 'user_id' });
 
-async function findAllUsers(): Promise<void> {
-    try {
-      const users = await User.findAll();
-      if (users.length === 0) {
-        console.log('No users found!');
-      } else { 
-        users.forEach(user => {
-          console.log(user instanceof User);
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-}
-  
-findAllUsers();
+messages.belongsTo(users, { foreignKey: 'user_id' });
 
-
-export default Mensaje;
+export default messages;

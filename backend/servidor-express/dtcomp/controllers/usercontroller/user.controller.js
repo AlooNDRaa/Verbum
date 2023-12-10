@@ -31,13 +31,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUser = exports.createUser = exports.getAllUsers = void 0;
 const UserModel = __importStar(require("../../models/usermodel/user.model"));
-const getAllUsers = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield UserModel.getAllUsers(dbService);
-        res.send(users);
+        const users = yield UserModel.getAllUsers();
+        res.json(users);
     }
     catch (err) {
         console.error('Error al obtener usuarios: ', err);
@@ -45,10 +49,10 @@ const getAllUsers = (dbService, req, res) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.getAllUsers = getAllUsers;
-const createUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, email, password } = req.body;
     try {
-        yield UserModel.createUser(dbService, username, email, password);
+        yield UserModel.createUser(username, email, password);
         console.log('Registro exitoso');
         res.status(200).json({ message: 'Registro exitoso' });
     }
@@ -58,15 +62,20 @@ const createUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 });
 exports.createUser = createUser;
-const loginUser = (dbService, req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     try {
-        const user = yield UserModel.loginUser(dbService, email, password);
-        if (user) {
-            res.status(200).json({ message: 'Inicio de sesión exitoso' });
+        const result = yield UserModel.loginUser(email, password);
+        if (result[0].length > 0) {
+            const token = jsonwebtoken_1.default.sign({ email }, "Stack", {
+                expiresIn: '3m'
+            });
+            res.send({ token });
+            // res.status(200).json({ message: 'Inicio de sesión exitoso' });
+            console.log(token);
         }
         else {
-            res.status(401).json({ message: 'Usuario no encontrado o contraseña incorrecta' });
+            res.status(401).json({ message: 'Wrong user' });
         }
     }
     catch (err) {

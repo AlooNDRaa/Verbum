@@ -4,7 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const chat_controller_1 = __importDefault(require("../../controllers/chat.controller"));
-const router = express_1.default.Router();
-router.post('/mensajes', chat_controller_1.default.createMensaje);
-exports.default = router;
+const chat_controller_1 = require("../../controllers/chat.controller");
+const setupChatRoutes = express_1.default.Router();
+setupChatRoutes.post('/messages', (req, res) => {
+    (0, chat_controller_1.createmessages)(req, res);
+});
+setupChatRoutes.get("/userchat", (req, res) => {
+    (0, chat_controller_1.getUserList)();
+});
+exports.default = setupChatRoutes;

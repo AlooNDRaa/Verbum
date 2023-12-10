@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Form2 from '../Componentes/login/formsingup';
-import  Form  from '../Componentes/login/form';
+import Form2 from '../Componentes/login/forms/formsingup';
+import  Form  from '../Componentes/login/forms/form';
 import Logo from '../imgs/verbumlog.png';
 
 

@@ -9,10 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getThePassword = void 0;
-const getThePassword = (dbService, providedPassword) => __awaiter(void 0, void 0, void 0, function* () {
-    const sql = 'SELECT * FROM easter_egg WHERE easterpassword = ?';
-    const results = yield dbService.query(sql, [providedPassword]);
-    return results.length > 0 ? results[0] : null;
+exports.getThePassword = exports.configureDatabase2 = void 0;
+let db;
+const configureDatabase2 = (connection) => {
+    db = connection;
+};
+exports.configureDatabase2 = configureDatabase2;
+const getThePassword = () => __awaiter(void 0, void 0, void 0, function* () {
+    const sql = 'SELECT * FROM easter_egg LIMIT 1';
+    const [rows] = yield db.promise().execute(sql);
+    if (Array.isArray(rows) && rows.length > 0) {
+        const row = rows[0];
+        const password = row.easterpassword;
+        return { password };
+    }
+    else {
+        return null;
+    }
 });
 exports.getThePassword = getThePassword;

@@ -1,25 +1,31 @@
-import { DbService } from '../../dtservice/dt.service';
+import { Connection, RowDataPacket } from 'mysql2'; 
 
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-}
+let db: Connection;
 
-export const getAllUsers = (dbService: DbService): Promise<User[]> => {
-  const sql: string = 'SELECT * FROM users';
-  return dbService.query(sql) as Promise<User[]>;
+export const configureDatabase = (connection: Connection): void => {
+  db = connection;
 };
 
-export const createUser = (dbService: DbService, username: string, email: string, password: string): Promise<void> => {
+export const getAllUsers = async (): Promise<RowDataPacket[]> => {
+  const sql: string = 'SELECT * FROM users';
+  return db.promise().execute(sql).then(([rows]) => rows as RowDataPacket[]);
+};
+
+export const createUser = async (username: string, email: string, password: string): Promise<void> => {
   const sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
   const values = [username, email, password];
-  return dbService.query(sql, values) as Promise<void>;
+
+  try {
+    await db.promise().execute(sql, values);
+    console.log('Usuario creado exitosamente.');
+  } catch (error) {
+    console.error('Error al crear usuario:', error);
+    throw error; 
+  }
 };
 
-export const loginUser = (dbService: DbService, email: string, password: string): Promise<User | null> => {
+export const loginUser = async (email: string, password: string): Promise<any> => {
   const sql = 'SELECT * FROM users WHERE email = ? AND password = ?';
   const values = [email, password];
-  return dbService.query(sql, values) as Promise<User | null>;
+  return db.promise().execute(sql, values);
 };
