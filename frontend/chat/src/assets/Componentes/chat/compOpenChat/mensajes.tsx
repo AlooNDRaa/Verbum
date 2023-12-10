@@ -13,7 +13,7 @@ interface MensajesProps {
     const [chat, setChat] = useState<string>("");
     const [chats, setChats] = useState<{ body: string; from: string }[]>([]); 
 
-    const displayedChats = chats.filter((chat) => chat.from === "me" || chat.from === selectedUser);
+    const displayedChats = chats.filter((chat) => chat.from === "me" ||  selectedUser);
 
 
     const handleSubmit = (e: React.FormEvent) => {
