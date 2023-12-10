@@ -1,13 +1,17 @@
 import { useState } from 'react'
 import confetti from 'canvas-confetti'
-import { Square } from '../Componentes/game/Square'
+import { Square } from '../Componentes/game/square'
 import { TURNS } from '../Componentes/game/logic/constants'
 import { checkWinnerFrom, checkEndGame } from '../Componentes/game/logic/board'
 import { WinnerModal } from '../Componentes/game/WinnerModal'
 import { saveGameToStorage, resetGameStorage } from '../Componentes/game/logic/storage/gameStorage'
 import Navbar from '../Componentes/generals/navbarhome'
 import Footer from '../Componentes/generals/footerhome'
-import { Span } from '../Componentes/game/animationgame'
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3000');
+
+
 
 export function GameCYR() {
   const [board, setBoard] = useState(() => {
@@ -23,6 +27,17 @@ export function GameCYR() {
 
   // null es que no hay ganador, false es que hay un empate
   const [winner, setWinner] = useState<string | boolean | null>(null)
+
+  const [usernames, setUsernames] = useState<string[]>([]);
+
+    // Obtén los nombres de usuario al cargar el componente
+    useEffect(() => {
+      // Hacer la solicitud al backend para obtener los nombres de usuario
+      fetch('http://localhost:3000/game-users')  // Reemplaza la URL con la ruta correcta
+        .then(response => response.json())
+        .then(data => setUsernames(data))
+        .catch(error => console.error('Error al obtener usuarios del juego', error));
+    }, []);
 
   const resetGame = () => {
     setBoard(Array(9).fill(null))
@@ -84,10 +99,10 @@ export function GameCYR() {
             <Square isSelected={turn === TURNS.X} updateBoard={() => { }} index={0}
 
             >
-              {TURNS.X}
+               {turn === TURNS.X && usernames.length > 0 && usernames[0]}
             </Square>
             <Square isSelected={turn === TURNS.O} updateBoard={() => { }} index={0}>
-              {TURNS.O}
+            {turn === TURNS.O && usernames.length > 1 && usernames[1]}
             </Square>
           </section>
         </div>
@@ -99,3 +114,7 @@ export function GameCYR() {
     </main>
   )
 }
+function useEffect(arg0: () => void, arg1: never[]) {
+  throw new Error('Function not implemented.')
+}
+
