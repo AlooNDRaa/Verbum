@@ -1,4 +1,4 @@
-import { Square } from './Square'
+import { Square } from './square'
 
 interface WinnerModalProps {
   winner: string | null;
