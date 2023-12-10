@@ -4,10 +4,17 @@ import Navopen from "./navOpenChat";
 
 const Socket = io('/');
 
-function Mensajes() {
+interface MensajesProps {
+    selectedUser: string;
+  }
+
+  function Mensajes(props: MensajesProps) {
+    const { selectedUser } = props;
     const [chat, setChat] = useState<string>("");
     const [chats, setChats] = useState<{ body: string; from: string }[]>([]); 
-  
+
+    const displayedChats = chats.filter((chat) => chat.from === selectedUser || chat.from === 'me');
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -50,7 +57,7 @@ function Mensajes() {
                     <button type="submit" className=" text-[#fdf4ff]">Enviar</button>
                 </form>
                 <ul className="">
-                    {chats.map((chat, i) => (
+                {displayedChats.map((chat, i) => (
                         <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === 'me' ? 'bg-[#C83C83] ml-[40vw]': `bg-[#f472b6] mr[5vw]`}`} key={i}>
                             <span className=" font-bold block ">{chat.from}</span> <span className="text-sm ">{chat.body}</span> 
                         </li>
