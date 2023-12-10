@@ -6,11 +6,10 @@ interface NavopenProps {
     return (
       <>
         <div className="flex justify-start">
-          <div className="w-full h-20 fixed z-50 bg-[#161616] opacity-95 flex items-stretch">
+          <div className="w-full h-20 fixed  p-2 px-4 z-20 bg-[#101015] opacity-95 flex items-stretch">
             <div>
-              {/* Puedes mostrar la imagen del usuario aquí si es necesario */}
             </div>
-            <h1 className="text-[#eff6ff] text-lg mt-4 ">{selectedUser || 'Nombre por defecto'}</h1>
+            <h1 className="text-white font-semibold text-2xl mt-3 ">{selectedUser || 'Nombre por defecto'}</h1>
           </div>
         </div>
       </>
