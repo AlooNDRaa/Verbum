@@ -13,14 +13,14 @@ interface MensajesProps {
     const [chat, setChat] = useState<string>("");
     const [chats, setChats] = useState<{ body: string; from: string }[]>([]); 
 
-    const displayedChats = chats.filter((chat) => chat.from === selectedUser || chat.from === 'me');
+    const displayedChats = chats.filter((chat) => chat.from === selectedUser || chat.from === selectedUser);
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const newChat = {
             body: chat,
-            from: "me"
+            from: selectedUser
         }
         setChats([...chats, newChat]);
         Socket.emit("chat", chat);
@@ -36,7 +36,7 @@ interface MensajesProps {
     },);
 
     const receiveChat = (newChat: { body: string; from: string}) => {
-        const remitente = newChat.from === "me" ? "Me" : newChat.from; 
+        const remitente = newChat.from === selectedUser ? "Me" : newChat.from; 
         newChat.from = remitente;
         setChats((state: { body: string; from: string }[]) => [...state, newChat]);  
              
@@ -44,7 +44,7 @@ interface MensajesProps {
 
     return (
         <>
-        <Navopen/>
+        <Navopen selectedUser={selectedUser}/>
             <div className="w-full h-screen bg-[#161616] opacity-90 flex items-center justify-center overflow-y-scroll scroll-smooth pb-[48px]  ">
                 <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-[77%]">
                     <input
@@ -58,7 +58,7 @@ interface MensajesProps {
                 </form>
                 <ul className="">
                 {displayedChats.map((chat, i) => (
-                        <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === 'me' ? 'bg-[#C83C83] ml-[40vw]': `bg-[#f472b6] mr[5vw]`}`} key={i}>
+                        <li className={`text-white text-1xl my-2 p-2 table  rounded-md ${chat.from === selectedUser ? 'bg-[#C83C83] ml-[40vw]': `bg-[#f472b6] mr[5vw]`}`} key={i}>
                             <span className=" font-bold block ">{chat.from}</span> <span className="text-sm ">{chat.body}</span> 
                         </li>
                     ))}
