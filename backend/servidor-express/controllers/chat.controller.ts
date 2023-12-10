@@ -5,7 +5,6 @@ import User from '../models/user.chat.model';
 interface CreateMensajeRequest {
   message_content: string;
   user_id: number;
- 
 }
 
 export async function getUserList() {
