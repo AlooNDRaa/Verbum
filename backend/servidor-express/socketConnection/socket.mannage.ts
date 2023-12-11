@@ -1,5 +1,6 @@
 import { Server as SocketServer, Socket } from 'socket.io';
 import { getUserList } from '../controllers/chat.controller';
+import users from '../models/user.chat.model';
 
 export async function configureSocket(server: any) {
   const io: SocketServer = new SocketServer(server, {
@@ -12,16 +13,13 @@ export async function configureSocket(server: any) {
     const userList = await getUserList();
     io.to(socket.id).emit('userList', userList);
 
-    socket.on('chat', async (chatData: { body: string; receptor: string }) => {
-      console.log(chatData.body);
+    socket.on('chat', async (body: string) => {
+      console.log(body);
 
-      const chatObject = {
-        body: chatData.body,
-        from: "me", // Asigna "me" como el remitente
-        receptor: chatData.receptor,
-      };
-
-      socket.broadcast.emit('chat', chatObject);
+      socket.broadcast.emit('chat', {
+        body: body,
+        from: "me",
+      });
 
       console.log(socket.id);
       console.log('Client connected');

@@ -30,22 +30,28 @@ function getUserList() {
     });
 }
 exports.getUserList = getUserList;
-const createmessages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { message_content, user_id } = req.body;
-        const user = yield user_chat_model_1.default.findByPk(user_id);
-        if (!user) {
-            return res.status(404).json({ error: 'Usuario no encontrado' });
+function createmessages(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { message_content, user_id } = req.body;
+            const isFromSocket = req.headers['user-agent'] && req.headers['user-agent'].includes('socket.io');
+            if (isFromSocket) {
+                const user = yield user_chat_model_1.default.findByPk(user_id);
+                if (!user) {
+                    return res.status(404).json({ error: 'Usuario no encontrado' });
+                }
+                const nuevoMensaje = yield chat_model_1.default.create({
+                    user_id,
+                    message_content,
+                });
+                return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
+            }
+            return res.status(201).json({ mensaje: 'Mensaje recibido con éxito desde la interfaz web' });
         }
-        const nuevoMensaje = yield chat_model_1.default.create({
-            user_id,
-            message_content,
-        });
-        return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
-    }
-    catch (error) {
-        console.error(error);
-        return res.status(500).json({ error: 'Error en el servidor' });
-    }
-});
+        catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+    });
+}
 exports.createmessages = createmessages;

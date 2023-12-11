@@ -22,14 +22,12 @@ function configureSocket(server) {
         io.on('connection', (socket) => __awaiter(this, void 0, void 0, function* () {
             const userList = yield (0, chat_controller_1.getUserList)();
             io.to(socket.id).emit('userList', userList);
-            socket.on('chat', (chatData) => __awaiter(this, void 0, void 0, function* () {
-                console.log(chatData.body);
-                const chatObject = {
-                    body: chatData.body,
+            socket.on('chat', (body) => __awaiter(this, void 0, void 0, function* () {
+                console.log(body);
+                socket.broadcast.emit('chat', {
+                    body: body,
                     from: "me",
-                    receptor: chatData.receptor,
-                };
-                socket.broadcast.emit('chat', chatObject);
+                });
                 console.log(socket.id);
                 console.log('Client connected');
                 const updatedUserList = yield (0, chat_controller_1.getUserList)();
