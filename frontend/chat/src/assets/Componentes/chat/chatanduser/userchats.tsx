@@ -10,9 +10,11 @@ function Chatuser() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex justify-between w-full bg-[#101015]">
       <Person onUserClick={handleUserClick} />
-      {selectedUser && <Mensajes selectedUser={selectedUser}/>}
+      <div className="bg-[#101015]">
+      {selectedUser && <Mensajes selectedUser={selectedUser} userId={0}/>}
+    </div>
     </div>
   );
 }

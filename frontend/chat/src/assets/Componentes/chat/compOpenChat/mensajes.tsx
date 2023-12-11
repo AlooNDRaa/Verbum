@@ -71,27 +71,26 @@ function Mensajes(props: MensajesProps) {
     return (
         <>
             <Navopen selectedUser={selectedUser} />
-            <div className="w-full h-screen bg-[#161616] opacity-90 flex items-center justify-center pb-[48px]">
-                <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-fit p-2 ">
+            <div className="w-[70rem] bg-[#101015] grid justify-center">
+                <ul className="overflow-y-scroll  p-40 max-h-[30rem]">
+                    {displayedChats.map((chat, i) => (
+                        <li className={`text-white text-1xl my-2 p-2 table rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[40vw]' : `bg-[#f472b6]`}`} key={i}>
+                            <span className="font-bold block">{chat.from}</span>
+                            <span className="text-sm">{chat.body}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+                <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-fit px-2 ">
                     <input
                         type="text"
                         placeholder="Escribir"
                         value={chat}
                         onChange={(e) => setChat(e.target.value)}
-                        className="text-white bg-[#ec4899] border-stone-700 bg-stone-900 rounded-md flex-auto h-[50px]"
+                        className="text-white border-stone-700 bg-stone-900 rounded w-[64rem] flex-auto h-[50px]"
                     />
-                    <button type="submit" className="text-[#fdf4ff]">Enviar</button>
+                    <button type="submit" className="text-[#fdf4ff] bg-pink-800 rounded p-2">Enviar</button>
                 </form>
-                <ul className="overflow-y-scroll w-[70rem]  h-[40rem]">
-                    {displayedChats.map((chat, i) => (
-                        <li className={`text-white text-1xl my-2 p-2 table rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[40vw]' : `bg-[#f472b6] mr[5vw]`}`} key={i}>
-                            <span className="font-bold block">{chat.from}</span>
-                            <span className="text-sm">{chat.body}</span>
-                            {/* <span className="font-bold block">{chat.receptor}</span>  */}
-                        </li>
-                    ))}
-                </ul>
-            </div>
         </>
     );
 }
