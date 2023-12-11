@@ -4,19 +4,22 @@ import express, { Request, Response, urlencoded } from 'express';
 import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
 import { configureDatabase } from '../models/usermodel/user.model';
 import { configureDatabase2 } from '../models/egmodel/egg.model';
-// import { Server as SocketServer, Socket } from 'socket.io';
+ //import { Server as SocketServer, Socket } from 'socket.io';
 import { configureSocket } from '../socketConnection/socket.mannage';
+import { configureDatabase3, saveMovimientos } from '../models/gamemodel/game.model';
 import mysql, { Connection } from 'mysql2';
 import sequelize from '../config/database';
 // import Console from 'console';
 import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
+import router from '../routes/gameRoutes/game.routes';
 
 const PORT = process.env.PORT || 3000;
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
 const io = configureSocket(server);
+
 
 
 
@@ -30,27 +33,6 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 dotenv.config();
 
-// let gameState = {
-//   history: [{ squares: Array(9).fill(null) }],
-//   stepNumber: 0,
-//   xIsNext: true,
-// };
-
-// io.on("connection", (socket: Socket) => {
-//   Console.log("client connected")
-
-//   socket.emit('gameState', gameState);
-
-//   socket.on('move', ({ squares }) => {
-//     gameState = {
-//       history: [...gameState.history, { squares }],
-//       stepNumber: gameState.history.length,
-//       xIsNext: !gameState.xIsNext,
-//     };
-
-//     io.emit('gameState', gameState);
-//   });
-// })
 
 
 const db: Connection = mysql.createConnection({
@@ -68,6 +50,7 @@ db.connect((err) => {
   }
   configureDatabase(db);
   configureDatabase2(db);
+  configureDatabase3(db);
 });
 
 sequelize.sync().then(() => {
@@ -81,6 +64,8 @@ app.post('/newuser', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
 app.post('/messages', setupChatRoutes);
 app.get('/userchat', setupChatRoutes);
+app.get('/game-users', router);
+app.post('/movimientos', router);
 
 
 
