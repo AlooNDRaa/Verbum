@@ -20,7 +20,7 @@ export async function configureSocket(server: any) {
 
       socket.broadcast.emit('chat', {
         body: body,
-        from: socket.id.slice(6),
+        from: "me",
       });
 
       console.log(socket.id);

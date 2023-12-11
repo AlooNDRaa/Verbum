@@ -62,7 +62,7 @@ app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/newuser', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
-app.post('/mensajes', setupChatRoutes);
+app.post('/messages', setupChatRoutes);
 app.get('/userchat', setupChatRoutes);
 app.get('/game-users', router);
 app.post('/movimientos', router);

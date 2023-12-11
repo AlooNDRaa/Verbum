@@ -78,7 +78,7 @@ app.get('/user', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/login', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/newuser', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/password', (0, egg_route_1.setupEggRoutesWithDb)(db));
-app.post('/mensajes', chat_routes_1.default);
+app.post('/messages', chat_routes_1.default);
 app.get('/userchat', chat_routes_1.default);
 app.get('/game-users', game_routes_1.default);
 app.post('/movimientos', game_routes_1.default);

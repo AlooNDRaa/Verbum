@@ -7,7 +7,9 @@ import { useAuth } from '../token/auth/authprovider';
 
 
 function Navbar(): JSX.Element {
-  const [click] = useState(false);
+
+  const [click, setClick] = useState(false);
+    const handleClick = () => setClick(!click);
   useAuth();
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ function Navbar(): JSX.Element {
           <Link to="/home">
               <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Home</li>
             </Link>
-            <Link to="/chat">
+            <Link to="/chats">
               <li className='my-4 py-4 border-b border-pink-600 hover:bg-pink-600 hover:rounded'>Chat</li>
             </Link>
             <Link to="/game">
@@ -55,7 +57,7 @@ function Navbar(): JSX.Element {
                   <Link to="/home">
                     <li className='hover:text-pink-600 font-semibold transition border-b-2   border-slate-900 hover:border-pink-600 hover:scale-105 cursor-pointer -mt-2'>Home</li>
                   </Link>
-                <Link to="/chat">
+                <Link to="/chats">
                     <li className='hover:text-pink-600 font-semibold transition border-b-2   border-slate-900 hover:border-pink-600 hover:scale-105 cursor-pointer -mt-2'>Chat</li>
                   </Link>
                 <Link to="/game">
@@ -73,10 +75,10 @@ function Navbar(): JSX.Element {
               </button>
                 </div>
                 <div>
-                   {click && content}
+                {click && content}
                 </div>
 
-                <button className='block z-40 lg:hidden transition' onClick={handleLogoutClick}>
+                <button className='block z-40 lg:hidden transition' onClick={handleClick}>
                   {click ? <FaTimes/> : <CiMenuFries/>}  
                 </button>
            </div>

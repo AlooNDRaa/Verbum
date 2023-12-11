@@ -20,7 +20,7 @@ export default function LoginForm() {
 
     setTimeout(() => {
       handleLogin();
-    }, 3 * 1000);
+    }, 7 * 1000);
   }, [navigate, setToken]); 
 
   const handleEmailChange = (e: { target: { value: SetStateAction<string> }; }) => {
