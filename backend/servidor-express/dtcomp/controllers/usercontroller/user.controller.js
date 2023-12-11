@@ -68,7 +68,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield UserModel.loginUser(email, password);
         if (result[0].length > 0) {
             const token = jsonwebtoken_1.default.sign({ email }, "Stack", {
-                expiresIn: '2m'
+                expiresIn: '3m'
             });
             res.send({ token });
             // res.status(200).json({ message: 'Inicio de sesión exitoso' });

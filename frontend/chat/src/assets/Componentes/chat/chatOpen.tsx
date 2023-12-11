@@ -1,5 +1,9 @@
-import Navopen from "./compOpenChat/navOpenChat";
-import Mensajes from "./compOpenChat/mensajes"
+// import Navopen from "./compOpenChat/navOpenChat";
+// import Mensajes from "./compOpenChat/mensajes";
+// // import PersonasChat from "../chat/buscador+personas"
+// import NavChat from "../chat/navChat"
+
+import Chatuser from "./chatanduser/userchats";
 
 
 function Chatopen (){
@@ -7,9 +11,8 @@ function Chatopen (){
     return(
         <>
        
-        <div className="w-full"> 
-            <Navopen/>
-            <Mensajes/>
+        <div className="w-full flex h-screen items-stretch "> 
+          <Chatuser/>
         </div>
         </>
     )

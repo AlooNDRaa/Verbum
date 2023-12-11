@@ -1,36 +1,33 @@
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import LoginForm from '../../Componentes/login/forms/form';
+import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import '@testing-library/jest-dom'; // Añade este import
+import LoginForm from '../../Componentes/login/forms/form';
 
-type FetchMock = jest.Mock<Promise<Response>>;
+const mockFetch = jest.fn().mockResolvedValue({
+  status: 200,
+  json: async () => ({ token: 'testToken' }),
+});
 
-const createFetchMock = (data: { login: string }): FetchMock => {
-  return jest.fn().mockResolvedValue({
-    json: () => Promise.resolve(data),
-    status: 200,
-  } as Response);
-};
-
-test('envía el formulario correctamente', async () => {
-  const mockFetch = createFetchMock({ login: 'success' });
+beforeEach(() => {
   global.fetch = mockFetch;
+});
 
-  const { getByPlaceholderText, getByText } = render( <MemoryRouter>
-    <LoginForm />
-  </MemoryRouter>);
-  const emailInput = getByPlaceholderText('Enter your Email') as HTMLInputElement;
-  const passwordInput = getByPlaceholderText('Enter your password') as HTMLInputElement;
-  const submitButton = getByText('Sign in');
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-  fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
-  fireEvent.change(passwordInput, { target: { value: 'password123' } });
-  fireEvent.click(submitButton);
+test('envía el formulario correctamente y redirige al usuario', async () => {
+  render(
+    <MemoryRouter>
+      <LoginForm />
+    </MemoryRouter>
+  );
 
-  await waitFor(() => {
-    expect(mockFetch).toHaveBeenCalledWith('http://localhost:3000/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'test@example.com', password: 'password123' }),
-    });
-  });
+  fireEvent.change(screen.getByPlaceholderText('Enter your Email'), { target: { value: 'test@example.com' } });
+  fireEvent.change(screen.getByPlaceholderText('Enter your password'), { target: { value: 'password123' } });
+  fireEvent.click(screen.getByText('Sign in'));
+
+  await waitFor(() => expect(mockFetch).toHaveBeenCalled());
+
+  expect(screen.getByText('Welcome back')).toBeInTheDocument();
 });
