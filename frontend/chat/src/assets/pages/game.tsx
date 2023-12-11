@@ -105,10 +105,10 @@ export function GameCYR() {
             <Square isSelected={turn === TURNS.X} updateBoard={() => { }} index={0}
 
             >
-               {turn === TURNS.X && usernames.length > 0 && usernames[0]}
+               {TURNS.X}
             </Square>
             <Square isSelected={turn === TURNS.O} updateBoard={() => { }} index={0}>
-            {turn === TURNS.O && usernames.length > 1 && usernames[1]}
+            {TURNS.O}
             </Square>
           </section>
         </div>
