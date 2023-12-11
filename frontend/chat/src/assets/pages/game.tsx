@@ -102,10 +102,8 @@ export function GameCYR() {
         </div>
         <div className='son4'>
           <section className='turn flex justify-center relative bottom-0 rounded-lg'>
-            <Square isSelected={turn === TURNS.X} updateBoard={() => { }} index={0}
-
-            >
-               {turn === TURNS.X && usernames.length > 0 && usernames[0]}
+          <Square isSelected={turn === TURNS.O} updateBoard={() => { }} index={0}>
+            {TURNS.O}
             </Square>
             <Square isSelected={turn === TURNS.O} updateBoard={() => { }} index={0}>
             {turn === TURNS.O && usernames.length > 1 && usernames[1]}
