@@ -1,97 +1,99 @@
 # Verbum - Chat
 
-This project was created for the Full Stack Web Development Course from [SomosCoders]
-(https://somoscoders.org/es)
+It all starts with a Verbum, Our first chat project as a Somos Coders task.
 
 ## Overview
 
-### The task 
+### As a user I am looking for:
 
-Users should be able to:
-
-- View the optimal layout for the site depending on their device's screen size.
-- Navigate through the different sections of the page.
-- Being able to manipulate the elements correctly with their respective function and that the user is satisfied with this.
-
-### Screenshots & Figma
-
-![Desktop view](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(66).png)
-![Desktopimg](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(58).png)
-![Calendarimg](./frontend/src/assets/img/readmeIMG/Foto%201.jpeg)
-![Stadisticsimg](./frontend/src/assets/img/readmeIMG/Foto%202.jpeg)
-![ABoutimg](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(60).png)
-
-![mobile](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(61).png)
-![mobile2](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(64).png)
+- All parts of the page can be entered correctly.
+- Navigate correctly without redirecting me to the wrong place.
+- Being able to interact with the elements of the page without any problem.
 
 
+### Views:
 
-### Built with
+![Desktop-view](./frontend/chat/src/assets/imgs/Verbumimgs/Login.PNG)
+![Desktop-view/register](./frontend/chat/src/assets/imgs/Verbumimgs/createUser.PNG)
+![Home](./frontend/chat/src/assets/imgs/Verbumimgs/Home.PNG)
+![Chat](./frontend/chat/src/assets/imgs/Verbumimgs/chats.PNG)
+![ABoutimg](./frontend/chat/src/assets/imgs/Verbumimgs/about-us.PNG)
 
-- HTML5
-- Css
-- JavasCript
-- Node Js
-- Typescript
-- Tailwind css
+![mobile](./frontend/chat/src/assets/imgs/Verbumimgs/Verbumhomephone.PNG)
+![mobile2](./frontend/chat/src/assets/imgs/Verbumimgs/menuphone.PNG)
+![mobile2](./frontend/chat/src/assets/imgs/Verbumimgs/herramientas.PNG)
+
+### technologies
+
 - React 
+- Typescript
+- Node Js
+- Tailwind css
+- Jest
+- Axios
 - Vite
 - Express 
+- Dotenv
+
+
+### Installation Manual
+
 
 ## Authors
 
 - Github - [BrendaRuthHerrera](https://github.com/BrendaRuthHerrera)
 - Github - [AlooNDRaa](https://github.com/AlooNDRaa)
-- Github - [FlorPereyra](https://github.com/FlorPereyra)
-- Github - [MartinaGV1](https://github.com/MartinaGV1)
-- Github - [Guillermina GB](https://github.com/Guilleggb)
+- Github - [Arleth-cordero20](https://github.com/Arleth-cordero20)
+- Github - [Ysluna](https://github.com/Ysluna)
 
 
----
+-------------
 
 # Verbum - Chat
 
-Este proyecto fue creado para el curso FullStackWebDevelopment desde [SomosCoders]
-(https://somoscoders.org/es)
+Todo comienza con un Verbum, Nuestro primer proyecto de chat como tarea de Somos Coders.
 
 ## Overview
 
-### La tarea 
+### Como usuario estoy buscando:
 
-Los usuarios deben ser capaces de:
+- Se pueda ingresar correctamente a todas las partes de la pagina.
+- Navegar correctamente sin redirigirme a un lugar incorrecto.
+- Poder interactuar con los elementos de la página sin ningún problema.
 
-- Ver el diseño óptimo para el sitio según el tamaño de pantalla de su dispositivo.
-- Navegar por las diferentes secciones de la página.
-- Poder manipular los elementos correctamente con su respectiva función y que el usuario quede satisfecho con ello.
+### Vistas:
 
-### Screenshots & Figma
+![Desktop-view](./frontend/chat/src/assets/imgs/Verbumimgs/Login.PNG)
+![Desktop-view/register](./frontend/chat/src/assets/imgs/Verbumimgs/createUser.PNG)
+![Home](./frontend/chat/src/assets/imgs/Verbumimgs/Home.PNG)
+![Chat](./frontend/chat/src/assets/imgs/Verbumimgs/chats.PNG)
+![ABoutimg](./frontend/chat/src/assets/imgs/Verbumimgs/about-us.PNG)
 
-![Desktop view](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(54).png)
-![Desktopimg](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(58).png)
-![Calendarimg](./frontend/src/assets/img/readmeIMG/Foto%201.jpeg)
-![Stadisticsimg](./frontend/src/assets/img/readmeIMG/Foto%202.jpeg)
-![ABoutimg](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(60).png)
-
-![mobile](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(61).png)
-![mobile2](./frontend/src/assets/img/readmeIMG/Captura%20de%20pantalla%20(64).png)
+![mobile](./frontend/chat/src/assets/imgs/Verbumimgs/Verbumhomephone.PNG)
+![mobile2](./frontend/chat/src/assets/imgs/Verbumimgs/menuphone.PNG)
+![mobile2](./frontend/chat/src/assets/imgs/Verbumimgs/herramientas.PNG)
 
 
-### Hecho con:
+### Tecnologías
 
-- HTML5
-- Css
-- JavasCript
-- Node Js
-- Typescript
-- Tailwind css
 - React 
+- Typescript
+- Node Js
+- Tailwind css
+- Jest
+- Axios
 - Vite
 - Express 
+- Dotenv
+
+
+### Installation Manual
+
+
 
 ## Autores
 
 - Github - [BrendaRuthHerrera](https://github.com/BrendaRuthHerrera)
 - Github - [AlooNDRaa](https://github.com/AlooNDRaa)
-- Github - [FlorPereyra](https://github.com/FlorPereyra)
-- Github - [MartinaGV1](https://github.com/MartinaGV1)
-- Github - [Guillermina GB](https://github.com/Guilleggb)
+- Github - [Arleth-cordero20](https://github.com/Arleth-cordero20)
+- Github - [Ysluna](https://github.com/Ysluna)

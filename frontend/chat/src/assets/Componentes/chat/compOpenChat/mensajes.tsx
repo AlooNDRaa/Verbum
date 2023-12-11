@@ -72,7 +72,7 @@ function Mensajes(props: MensajesProps) {
         <>
             <Navopen selectedUser={selectedUser} />
             <div className="w-[70rem] bg-[#101015] grid justify-center">
-                <ul className="overflow-y-scroll  p-40 max-h-[30rem]">
+                <ul className="overflow-y-scroll   p-40 max-h-[30rem]">
                     {displayedChats.map((chat, i) => (
                         <li className={`text-white text-1xl my-2 p-2 table rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[40vw]' : `bg-[#f472b6]`}`} key={i}>
                             <span className="font-bold block">{chat.from}</span>
@@ -81,7 +81,7 @@ function Mensajes(props: MensajesProps) {
                     ))}
                 </ul>
             </div>
-                <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-fit px-2 ">
+                <form onSubmit={handleSubmit} className="absolute gap-2 bottom-0 flex items-stretch w-fit px-2 ">
                     <input
                         type="text"
                         placeholder="Escribir"
