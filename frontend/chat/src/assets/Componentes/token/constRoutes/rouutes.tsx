@@ -5,7 +5,7 @@ import { Error404 } from "../../../pages/errorpage";
 import Home from "../../../pages/home";
 import Chat from "../../../pages/chat";
 import Blog from "../../../pages/blog";
-import { GameCYR } from "../../../pages/gamep";
+import { GameCYR } from "../../../pages/game";
 import { ThePrivatePage } from "../../../pages/private";
 import { useAuth } from "../auth/authprovider";
 import Chatopen from "../../chat/chatOpen";

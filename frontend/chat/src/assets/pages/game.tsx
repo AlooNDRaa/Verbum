@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect  } from 'react'
 import confetti from 'canvas-confetti'
 import { Square } from '../Componentes/game/square'
 import { TURNS } from '../Componentes/game/logic/constants'
@@ -33,7 +33,7 @@ export function GameCYR() {
     // Obtén los nombres de usuario al cargar el componente
     useEffect(() => {
       // Hacer la solicitud al backend para obtener los nombres de usuario
-      fetch('http://localhost:3000/game-users')  // Reemplaza la URL con la ruta correcta
+      fetch('http://localhost:3000/game-users') 
         .then(response => response.json())
         .then(data => setUsernames(data))
         .catch(error => console.error('Error al obtener usuarios del juego', error));
@@ -71,6 +71,12 @@ export function GameCYR() {
     } else if (checkEndGame(newBoard)) {
       setWinner(false) // empate
     }
+
+    socket.emit('updateBoard' , {
+      index: index,
+      board: newBoard,
+      turn: newTurn
+    });
   }
 
   return (
@@ -114,7 +120,5 @@ export function GameCYR() {
     </main>
   )
 }
-function useEffect(arg0: () => void, arg1: never[]) {
-  throw new Error('Function not implemented.')
-}
+
 

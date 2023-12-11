@@ -34,6 +34,17 @@ function configureSocket(server) {
                 io.emit('userList', updatedUserList);
             }));
         }));
+        io.on('connection', (socket) => {
+            console.log('Jugador conectado:', socket.id);
+            socket.on('move', (data) => {
+                // Manejar el movimiento del juego
+                io.emit('gameState', data); // Emitir el estado del juego a todos los jugadores
+            });
+            socket.on('disconnect', () => {
+                console.log('Jugador desconectado:', socket.id);
+                // Lógica de desconexión del juego
+            });
+        });
     });
 }
 exports.configureSocket = configureSocket;

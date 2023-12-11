@@ -6,8 +6,8 @@ export const saveGameToStorage = async ({ board, turn }: { board: any[]; turn: s
 
   // Enviar los movimientos al servidor
   try {
-    const response = await fetch('/movimientos', {
-      method: 'POST',
+    const response = await fetch('http://localhost:3000/movimientos', {
+      method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
       },

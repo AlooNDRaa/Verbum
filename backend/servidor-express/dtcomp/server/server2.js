@@ -32,14 +32,16 @@ const express_1 = __importStar(require("express"));
 const egg_route_1 = require("../routes/eggroutes/egg.route");
 const user_model_1 = require("../models/usermodel/user.model");
 const egg_model_1 = require("../models/egmodel/egg.model");
-// import { Server as SocketServer, Socket } from 'socket.io';
+//import { Server as SocketServer, Socket } from 'socket.io';
 const socket_mannage_1 = require("../socketConnection/socket.mannage");
+const game_model_1 = require("../models/gamemodel/game.model");
 const mysql2_1 = __importDefault(require("mysql2"));
 const database_1 = __importDefault(require("../config/database"));
 // import Console from 'console';
 const dotenv_1 = __importDefault(require("dotenv"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
+const game_routes_1 = __importDefault(require("../routes/gameRoutes/game.routes"));
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -52,23 +54,6 @@ app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.set('view engine', 'ejs');
 dotenv_1.default.config();
-// let gameState = {
-//   history: [{ squares: Array(9).fill(null) }],
-//   stepNumber: 0,
-//   xIsNext: true,
-// };
-// io.on("connection", (socket: Socket) => {
-//   Console.log("client connected")
-//   socket.emit('gameState', gameState);
-//   socket.on('move', ({ squares }) => {
-//     gameState = {
-//       history: [...gameState.history, { squares }],
-//       stepNumber: gameState.history.length,
-//       xIsNext: !gameState.xIsNext,
-//     };
-//     io.emit('gameState', gameState);
-//   });
-// })
 const db = mysql2_1.default.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -84,6 +69,7 @@ db.connect((err) => {
     }
     (0, user_model_1.configureDatabase)(db);
     (0, egg_model_1.configureDatabase2)(db);
+    (0, game_model_1.configureDatabase3)(db);
 });
 database_1.default.sync().then(() => {
     console.log('Base de datos conectada arlu');
@@ -94,6 +80,8 @@ app.post('/newuser', (0, user_routes_1.setupUserRoutes)(db));
 app.post('/password', (0, egg_route_1.setupEggRoutesWithDb)(db));
 app.post('/mensajes', chat_routes_1.default);
 app.get('/userchat', chat_routes_1.default);
+app.get('/game-users', game_routes_1.default);
+app.post('/movimientos', game_routes_1.default);
 server.listen(PORT, () => {
     console.log(`Servidor en ejecución en el puerto http://localhost:${PORT}`);
 });

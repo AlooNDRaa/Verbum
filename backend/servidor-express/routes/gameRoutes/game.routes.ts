@@ -1,11 +1,15 @@
 import express, { Router, Request, Response } from 'express';
-import { Connection } from 'mysql2';
-import { DbService } from '../../dtservice/dt.service';
 import { getGameUsers } from '../../controllers/gamecontroller/game.controller';
+import { saveMovimientos } from '../../controllers/gamecontroller/game.controller';
+
+const router: Router = express.Router();
+
+router.use(express.json());
+
+router.get('/game-users', (req: Request, res: Response) => getGameUsers(req, res));
+
+router.post('/movimientos',(req: Request, res: Response) => saveMovimientos(req, res));
 
 
-const routesGame: Router = express.Router();
 
-routesGame.get('/game-users', (req: Request, res: Response) => getGameUsers(DbService, req, res));
-
-export default routesGame;
+export default router;
