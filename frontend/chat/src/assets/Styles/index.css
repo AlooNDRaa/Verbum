@@ -68,7 +68,6 @@ section::before {
 section span {
   width: calc(6.25vw - 2px);
   height: calc(6.25vw - 2px);
-  background: hsl(0, 0%, 9%);
   transition: 1.5s;
 }
 

@@ -1,10 +1,10 @@
   import { CiChat1, CiAlignBottom  } from "react-icons/ci";
   import { IoLogoGameControllerB } from "react-icons/io";
   import { IconType } from "react-icons";
-  import chat2 from '../../../imgs/chat1.png'
+  import chat2 from '../../../imgs/gifts/chatgif.gif'
   import Game from '../../../imgs/game.png'
   import herramientas from '../../../imgs/herramientas.png'
-  import recuperacion from '../../../imgs/seguro.png'
+  import recuperacion from '../../../imgs/gifts/seguridad.gif'
   import { SiSpringsecurity } from "react-icons/si";
   
   
@@ -24,13 +24,13 @@
     },
     {
       icon: CiAlignBottom,
-      title: "Herramientas",
+      title: "Tools",
       content: "",
       backgroundImage: herramientas,
     },
     {
       icon: SiSpringsecurity,
-      title: "Seguro",
+      title: "Secutity",
       content: "",
       backgroundImage: recuperacion,
     },

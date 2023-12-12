@@ -30,10 +30,10 @@ function Home() {
                     className="logo-hover-image absolute h-[32rem] inset-0 opacity-0 group-hover:opacity-100 transition-duration-500 ease-in-out"/>
                 </div>
             </div>
-            <div className='slider-cont flex justify-center py-2 mt-7 hidden lg:flex'>
+            <div className='slider-cont flex justify-center py-2 mt-7 hidden lg:flex pb-12'>
                 <ActiveSlider/>
             </div>
-            <div className='pt-[10rem] lg:pt-[17rem]'>
+            <div className='bottom-0'>
                 <Footer/>
             </div>
         </div>

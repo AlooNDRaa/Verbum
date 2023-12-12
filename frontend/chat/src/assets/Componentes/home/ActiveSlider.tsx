@@ -12,12 +12,12 @@ const ActiveSlider = () => {
         <Swiper
           breakpoints={{  
             340: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 15
             },
             700: {
               slidesPerView: 2,
-              spaceBetween: 15
+              spaceBetween: 16
             },
             1000: {
               slidesPerView: 3,
@@ -30,7 +30,7 @@ const ActiveSlider = () => {
              clickable: true
            }}
            modules={[FreeMode, Pagination]}
-           className='w-[22rem] lg:w-[30rem] xl:w-[70rem] mb-[5%] mt-[25%]'
+           className='w-[22rem] lg:w-[59rem] xl:w-[70rem]  m-12'
         > 
         {ServiceData.map((item) => (
         <SwiperSlide key={item.title}>
