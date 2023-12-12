@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../token/auth/authprovider';
 
 
-function Navbar(): JSX.Element {
+function Navbar({ theme, changeTheme }: { theme: boolean, changeTheme: (newTheme: boolean) => void }): JSX.Element {
 
   const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
@@ -17,6 +17,9 @@ function Navbar(): JSX.Element {
     localStorage.removeItem('token');
         navigate("/", { replace: true });
   };
+
+  // const [theme, setTheme] = useState(true);
+
 
     const content = <>
        <div className="lg:hidden block absolute bg-[#000] bg-opacity-90  top-0 left-0 right-0 transition rounded-md">
@@ -47,7 +50,7 @@ function Navbar(): JSX.Element {
 
     return (
         <nav>
-           <div className="fixed top-0 left-0 right-0 flex justify-between bg-[#191A26] bg-opacity-70 z-50 items-center text-white lg:py-8 xl:py-12 px-9 h-[4rem]">
+           <div className={`fixed top-0 left-0 right-0 flex justify-between ${theme ? 'bg-[#191A26]' : 'bg-[#ffff]'} bg-opacity-70 z-50 items-center text-white lg:py-8 xl:py-12 px-9 h-[4rem]`}>
                 <div className="flex flex-1">
                 <img src={Logo} alt="img-logo" className="w-6 h-6  sm:w-8 sm:h-8 md:w-15 md:h-15 lg:w-10 lg:h-10 xl:w-12 xl:h-12"/>
                 </div>
@@ -77,7 +80,9 @@ function Navbar(): JSX.Element {
                 <div>
                 {click && content}
                 </div>
-
+                <button className='h-6 bg-cyan-900' onClick={() => {changeTheme(!theme)} }>
+                  Change theme
+                </button>
                 <button className='block z-40 lg:hidden transition' onClick={handleClick}>
                   {click ? <FaTimes/> : <CiMenuFries/>}  
                 </button>

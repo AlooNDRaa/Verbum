@@ -1,0 +1,49 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    colors: {
+      lightmode: {
+        "blanco": "#CFF5E7", 
+        "verdeagua": "#A0E4CB", 
+        "verdeagua2": "#59C1BD", 
+        "azul": "#0D4C92", 
+        "azul2" : "#5893D4",
+        "azul3" : "#005B96",
+      },
+      darkmode: {
+        "azul1": "#071E3D",
+        "azul2": "#1F4287",
+        "azul3": "#1C3655",
+        "verdeagua1": "#278EA5",
+        "verdeagua2": "#21E6C1",
+        "blanco": "#CAEDFF",
+      }
+    },
+    screens: {
+      'mobile': {'min': '100px', 'max': '700px'},
+      'desktop': {'min': '701px', 'max': '3000px'}
+    }
+  },
+  plugins: [],
+}
+
+Pasos para colocar y cambiar de dark a light mode y viceversa.
+
+1- Primero colocar dentro de la funcion de tu archivo de pagina principal lo siguiente: 
+          const [theme, setTheme] = useState(true); [Esto quedaria debajo de la funcion pero dentro de ella]
+
+2- colocar dentro de las props de Navbar lo siguiente: (Este obviamente esta en la pagina, no en los componentes que tengas)
+              <NavBar theme={theme} changeTheme={() => {setTheme(!theme)}} /> (Unicamente este componente tendra el set y change theme.)
+
+3- agregar theme={theme} dentro del componente (<NavBar theme={theme} />) y (SideBar).
+
+
+En tus demas componentes deberia ser de esta forma:
+"      <div className={`${ theme ? 'bg-darkmode-azul1 text-darkmode-verdeagua1' : 'bg-lightmode-blanco text-lightmode-azul'} flex h-screen`}>"
+
+se utiliza dentro del className la esturctura asi: las llaves {``} con backSticks dentro y para agregar theme utilizas ${theme ? '' : ''} con esa esturctura
+se puede cambiar fondo y colores de los textos. De esta forma es como se cambia. 
