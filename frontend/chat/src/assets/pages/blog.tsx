@@ -4,6 +4,7 @@ import AboutUs from "../Componentes/aboutUs/About-us";
 import { Team } from "../Componentes/aboutUs/team";
 import { Tools } from "../Componentes/aboutUs/tools";
 import SimpleSlider from "../Componentes/aboutUs/news";
+import { useState } from "react";
 
 function Blog() {
 
@@ -30,10 +31,12 @@ function Blog() {
     }
   ];
 
+  const [theme, setTheme] = useState(true);
+
   return (
     <>
       <div className='bg-[#101015] grid relative '>
-            <Navbar/>
+        <Navbar theme={theme} changeTheme={() => {setTheme(!theme)}} />
             <div className="mt-9 ">
                <AboutUs/>
             </div>

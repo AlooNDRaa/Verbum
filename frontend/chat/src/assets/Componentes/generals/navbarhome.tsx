@@ -4,6 +4,7 @@ import { CiMenuFries } from 'react-icons/ci';
 import Logo from '../../imgs/verbumlog.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../token/auth/authprovider';
+import { GiChampagneCork } from 'react-icons/gi';
 
 
 function Navbar({ theme, changeTheme }: { theme: boolean, changeTheme: (newTheme: boolean) => void }): JSX.Element {
@@ -81,7 +82,7 @@ function Navbar({ theme, changeTheme }: { theme: boolean, changeTheme: (newTheme
                 {click && content}
                 </div>
                 <button className='h-6 bg-cyan-900' onClick={() => {changeTheme(!theme)} }>
-                  Change theme
+                  <GiChampagneCork/>
                 </button>
                 <button className='block z-40 lg:hidden transition' onClick={handleClick}>
                   {click ? <FaTimes/> : <CiMenuFries/>}  
