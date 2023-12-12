@@ -70,27 +70,31 @@ function Mensajes(props: MensajesProps) {
 
     return (
         <>
-            <Navopen selectedUser={selectedUser} />
-            <div className="w-[70rem] bg-[#101015] grid justify-center">
-                <ul className="overflow-y-scroll   p-40 max-h-[30rem]">
-                    {displayedChats.map((chat, i) => (
-                        <li className={`text-white text-1xl my-2 p-2 table rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[40vw]' : `bg-[#f472b6]`}`} key={i}>
-                            <span className="font-bold block">{chat.from}</span>
-                            <span className="text-sm">{chat.body}</span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-                <form onSubmit={handleSubmit} className="absolute gap-2 bottom-0 flex items-stretch w-fit px-2 ">
-                    <input
-                        type="text"
-                        placeholder="Escribir"
-                        value={chat}
-                        onChange={(e) => setChat(e.target.value)}
-                        className="text-white border-stone-700 bg-stone-900 rounded w-[64rem] flex-auto h-[50px]"
-                    />
-                    <button type="submit" className="text-[#fdf4ff] bg-pink-800 rounded p-2">Enviar</button>
-                </form>
+          <Navopen selectedUser={selectedUser} />
+          <div className="w-[75rem] flex items-center justify-center">
+            <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-1/2 p-2 ">
+              <input
+                type="text"
+                placeholder="Escribir"
+                value={chat}
+                onChange={(e) => setChat(e.target.value)}
+                className="text-white border-stone-700 bg-stone-900 rounded-md flex-auto h-[50px]"
+              />
+              <button type="submit" className="text-[#fdf4ff]">Enviar</button>
+            </form>
+            <ul className="overflow-y-auto w-full h-[30rem] text-clip overflow-hidden">
+              {displayedChats.map((chat, i) => (
+                <li
+                  style={{ maxWidth: "600px", overflowWrap: "break-word" }}
+                  className={`text-white text-1xl my-2 p-2 rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[63rem] mr-7' : `bg-[#f472b6] block ml-[3rem]`}`}
+                  key={i}
+                >
+                  <span className="font-bold block">{chat.from}</span>
+                  <span className="text-sm">{chat.body}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </>
     );
 }

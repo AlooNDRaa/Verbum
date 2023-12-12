@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function Home() {
     return (
     <>
-        <div className='bg-[#101015]'>
+        <div className='bg-[#101015] relative h-screen'>
             <Navbar/>
             <div className='grid xl:grid-cols-2 xl:gap-[10rem] pt-[7rem]'>
                  <div className='flex flex-col lg:ml-12 lg:mt-[5rem] text-center'>
@@ -20,7 +20,7 @@ function Home() {
                     <h2 className='font-semibold text-pink-600 text-2xl lg:text-3xl hover:uppercase mt-2 lg:mt-6'>Now you can be everywhere!!</h2>
                     <h2 className='font-semibold text-gray-500 text-xl lg:text-2xl hover:uppercase hover:text-transparent mt-2 lg:mt-8'>Even without leaving a trace...</h2>
                 </div>
-                <div className=' lg:hidden lx:hidden grid justify-center mb-9'>
+                <div className=' lg:hidden lx:hidden grid justify-center'>
                 <ActiveSlider/>
                 </div>
                 <div className='img-conts ml-15 mt-4 hidden xl:flex relative group'>
@@ -30,10 +30,10 @@ function Home() {
                     className="logo-hover-image absolute h-[32rem] inset-0 opacity-0 group-hover:opacity-100 transition-duration-500 ease-in-out"/>
                 </div>
             </div>
-            <div className='slider-cont flex justify-center py-2 mt-7 hidden lg:flex pb-12'>
+            <div className='slider-cont bg-[#101015] justify-center py-2 mt-7 hidden lg:flex pb-28'>
                 <ActiveSlider/>
             </div>
-            <div className='bottom-0'>
+            <div className='bottom bg-[#101015] relative'>
                 <Footer/>
             </div>
         </div>

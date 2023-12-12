@@ -30,13 +30,13 @@ const ActiveSlider = () => {
              clickable: true
            }}
            modules={[FreeMode, Pagination]}
-           className='w-[22rem] lg:w-[59rem] xl:w-[70rem]  m-12'
+           className='w-[22rem] lg:w-[60rem] xl:w-[86rem]  m-12'
         > 
         {ServiceData.map((item) => (
         <SwiperSlide key={item.title}>
           <div className='flex opacity-70 group shadow-lg text-white p-2 text-sm lg:text-medium lg:px-6 lg:py-8 h-[15rem] w-[15rem] lg:h-[30rem] lg:w-[50%] cursor-pointer'>
               <div
-                className='absolute inset-0 bg-cover bg-center'
+                className='absolute inset-0 bg-no-repeat  bg-cover  bg-center'
                 style={{ backgroundImage: `url(${item.backgroundImage})` }}
               />
              <div className='absolute inset-0 bg-[#191A26] group-hover:opacity-40' />

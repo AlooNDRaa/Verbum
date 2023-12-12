@@ -18,7 +18,7 @@ function Chatuser() {
   return (
     <>
       <Nav onTogglePerson={handleTogglePerson} />
-      <div className="flex justify-between w-full bg-[#101015]">
+      <div className="flex justify-between h-screen bg-[#101015]">
         {personVisible && <Person onUserClick={handleUserClick} />}
         <div>
           {selectedUser && <Mensajes selectedUser={selectedUser} userId={0} />}

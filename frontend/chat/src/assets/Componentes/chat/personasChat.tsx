@@ -23,12 +23,12 @@ interface User {
   
   return (
     <>
-      <div className="overflow-y-auto h-[43rem] text-gray-400 font-semibold">
+      <div className="overflow-y-auto h-[43rem] w-[12rem]  justify-center grid text-gray-400 font-semibold">
         {userList.map((user, index) => (
           <div
           key={index}
           onClick={() => onUserClick(user.username)} 
-          className="px-7 py-2 mt-8 hover:bg-pink-600  flex w-full gap-2">
+          className="py-2 mt-4 hover:bg-pink-600  flex">
             <div className="flex ">
               <div className="flex-none w-28 p-2">
                 {user.username}
