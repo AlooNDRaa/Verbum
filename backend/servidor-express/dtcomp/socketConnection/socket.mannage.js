@@ -36,10 +36,10 @@ function configureSocket(server) {
         }));
         io.on('connection', (socket) => {
             console.log('Jugador conectado:', socket.id);
-            socket.on('move', (data) => {
+            socket.on('move', (data) => __awaiter(this, void 0, void 0, function* () {
                 // Manejar el movimiento del juego
                 io.emit('gameState', data); // Emitir el estado del juego a todos los jugadores
-            });
+            }));
             socket.on('disconnect', () => {
                 console.log('Jugador desconectado:', socket.id);
                 // Lógica de desconexión del juego
