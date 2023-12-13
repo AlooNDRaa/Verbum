@@ -1,6 +1,6 @@
 # Verbum - Chat
 
-It all starts with a Verbum, Our first chat project as a Somos Coders task.
+It all starts with a Verbum, Our first chat project as a SomosCoders task.
 
 ## Overview
 
@@ -9,6 +9,8 @@ It all starts with a Verbum, Our first chat project as a Somos Coders task.
 - All parts of the page can be entered correctly.
 - Navigate correctly without redirecting me to the wrong place.
 - Being able to interact with the elements of the page without any problem.
+- Be able to save my registration to the page.
+- That you have something more interesting to offer.
 
 
 ### Views:
@@ -39,6 +41,7 @@ It all starts with a Verbum, Our first chat project as a Somos Coders task.
 ### Installation Manual
 
 
+
 ## Authors
 
 - Github - [BrendaRuthHerrera](https://github.com/BrendaRuthHerrera)
@@ -51,7 +54,7 @@ It all starts with a Verbum, Our first chat project as a Somos Coders task.
 
 # Verbum - Chat
 
-Todo comienza con un Verbum, Nuestro primer proyecto de chat como tarea de Somos Coders.
+Todo comienza con un Verbum, Nuestro primer proyecto de chat como tarea de SomosCoders.
 
 ## Overview
 
@@ -60,6 +63,8 @@ Todo comienza con un Verbum, Nuestro primer proyecto de chat como tarea de Somos
 - Se pueda ingresar correctamente a todas las partes de la pagina.
 - Navegar correctamente sin redirigirme a un lugar incorrecto.
 - Poder interactuar con los elementos de la página sin ningún problema.
+- Poder guardar mi registro a la página.
+- Que tenga algo más interesante que ofrecer.
 
 ### Vistas:
 
