@@ -5,7 +5,7 @@ interface NavopenProps {
   function Navopen({ selectedUser }: NavopenProps) {
     return (
       <>
-        <div className="flex justify-start bg-[#191A26] w-[75rem]">
+        <div className="flex justify-start bg-[#191A26] fixed w-full">
           <div className="h-20 p-2 px-4 ">
             <h2 className="text-white font-semibold text-2xl mt-3">{selectedUser}</h2>
           </div>

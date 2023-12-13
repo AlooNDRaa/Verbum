@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import io from "socket.io-client";
+import '../../../Styles/index.css'
 import Navopen from "./navOpenChat";
 
 const Socket = io('/');
@@ -75,23 +76,25 @@ function Mensajes(props: MensajesProps) {
 
     return (
         <>
+        <div className="fixed">
           <Navopen selectedUser={selectedUser} />
-          <div className="w-[75rem] flex items-center justify-center">
-            <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-1/2 p-2 ">
+          </div>
+          <div className="w-[69rem] flex  items-center justify-center">
+            <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-[60rem] p-2 ">
               <input
                 type="text"
                 placeholder="Escribir"
                 value={chat}
                 onChange={(e) => setChat(e.target.value)}
-                className="text-white border-stone-700 bg-stone-900 rounded-md flex-auto h-[50px]"
+                className="text-white border-stone-700 bg-[#161610] bg-opacity-60 px-4 rounded-xl flex-auto h-[4rem]"
               />
-              <button type="submit" className="text-[#fdf4ff]">Enviar</button>
+              <button type="submit" className="text-[#fdf4ff] font-semibold bg-pink-600 rounded-xl ml-1 px-3">Enviar</button>
             </form>
-            <ul className="overflow-y-auto w-full h-[30rem] text-clip overflow-hidden">
+            <ul className="overflow-y-auto w-full h-[30rem] mt-24 text-clip overflow-hidden">
               {displayedChats.map((chat, i) => (
                 <li
-                  style={{ maxWidth: "600px", overflowWrap: "break-word" }}
-                  className={`text-white text-1xl my-2 p-2 rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[63rem] mr-7' : `bg-[#f472b6] block ml-[3rem]`}`}
+                  style={{ maxWidth: "300px", overflowWrap: "break-word" }}
+                  className={`text-white text-1xl my-2 p-3 rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[50rem] mr-7 rounded-ee	 rounded-es-3xl' : `bg-[#f472b6] block ml-[3rem] rounded-se-xl	 rounded-r-3xl`}`}
                   key={i}
                 >
                   <span className="font-bold block">{chat.from}</span>

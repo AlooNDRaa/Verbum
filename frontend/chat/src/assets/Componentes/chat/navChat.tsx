@@ -8,7 +8,7 @@ interface NavProps {
 
 function Nav({ onTogglePerson }: NavProps) {
   return (
-    <main className="text-white border-r border-stone-700 w-[60px] bg-[#101015]">
+    <main className="text-white border-r border-stone-700 w-[4rem] bg-[#101015]">
       <div className="m-3">
         <Link
           to="/home"

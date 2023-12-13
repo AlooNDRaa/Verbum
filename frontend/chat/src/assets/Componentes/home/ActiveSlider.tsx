@@ -30,7 +30,7 @@ const ActiveSlider = () => {
              clickable: true
            }}
            modules={[FreeMode, Pagination]}
-           className='w-[22rem] lg:w-[60rem] xl:w-[86rem]  m-12'
+           className='w-[22rem] lg:w-[60rem] xl:w-[80rem]  m-12'
         > 
         {ServiceData.map((item) => (
         <SwiperSlide key={item.title}>

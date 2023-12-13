@@ -40,41 +40,9 @@
   }
 }
 
-/* Animacion del Juego */
-
-.board-row:after {
-  content: "";
-}
-
-.square:focus {
-  outline: none;
-}
+/* globo de chat */
 
 
-section {
-  position: fixed;
-  display: flex;
-  gap: 2px;
-  flex-wrap: wrap;
-  overflow: hidden;
-}
-
-section::before {
-  content: '';
-  position: absolute;
-}
-
-
-section span {
-  width: calc(6.25vw - 2px);
-  height: calc(6.25vw - 2px);
-  transition: 1.5s;
-}
-
-section span:hover {
-  background: linear-gradient(#e66465, #9198e5);
-  transition: 0s;
-}
 
 @media (max-width: 900px) {
   section span {
