@@ -1,10 +1,6 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
 import users from './user.chat.model';
-
-const sequelize: Sequelize = new Sequelize('verbum', 'root', '1234', {
-  host: 'localhost',
-  dialect: 'mysql',
-});
+import sequelize from '../config/database';
 
 
 interface messagesAttributes {
@@ -14,6 +10,9 @@ interface messagesAttributes {
 }
 
 class messages extends Model<messagesAttributes> {
+  static transaction() {
+    throw new Error('Method not implemented.');
+  }
   public user_id!: number;
   public message_content!: string;
 

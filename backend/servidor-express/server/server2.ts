@@ -1,15 +1,13 @@
 import { setupUserRoutes } from '../routes/userRoutes/user.routes';
-import  setupChatRoutes  from '../routes/userRoutes/chat.routes';
-import express, { Request, Response, urlencoded } from 'express';
+import  Routers  from '../routes/userRoutes/chat.routes';
+import express, { urlencoded } from 'express';
 import { setupEggRoutesWithDb } from '../routes/eggroutes/egg.route';
 import { configureDatabase } from '../models/usermodel/user.model';
 import { configureDatabase2 } from '../models/egmodel/egg.model';
- //import { Server as SocketServer, Socket } from 'socket.io';
 import { configureSocket } from '../socketConnection/socket.mannage';
 import { configureDatabase3, saveMovimientos } from '../models/gamemodel/game.model';
 import mysql, { Connection } from 'mysql2';
 import sequelize from '../config/database';
-// import Console from 'console';
 import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors'
@@ -62,8 +60,9 @@ app.get('/user', setupUserRoutes(db));
 app.post('/login', setupUserRoutes(db));
 app.post('/newuser', setupUserRoutes(db));
 app.post('/password' , setupEggRoutesWithDb(db));
-app.post('/messages', setupChatRoutes);
-app.get('/userchat', setupChatRoutes);
+app.post('/messages', Routers);
+app.use('/getid', Routers);
+app.get('/userchat', Routers);
 app.get('/game-users', router);
 app.post('/movimientos', router);
 

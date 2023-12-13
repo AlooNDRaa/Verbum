@@ -12,12 +12,12 @@ const ActiveSlider = () => {
         <Swiper
           breakpoints={{  
             340: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 15
             },
             700: {
               slidesPerView: 2,
-              spaceBetween: 15
+              spaceBetween: 16
             },
             1000: {
               slidesPerView: 3,
@@ -30,13 +30,13 @@ const ActiveSlider = () => {
              clickable: true
            }}
            modules={[FreeMode, Pagination]}
-           className='w-[22rem] lg:w-[30rem] xl:w-[70rem] mb-[5%] mt-[25%]'
+           className='w-[22rem] lg:w-[60rem] xl:w-[80rem]  m-12'
         > 
         {ServiceData.map((item) => (
         <SwiperSlide key={item.title}>
           <div className='flex opacity-70 group shadow-lg text-white p-2 text-sm lg:text-medium lg:px-6 lg:py-8 h-[15rem] w-[15rem] lg:h-[30rem] lg:w-[50%] cursor-pointer'>
               <div
-                className='absolute inset-0 bg-cover bg-center'
+                className='absolute inset-0 bg-no-repeat  bg-cover  bg-center'
                 style={{ backgroundImage: `url(${item.backgroundImage})` }}
               />
              <div className='absolute inset-0 bg-[#191A26] group-hover:opacity-40' />

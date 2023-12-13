@@ -1,11 +1,12 @@
-  import { CiChat1, CiAlignBottom  } from "react-icons/ci";
-  import { IoLogoGameControllerB } from "react-icons/io";
+  import { GiAmethyst } from "react-icons/gi";
+  import { RiSecurePaymentFill } from "react-icons/ri";
   import { IconType } from "react-icons";
-  import chat2 from '../../../imgs/chat1.png'
-  import Game from '../../../imgs/game.png'
-  import herramientas from '../../../imgs/herramientas.png'
-  import recuperacion from '../../../imgs/seguro.png'
-  import { SiSpringsecurity } from "react-icons/si";
+  import { LuAlignHorizontalDistributeCenter } from "react-icons/lu";
+  import chat2 from '../../../imgs/gifts/chatgif.gif'
+  import Game from '../../../imgs/gifts/steamuserimages-a.akamaihd.gif'
+  import { IoIosChatboxes } from "react-icons/io";
+  import herramientas from '../../../imgs/gifts/2hmcq6arkg0skdynt7h7.gif'
+  import recuperacion from '../../../imgs/gifts/seguridad.gif'
   
   
   interface Service {
@@ -17,25 +18,25 @@
   
   export const ServiceData: Service[] = [
     {
-      icon: CiChat1,
-      title: "Chat",
+      icon: IoIosChatboxes,
+      title: "",
       content: "",
       backgroundImage: chat2,
     },
     {
-      icon: CiAlignBottom,
-      title: "Herramientas",
+      icon: LuAlignHorizontalDistributeCenter,
+      title: "",
       content: "",
       backgroundImage: herramientas,
     },
     {
-      icon: SiSpringsecurity,
-      title: "Seguro",
+      icon: RiSecurePaymentFill,
+      title: "",
       content: "",
       backgroundImage: recuperacion,
     },
     {
-      icon: IoLogoGameControllerB,
+      icon: GiAmethyst ,
       title: "Game",
       content: "",
       backgroundImage: Game,

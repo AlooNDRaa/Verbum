@@ -1,16 +1,20 @@
 import express, { Router, Request, Response  } from 'express';
 
-import { createmessages, getUserList } from '../../controllers/chat.controller';
+import { createmessages, getUserList, getUserIdByUsername } from '../../controllers/chat.controller';
 
-const setupChatRoutes: Router = express.Router();
+const Routers: Router = express.Router();
 
 
-setupChatRoutes.post('/messages', (req: Request, res: Response) => {
+Routers.post('/messages', (req: Request, res: Response) => {
   createmessages(req, res);
 });
 
-setupChatRoutes.get("/userchat", (req: Request, res: Response) => {
+Routers.get("/userchat", (req: Request, res: Response) => {
   getUserList()
 })
 
-export default setupChatRoutes;
+Routers.get('/getid', (req: Request, res: Response) => {
+  getUserIdByUsername(req, res)
+})
+
+export default Routers;

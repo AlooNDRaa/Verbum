@@ -1,8 +1,6 @@
 import { Server as SocketServer, Socket } from 'socket.io';
 import { getUserList } from '../controllers/chat.controller';
-import users from '../models/user.chat.model';
-import {getGameUsers, saveMovimientos} from '../controllers/gamecontroller/game.controller';
-
+import { getGameUsers, saveMovimientos } from '../controllers/gamecontroller/game.controller';
 
 export async function configureSocket(server: any) {
   const io: SocketServer = new SocketServer(server, {
@@ -12,36 +10,28 @@ export async function configureSocket(server: any) {
   });
 
   io.on('connection', async (socket: Socket) => {
+    console.log('Client connected:', socket.id);
+
+    socket.on('chat', (body: string) => {
+      console.log(body);
+      socket.broadcast.emit('chat', {
+        body: body,
+        from: socket.id.slice(6),
+      });
+    });
+
     const userList = await getUserList();
     io.to(socket.id).emit('userList', userList);
 
-    socket.on('chat', async (body: string) => {
-      console.log(body);
-
-      socket.broadcast.emit('chat', {
-        body: body,
-        from: "me",
-      });
-
-      console.log(socket.id);
-      console.log('Client connected');
-
-      const updatedUserList = await getUserList();
-      io.emit('userList', updatedUserList);
-    });
-  });
-
-  io.on('connection', (socket: Socket) => {
-    console.log('Jugador conectado:', socket.id);
-
-    socket.on('move',async (data) => {
-      // Manejar el movimiento del juego
-      io.emit('gameState', data); // Emitir el estado del juego a todos los jugadores
+    socket.on('move', async (data) => {
+      io.emit('gameState', data);
     });
 
     socket.on('disconnect', () => {
-      console.log('Jugador desconectado:', socket.id);
-      // Lógica de desconexión del juego
+      console.log('Client disconnected:', socket.id);
     });
+
+    const updatedUserList = await getUserList();
+    io.emit('userList', updatedUserList);
   });
 }

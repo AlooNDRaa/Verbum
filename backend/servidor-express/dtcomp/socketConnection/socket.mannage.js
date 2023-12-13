@@ -20,31 +20,25 @@ function configureSocket(server) {
             },
         });
         io.on('connection', (socket) => __awaiter(this, void 0, void 0, function* () {
-            const userList = yield (0, chat_controller_1.getUserList)();
-            io.to(socket.id).emit('userList', userList);
-            socket.on('chat', (body) => __awaiter(this, void 0, void 0, function* () {
+            console.log('Client connected:', socket.id);
+            socket.on('chat', (body) => {
                 console.log(body);
                 socket.broadcast.emit('chat', {
                     body: body,
-                    from: "me",
+                    from: socket.id.slice(6),
                 });
-                console.log(socket.id);
-                console.log('Client connected');
-                const updatedUserList = yield (0, chat_controller_1.getUserList)();
-                io.emit('userList', updatedUserList);
-            }));
-        }));
-        io.on('connection', (socket) => {
-            console.log('Jugador conectado:', socket.id);
+            });
+            const userList = yield (0, chat_controller_1.getUserList)();
+            io.to(socket.id).emit('userList', userList);
             socket.on('move', (data) => __awaiter(this, void 0, void 0, function* () {
-                // Manejar el movimiento del juego
-                io.emit('gameState', data); // Emitir el estado del juego a todos los jugadores
+                io.emit('gameState', data);
             }));
             socket.on('disconnect', () => {
-                console.log('Jugador desconectado:', socket.id);
-                // Lógica de desconexión del juego
+                console.log('Client disconnected:', socket.id);
             });
-        });
+            const updatedUserList = yield (0, chat_controller_1.getUserList)();
+            io.emit('userList', updatedUserList);
+        }));
     });
 }
 exports.configureSocket = configureSocket;

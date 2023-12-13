@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import io from "socket.io-client";
+import '../../../Styles/index.css'
 import Navopen from "./navOpenChat";
 
 const Socket = io('/');
@@ -33,20 +34,25 @@ function Mensajes(props: MensajesProps) {
 
         Socket.emit("chat", chat);
 
-        try {
-            await fetch('http://localhost:3000/messages', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    message_content: chat,
-                    user_id: selectedUser, 
-                }),
-            });
-        } catch (error) {
-            console.error('Error al guardar el mensaje en la base de datos:', error);
-        }
+        const response = await fetch('http://localhost:3000/messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message_content: chats, user_id: selectedUser }),
+          });
+          
+          if (response.ok) {
+            try {
+              const result = await response.json();
+              console.log('Mensaje creado con éxito:', result);
+            } catch (error) {
+              console.error('Error al procesar la respuesta JSON:', error);
+            }
+          } else {
+            console.error('Error al crear el mensaje:', response.statusText);
+          }
+          
 
         setChats([...chats, newChat]);
         setChat("");
@@ -70,27 +76,33 @@ function Mensajes(props: MensajesProps) {
 
     return (
         <>
-            <Navopen selectedUser={selectedUser} />
-            <div className="w-[70rem] bg-[#101015] grid justify-center">
-                <ul className="overflow-y-scroll   p-40 max-h-[30rem]">
-                    {displayedChats.map((chat, i) => (
-                        <li className={`text-white text-1xl my-2 p-2 table rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[40vw]' : `bg-[#f472b6]`}`} key={i}>
-                            <span className="font-bold block">{chat.from}</span>
-                            <span className="text-sm">{chat.body}</span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-                <form onSubmit={handleSubmit} className="absolute gap-2 bottom-0 flex items-stretch w-fit px-2 ">
-                    <input
-                        type="text"
-                        placeholder="Escribir"
-                        value={chat}
-                        onChange={(e) => setChat(e.target.value)}
-                        className="text-white border-stone-700 bg-stone-900 rounded w-[64rem] flex-auto h-[50px]"
-                    />
-                    <button type="submit" className="text-[#fdf4ff] bg-pink-800 rounded p-2">Enviar</button>
-                </form>
+        <div className="fixed">
+          <Navopen selectedUser={selectedUser} />
+          </div>
+          <div className="w-[69rem] flex  items-center justify-center">
+            <form onSubmit={handleSubmit} className="absolute bottom-0 flex items-stretch w-[60rem] p-2 ">
+              <input
+                type="text"
+                placeholder="Escribir"
+                value={chat}
+                onChange={(e) => setChat(e.target.value)}
+                className="text-white border-stone-700 bg-[#161610] bg-opacity-60 px-4 rounded-xl flex-auto h-[4rem]"
+              />
+              <button type="submit" className="text-[#fdf4ff] font-semibold bg-pink-600 rounded-xl ml-1 px-3">Enviar</button>
+            </form>
+            <ul className="overflow-y-auto w-full h-[30rem] mt-24 text-clip overflow-hidden">
+              {displayedChats.map((chat, i) => (
+                <li
+                  style={{ maxWidth: "300px", overflowWrap: "break-word" }}
+                  className={`text-white text-1xl my-2 p-3 rounded-md ${chat.from === "me" ? 'bg-[#C83C83] ml-[50rem] mr-7 rounded-ee	 rounded-es-3xl' : `bg-[#f472b6] block ml-[3rem] rounded-se-xl	 rounded-r-3xl`}`}
+                  key={i}
+                >
+                  <span className="font-bold block">{chat.from}</span>
+                  <span className="text-sm">{chat.body}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </>
     );
 }

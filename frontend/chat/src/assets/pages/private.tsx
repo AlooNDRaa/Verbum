@@ -8,7 +8,7 @@ export function ThePrivatePage() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowError(false);
-    }, 5000);
+    }, 4000);
 
     return () => clearTimeout(timeoutId); 
   }, []);
