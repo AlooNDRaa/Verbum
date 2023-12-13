@@ -80,7 +80,7 @@ export function GameCYR() {
   }
 
   return (
-    <main className='bg-[#101015] w-full '>
+    <main className='bg-[#101015] w-full md:max-lg:h-screen'>
       <Navbar/>
       <div className='board flex justify-center items-center flex-col gap-6 '>
         <div className='son1'>
@@ -91,9 +91,9 @@ export function GameCYR() {
         </div>
         <div className='son3'>
           <section className='game grid grid-cols-3 gap-1 relative'>
-            {board.map((square, index) => {
+            {board.map((square: string | null, index: number) => {
               return (
-                <Square key={index} index={index} updateBoard={updateBoard}>
+                <Square key={index} index={index} updateBoard={updateBoard} isSelected={false}>
                   {square}
                 </Square>
               )
@@ -102,11 +102,13 @@ export function GameCYR() {
         </div>
         <div className='son4'>
           <section className='turn flex justify-center relative bottom-0 rounded-lg'>
-          <Square isSelected={turn === TURNS.O} updateBoard={() => { }} index={0}>
-            {TURNS.O}
+            <Square isSelected={turn === TURNS.X} updateBoard={() => { }} index={0}
+
+            >
+               {TURNS.X}
             </Square>
             <Square isSelected={turn === TURNS.O} updateBoard={() => { }} index={0}>
-            {turn === TURNS.O && usernames.length > 1 && usernames[1]}
+            {TURNS.O}
             </Square>
           </section>
         </div>

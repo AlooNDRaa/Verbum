@@ -5,7 +5,7 @@ export function Team() {
     return(
         <>
         <div className="p-7 mb-12">
-            <h2 className="text-5xl lg:text-6xl font-semibold text-white">
+            <h2 className="text-5xl lg:text-6xl font-semibold text-white" id="our-team">
                 Our Team:
             </h2>
             <div className="p-6 mt-12 flex flex-wrap lg:flex justify-around">
@@ -13,7 +13,7 @@ export function Team() {
                     <GiFox size='50'/>
                     <button>
                     <h3 className="text-xl font-semibold ">
-                      <a href="https://github.com/AlooNDRaa">Alondra</a>  
+                      <a href="https://github.com/AlooNDRaa" target="_blank">Alondra</a>  
                     </h3>
                     </button>
                 </div>
@@ -21,7 +21,7 @@ export function Team() {
                     <GiHorseHead size='50' className='ml-2 '/>
                     <button>
                     <h3 className="text-xl font-semibold ">
-                      <a href="https://github.com/Ysluna">Yamila</a>  
+                      <a href="https://github.com/Ysluna" target="_blank">Yamila</a>  
                     </h3>
                     </button>
                 </div>
@@ -29,7 +29,7 @@ export function Team() {
                     <GiSeaTurtle size='50'/>
                     <button>
                     <h3 className="text-xl font-semibold ">
-                      <a href="https://github.com/BrendaRuthHerrera">Brenda</a>  
+                      <a href="https://github.com/BrendaRuthHerrera" target="_blank">Brenda</a>  
                     </h3>
                     </button>
                 </div>
@@ -37,7 +37,7 @@ export function Team() {
                     <GiKoala  size='50'/>
                     <button>
                     <h3 className="text-xl font-semibold ">
-                      <a href="https://github.com/Arleth-cordero20">Arleth</a>  
+                      <a href="https://github.com/Arleth-cordero20" target="_blank">Arleth</a>  
                     </h3>
                     </button>
                 </div>
