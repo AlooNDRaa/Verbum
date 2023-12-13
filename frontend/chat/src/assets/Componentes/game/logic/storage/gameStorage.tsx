@@ -1,10 +1,7 @@
- 
 export const saveGameToStorage = async ({ board, turn }: { board: any[]; turn: string }) => {
-  // Guardar los movimientos en el almacenamiento local
   window.localStorage.setItem('board', JSON.stringify(board));
   window.localStorage.setItem('turn', turn);
 
-  // Enviar los movimientos al servidor
   try {
     const response = await fetch('http://localhost:3000/movimientos', {
       method: 'POST', 

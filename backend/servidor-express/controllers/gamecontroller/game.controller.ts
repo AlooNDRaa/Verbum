@@ -17,7 +17,6 @@ export const saveMovimientos = async (req: Request, res: Response): Promise<void
   try {
     const { board, turn } = req.body;
 
-    // Guarda los movimientos en la base de datos utilizando el modelo correspondiente
     await gamemodel.saveMovimientos(board, turn);
 
     res.status(200).json({ message: 'Movimientos guardados en la base de datos' });

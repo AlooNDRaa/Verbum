@@ -38,7 +38,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         expiresIn: '3m'
       })
       res.send({token});
-      // res.status(200).json({ message: 'Inicio de sesión exitoso' });
       console.log(token);
     } else {
       res.status(401).json({ message: 'Wrong user' });

@@ -24,15 +24,10 @@ export function GameCYR() {
     const turnFromStorage = window.localStorage.getItem('turn')
     return turnFromStorage ? (turnFromStorage as TURNS) : TURNS.X
   })
-
-  // null es que no hay ganador, false es que hay un empate
   const [winner, setWinner] = useState<string | boolean | null>(null)
-
   const [usernames, setUsernames] = useState<string[]>([]);
 
-    // Obtén los nombres de usuario al cargar el componente
     useEffect(() => {
-      // Hacer la solicitud al backend para obtener los nombres de usuario
       fetch('http://localhost:3000/game-users') 
         .then(response => response.json())
         .then(data => setUsernames(data))
@@ -48,28 +43,22 @@ export function GameCYR() {
   }
 
   const updateBoard = (index: number) => {
-    // no actualizamos esta posición
-    // si ya tiene algo
     if (board[index] || winner) return
-    // actualizar el tablero
     const newBoard = [...board]
     newBoard[index] = turn
     setBoard(newBoard)
-    // cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
-    // guardar aqui partida
     saveGameToStorage({
       board: newBoard,
       turn: newTurn
     })
-    // revisar si hay ganador
     const newWinner = checkWinnerFrom(newBoard)
     if (newWinner) {
       confetti()
       setWinner(newWinner)
     } else if (checkEndGame(newBoard)) {
-      setWinner(false) // empate
+      setWinner(false)
     }
 
     socket.emit('updateBoard' , {

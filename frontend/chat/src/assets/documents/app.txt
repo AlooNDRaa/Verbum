@@ -1,4 +1,0 @@
-La constante app:
-
-
-Se declara una const con dos valores principales auth y setAuth con el manejo de useState como valor false.
