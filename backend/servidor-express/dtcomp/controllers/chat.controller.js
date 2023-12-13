@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createmessages = exports.getUserList = void 0;
+exports.getUserIdByUsername = exports.createmessages = exports.getUserList = void 0;
 const chat_model_1 = __importDefault(require("../models/chat.model"));
 const user_chat_model_1 = __importDefault(require("../models/user.chat.model"));
+const database_1 = __importDefault(require("../config/database"));
 function getUserList() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -32,6 +33,7 @@ function getUserList() {
 exports.getUserList = getUserList;
 function createmessages(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        const transaction = yield database_1.default.transaction();
         try {
             const { message_content, user_id } = req.body;
             const isFromSocket = req.headers['user-agent'] && req.headers['user-agent'].includes('socket.io');
@@ -44,14 +46,39 @@ function createmessages(req, res) {
                     user_id,
                     message_content,
                 });
+                yield transaction.commit();
                 return res.status(201).json({ mensaje: 'Mensaje creado con éxito', nuevoMensaje });
             }
             return res.status(201).json({ mensaje: 'Mensaje recibido con éxito desde la interfaz web' });
         }
         catch (error) {
+            yield transaction.rollback();
             console.error(error);
             return res.status(500).json({ error: 'Error en el servidor' });
         }
     });
 }
 exports.createmessages = createmessages;
+function getUserIdByUsername(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const { username } = req.query;
+            if (!username) {
+                return res.status(400).json({ error: 'El parámetro username es requerido' });
+            }
+            const user = yield user_chat_model_1.default.findOne({
+                attributes: ['id'],
+                where: { username: username },
+            });
+            if (!user) {
+                return res.status(404).json({ error: 'Usuario no encontrado' });
+            }
+            return res.status(200).json({ userId: user.id });
+        }
+        catch (error) {
+            console.error('Error al obtener el ID del usuario por nombre de usuario:', error);
+            return res.status(500).json({ error: 'Error en el servidor' });
+        }
+    });
+}
+exports.getUserIdByUsername = getUserIdByUsername;

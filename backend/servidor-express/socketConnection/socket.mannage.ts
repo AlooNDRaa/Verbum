@@ -1,6 +1,5 @@
 import { Server as SocketServer, Socket } from 'socket.io';
 import { getUserList } from '../controllers/chat.controller';
-import users from '../models/user.chat.model';
 import {getGameUsers, saveMovimientos} from '../controllers/gamecontroller/game.controller';
 
 
@@ -20,7 +19,7 @@ export async function configureSocket(server: any) {
 
       socket.broadcast.emit('chat', {
         body: body,
-        from: "me",
+        from: userList,
       });
 
       console.log(socket.id);

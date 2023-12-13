@@ -33,20 +33,25 @@ function Mensajes(props: MensajesProps) {
 
         Socket.emit("chat", chat);
 
-        try {
-            await fetch('http://localhost:3000/messages', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    message_content: chat,
-                    user_id: selectedUser, 
-                }),
-            });
-        } catch (error) {
-            console.error('Error al guardar el mensaje en la base de datos:', error);
-        }
+        const response = await fetch('http://localhost:3000/messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message_content: chats, user_id: selectedUser }),
+          });
+          
+          if (response.ok) {
+            try {
+              const result = await response.json();
+              console.log('Mensaje creado con éxito:', result);
+            } catch (error) {
+              console.error('Error al procesar la respuesta JSON:', error);
+            }
+          } else {
+            console.error('Error al crear el mensaje:', response.statusText);
+          }
+          
 
         setChats([...chats, newChat]);
         setChat("");
