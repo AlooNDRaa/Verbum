@@ -1,6 +1,6 @@
 # Verbum - Chat
 
-It all starts with a Verbum, Our first chat project as a SomosCoders task.
+This is our chat project, Verbum, as a task for SomosCoders.
 
 ## Overview
 
@@ -17,8 +17,10 @@ It all starts with a Verbum, Our first chat project as a SomosCoders task.
 
 ![Desktop-view](./frontend/chat/src/assets/imgs/Verbumimgs/Login.PNG)
 ![Desktop-view/register](./frontend/chat/src/assets/imgs/Verbumimgs/createUser.PNG)
-![Home](./frontend/chat/src/assets/imgs/Verbumimgs/Home.PNG)
-![Chat](./frontend/chat/src/assets/imgs/Verbumimgs/chats.PNG)
+![Home](./frontend/chat/src/assets/imgs/Verbumimgs/Home.jpg)
+![Chat](./frontend/chat/src/assets/imgs/Verbumimgs/chats.jpg)
+![Game](./frontend/chat/src/assets/imgs/Verbumimgs/game.jpg)
+![Game](./frontend/chat/src/assets/imgs/Verbumimgs/game2.jpg)
 ![ABoutimg](./frontend/chat/src/assets/imgs/Verbumimgs/about-us.PNG)
 
 ![mobile](./frontend/chat/src/assets/imgs/Verbumimgs/Verbumhomephone.PNG)
@@ -31,6 +33,8 @@ It all starts with a Verbum, Our first chat project as a SomosCoders task.
 - Typescript
 - Node Js
 - Tailwind css
+- Socket.io
+- JsonWebToken
 - Jest
 - Axios
 - Vite
@@ -40,6 +44,34 @@ It all starts with a Verbum, Our first chat project as a SomosCoders task.
 
 ### Installation Manual
 
+1. Clone the repository:
+```
+ https://github.com/AlooNDRaa/Verbum.git
+
+```
+
+2. Navigate to the project directory:
+```
+cd frontend/chat
+``` 
+
+3. Install dependencies:
+```
+npm i
+``` 
+
+4. Start the app:
+```
+npm run dev
+``` 
+
+5. Repeat the previous instructions but with the backend folder:
+```
+cd backend/servidor-express
+npm i
+npm start
+
+``` 
 
 
 ## Authors
@@ -54,7 +86,7 @@ It all starts with a Verbum, Our first chat project as a SomosCoders task.
 
 # Verbum - Chat
 
-Todo comienza con un Verbum, Nuestro primer proyecto de chat como tarea de SomosCoders.
+Este es nuestro proyecto de chat, Verbum, como una tarea para SomosCoders.
 
 ## Overview
 
@@ -70,8 +102,9 @@ Todo comienza con un Verbum, Nuestro primer proyecto de chat como tarea de Somos
 
 ![Desktop-view](./frontend/chat/src/assets/imgs/Verbumimgs/Login.PNG)
 ![Desktop-view/register](./frontend/chat/src/assets/imgs/Verbumimgs/createUser.PNG)
-![Home](./frontend/chat/src/assets/imgs/Verbumimgs/Home.PNG)
-![Chat](./frontend/chat/src/assets/imgs/Verbumimgs/chats.PNG)
+![Chat](./frontend/chat/src/assets/imgs/Verbumimgs/chats.jpg)
+![Game](./frontend/chat/src/assets/imgs/Verbumimgs/game.jpg)
+![Game](./frontend/chat/src/assets/imgs/Verbumimgs/game2.jpg)
 ![ABoutimg](./frontend/chat/src/assets/imgs/Verbumimgs/about-us.PNG)
 
 ![mobile](./frontend/chat/src/assets/imgs/Verbumimgs/Verbumhomephone.PNG)
@@ -85,16 +118,44 @@ Todo comienza con un Verbum, Nuestro primer proyecto de chat como tarea de Somos
 - Typescript
 - Node Js
 - Tailwind css
+- Socket.io
+- JsonWebToken
 - Jest
 - Axios
 - Vite
 - Express 
 - Dotenv
 
-
 ### Installation Manual
 
+1. Clonar el repositorio:
+```
+ https://github.com/AlooNDRaa/Verbum.git
 
+```
+
+2. Navegar a la carpeta del proyecto:
+```
+cd frontend/chat
+``` 
+
+3. Instalar las dependencias:
+```
+npm i
+``` 
+
+4. Correr la applicación:
+```
+npm run dev
+``` 
+
+5. Repetir los pasos con la otra carpeta:
+```
+cd backend/servidor-express
+npm i
+npm start
+
+``` 
 
 ## Autores
 

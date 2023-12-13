@@ -23,7 +23,7 @@ interface User {
   
   return (
     <>
-      <div className="overflow-y-auto h-[43rem] w-[12rem]  justify-center grid text-gray-400 font-semibold">
+      <div className="overflow-y-auto h-[43rem] w-[11rem]  justify-center grid text-gray-400 font-semibold">
         {userList.map((user, index) => (
           <div
           key={index}
