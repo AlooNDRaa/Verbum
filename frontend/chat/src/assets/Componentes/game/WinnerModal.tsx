@@ -1,19 +1,19 @@
 import { Square } from './square'
 
 interface WinnerModalProps {
-  winner: string | null;
+  winner: string | boolean | null;
   resetGame: () => void;
 }
 
 export function WinnerModal({ winner, resetGame }: WinnerModalProps) {
 if (winner === null) return null;
   
-  const winnerText = winner === null ? 'Empate' : `Ganó: ${winner}`;
+  const winnerText = winner === false ? 'Empate' : `Ganó: ${winner}`;
   
   
   return (
     <section className='winner fixed inset-0 grid place-items-center bg-black bg-opacity-70 m-[2rem]'>
-      <div className='text bg-black text-white border-2  flex flex-col justify-center items-center w-[20rem] h-[20rem] rounded-lg'>
+      <div className='text bg-black text-white  border-2  flex flex-col justify-center items-center w-[20rem] h-[20rem] rounded-lg'>
         <h2>{winnerText}</h2>
 
         <header className='win auto w-fit-content  border-white rounded-10 flex '>

@@ -91,9 +91,9 @@ export function GameCYR() {
         </div>
         <div className='son3'>
           <section className='game grid grid-cols-3 gap-1 relative'>
-            {board.map((square, index) => {
+            {board.map((square: string | null, index: number) => {
               return (
-                <Square key={index} index={index} updateBoard={updateBoard}>
+                <Square key={index} index={index} updateBoard={updateBoard} isSelected={false}>
                   {square}
                 </Square>
               )
