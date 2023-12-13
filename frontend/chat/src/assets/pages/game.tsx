@@ -80,7 +80,7 @@ export function GameCYR() {
   }
 
   return (
-    <main className='bg-[#101015] w-full '>
+    <main className='bg-[#101015] w-full md:max-lg:h-screen'>
       <Navbar/>
       <div className='board flex justify-center items-center flex-col gap-6 '>
         <div className='son1'>

@@ -49,7 +49,9 @@ function Navbar(): JSX.Element {
         <nav>
            <div className="fixed top-0 left-0 right-0 flex justify-between bg-[#191A26] bg-opacity-70 z-50 items-center text-white lg:py-8 xl:py-12 px-9 h-[4rem]">
                 <div className="flex flex-1">
+                <Link to="/home">
                 <img src={Logo} alt="img-logo" className="w-6 h-6  sm:w-8 sm:h-8 md:w-15 md:h-15 lg:w-10 lg:h-10 xl:w-12 xl:h-12"/>
+                </Link>
                 </div>
                 <div className="lg:flex md:hidden lg:flex-1 items-center justify-end text-center font-normal hidden">
                   <div className="flex-10">
