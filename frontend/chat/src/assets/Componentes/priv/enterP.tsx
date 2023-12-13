@@ -30,6 +30,7 @@ export function EnterPas() {
       console.error('Error al verificar la contraseña:', error);
     }
   };
+  
 
   return (
     <>
@@ -49,7 +50,7 @@ export function EnterPas() {
                 <h1 className="text-4xl lg:text-6xl text-center mb-9 font-semibold opacity- text-[#fe0000]">
                   Password required
                 </h1>
-                <input
+                <input 
                   className="border-none rounded-xl text-2xl text-black p-3 m-2 lg:p-5 bg-gray-300"
                   type="password"
                   name='password'
